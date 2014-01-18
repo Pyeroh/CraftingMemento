@@ -1,5 +1,7 @@
 package model.enums;
 
+import model.EnumName;
+
 
 /**
  * Les catégories d'item existant

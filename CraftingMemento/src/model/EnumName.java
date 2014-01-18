@@ -1,7 +1,9 @@
-package model.enums;
+package model;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
+import model.enums.EItemCat;
 
 public class EnumName {
 
@@ -22,13 +24,5 @@ public class EnumName {
 	public static void load() {
 		RESOURCE_BUNDLE = ResourceBundle.getBundle("gui.enums");
 		EItemCat.load();
-		/*EAbilities.load();
-		EAmount.load();
-		ECatW.load();
-		EGrowth.load();
-		EHealth.load();
-		EMonsters.load();
-		ETypeW.load();
-		ERewardType.load();*/
 	}
 }

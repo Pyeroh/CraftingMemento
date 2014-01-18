@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 
+import model.EnumName;
+
 /**
  * Les items Minecraft, sans les objets techniques et certains autres...
  * @author Pyeroh
@@ -13,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public enum EItem {
 
-	custom(-1,0,"",null),
+	air(0,0,"",null),
 	
 	//Blocks
 	stone(1,0,"STONE",EItemCat.block),
@@ -29,9 +31,7 @@ public enum EItem {
 	birch_sapling(6,2,"SAPLING",EItemCat.decoration),
 	jungle_sapling(6,3,"SAPLING",EItemCat.decoration),
 	sand(12,0,"SAND",EItemCat.block),
-	
-	//TODO redsand(12,1,"SAND",EItemCat.block),
-	
+	redsand(12,1,"SAND",EItemCat.block),
 	gravel(13,0,"GRAVEL",EItemCat.block),
 	gold_ore(14,0,"GOLD_ORE",EItemCat.block),
 	iron_ore(15,0,"IRON_ORE",EItemCat.block),
@@ -312,13 +312,10 @@ public enum EItem {
 	glowstone_dust(348,0,"GLOWSTONE_DUST",EItemCat.materials),
 	raw_fish(349,0,"RAW_FISH",EItemCat.food),
 	cooked_fish(350,0,"COOKED_FISH",EItemCat.food),
-	
-	//TODO items
-	/*raw_salmon(349,1,"RAW_FISH",EItemCat.food),
+	raw_salmon(349,1,"RAW_FISH",EItemCat.food),
 	cooked_salmon(350,1,"COOKED_FISH",EItemCat.food),
 	clownfish(349,2,"RAW_FISH",EItemCat.food),
-	pufferfish(349,3,"RAW_FISH",EItemCat.food),*/
-	
+	pufferfish(349,3,"RAW_FISH",EItemCat.food),
 	ink_sack(351,0,"INK_SACK",EItemCat.materials),
 	rose_red(351,1,"INK_SACK",EItemCat.materials),
 	cactus_green(351,2,"INK_SACK",EItemCat.materials),
@@ -450,11 +447,8 @@ public enum EItem {
 	p_strength_II(373,8233,"POTION",EItemCat.potion),
 	p_invisibility(373,8206,"POTION",EItemCat.potion),
 	p_invisibility_ext(373,8270,"POTION",EItemCat.potion),
-	
-	//TODO potions
-	/*p_water_breathing(373,8237,"POTION",EItemCat.potion),
-	p_water_breathing_ext(373,8269,"POTION",EItemCat.potion),*/
-	
+	p_water_breathing(373,8237,"POTION",EItemCat.potion),
+	p_water_breathing_ext(373,8269,"POTION",EItemCat.potion),
 	p_poison(373,8196,"POTION",EItemCat.potion),
 	p_poison_ext(373,8260,"POTION",EItemCat.potion),
 	p_poison_II(373,8228,"POTION",EItemCat.potion),
@@ -483,11 +477,8 @@ public enum EItem {
 	s_p_strength_II(373,16425,"POTION",EItemCat.potion),
 	s_p_invisibility(373,16398,"POTION",EItemCat.potion),
 	s_p_invisibility_ext(373,16462,"POTION",EItemCat.potion),
-	
-	//TODO splash potions
-	/*s_p_water_breathing(373,16429,"POTION",EItemCat.potion),
-	s_p_water_breathing_ext(373,16461,"POTION",EItemCat.potion),*/
-	
+	s_p_water_breathing(373,16429,"POTION",EItemCat.potion),
+	s_p_water_breathing_ext(373,16461,"POTION",EItemCat.potion),
 	s_p_poison(373,16388,"POTION",EItemCat.potion),
 	s_p_poison_ext(373,16452,"POTION",EItemCat.potion),
 	s_p_poison_II(373,16420,"POTION",EItemCat.potion),
@@ -533,7 +524,7 @@ public enum EItem {
 			imagepath.append(meta);
 		}
 		imagepath.append(".png");
-		if(this.id!=-1) this.image = new ImageIcon(getClass().getClassLoader().getResource(imagepath.toString())).getImage();
+		if(this.id!=0) this.image = new ImageIcon(getClass().getClassLoader().getResource(imagepath.toString())).getImage();
 	}
 
 	public int getId() {
