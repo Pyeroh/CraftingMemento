@@ -10,14 +10,61 @@ public enum Recette {
 
 	//Soit un tableau, soit une suite d'ingrédients
 	//Indiquer la méthode d'obtention...
+	/*
+	 * x|x|x
+	 * x|x|x
+	 * x|x|x
+	 */
 	
 	/*roche,
 	granite,
 	diorite,
 	andesite,
 	*/
+	
+	/*
+	 * Blocs naturels
+	 * 
+	 * blocs a rajouter :
+	 * 						-diorite
+	 * 						-andesite
+	 * 						-stonebrick (pierre taillée)
+	 *						-vines (lierre) j'ai vu qu'il y avait "vine
+	 *
+	 * 						
+	 * 
+	 * problème rencontrés : 1 objet peut etre obtenus de différentes manières : grès_gravé * 4   OU  grès_taillé * 4   = grès poli
+	 * 
+	 * 
+	 */
+
+	
+	
+	roche(1,0,"stone",four,new EItem[][]{}), // a préciser ce qu'il faut mettre ici pour la recette ... comme c'est fait avec le four.
+	granite(1,01,"granite",craft,new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
+	diorite(1,03,"diorite",craft,new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
+	andesite(1,05,"andesite",craft,new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
 	gres(24,0,"sandstone",craft,new EItem[][]{{air,air,air},{air,sand,sand},{air,sand,sand}}),
-	gres_taille(24,1,"sandstone",craft, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
+	gres_taille(24,01,"chiseled_sandstone",craft, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
+	gres_poli(24,02,"smooth_sandstone",craft,new EItem[][]{{air, air, air},{air, sandstone, sandstone},{air, sandstone, sandstone}}),
+	// recette 2 : gres_poli(24,2,"smooth_sandstone",craft,new EItem[][]{{air, air, air},{air, chiseled_sandstone, chiseled_sandstone},{air, chiseled_sandstone, chiseled_sandstone}}),
+	pierre_taillee(98,0,"stone_brick",craft,new EItem[][]{{air, air, air},{air, stone, stone},{air, stone, stone}}),
+	pierre_taillee_moussue(98,01,"mossy_stone_brick",craft,new EItem[][]{{air, air, air},{air, stonebrick, air},{air, vines, air}}), //vérifier le nom officiel
+	pierre_taillee_sculptee(98,03,"chiseled_stone_brick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}),
+	
+	/*
+	 * Produits manufacturés
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
 	;
 	
 	private int id;
