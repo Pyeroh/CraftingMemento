@@ -31,15 +31,15 @@ public enum Recette {
 	 * 						-andesite (v1.8)
 	 * 						
 	 * 
-	 * 						-bois de chene (oak_wood)
-	 * 						-bois de sapin (spruce_wood)
-	 * 						-bois de bouleau (birch_wood)
-	 * 						-bois de acajou (jungle_wood)
-	 * 						-bois de acacia (acacia_wood)
-	 * 						-bois de chene noir (dark_oak_wood)
-	 * 						-pierre taillée (stone_brick)
+	 * 						-bois de chene (oak_wood)             	|
+	 * 						-bois de sapin (spruce_wood)			|
+	 * 						-bois de bouleau (birch_wood)			|
+	 * 						-bois de acajou (jungle_wood)			|
+	 * 						-bois de acacia (acacia_wood)			|
+	 * 						-bois de chene noir (dark_oak_wood)		|
+	 * 						-pierre taillée (stone_brick)			|
 	 * 
-	 * a	corriger :
+	 *	 a	corriger :
 	 * 					-nether_brick_     ----> nether_brick
 	 * 
 	 * 
@@ -68,8 +68,7 @@ public enum Recette {
 	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
 	
-	/*
-	 * LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
+	/* LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
 	 * 
 	 * 
 	 * 	
@@ -81,7 +80,8 @@ public enum Recette {
 	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
 	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
 	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
-	 * 
+	 * bloc_de_slime(45,0,"slime_block",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
+	 * terre_cuite(45,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
 	 */
 
 	
@@ -112,11 +112,9 @@ public enum Recette {
 	planche_acacia(5,4,"acacia_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_chene_noir(5,5,"dark_oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	
-	
-	
 	// LES DALLES
 	dalle_de_roche(44,0,"stone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
-	dalle_de_sable(44,1,"sandstone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
+	dalle_de_roche_de_sable(44,1,"sandstone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
 	dalle_de_bois_de_chene(44,2,"oak_wood_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
 	dalle_de_pierre(44,3,"cobblestone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{cobblestone, cobblestone, cobblestone}}),
 	dalle_de_brique(44,4,"bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{brick, brick, brick}}),
@@ -125,7 +123,24 @@ public enum Recette {
 	dalle_de_quartz(44,7,"quartz_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{quartz_block, quartz_block, quartz_block}}),
 	
 	
+	//LES ESCALIERS
+	
+	escalier_de_chene(53,0,"oak_wood_stairs",craft, 4, new EItem[][]{{oak_wooden_plank, air, air},{oak_wooden_plank, oak_wooden_plank, air},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
+	escalier_de_pierre(67,0,"cobblestone_stairs",craft, 4, new EItem[][]{{cobblestone, air, air},{cobblestone, cobblestone, air},{cobblestone, cobblestone, cobblestone}}),
+	escalier_de_brique(108,0,"brick_stairs",craft, 4, new EItem[][]{{brick, air, air},{brick, brick, air},{brick, brick, brick}}),
+	escalier_de_pierre_taillee(109,0,"stone_brick_stairs",craft, 4, new EItem[][]{{stone_brick, air, air},{stone_brick, stone_brick, air},{stone_brick, stone_brick, stone_brick}}),
+	escalier_de_roche_de_sable(135,0,"sandstone_brick_stairs",craft, 4, new EItem[][]{{sandstone_brick, air, air},{sandstone_brick, sandstone_brick, air},{sandstone_brick, sandstone_brick, sandstone_brick}}),
+	escalier_de_sapin(134,0,"spruce_wood_stairs",craft, 4, new EItem[][]{{spruce_wooden_plank, air, air},{spruce_wooden_plank, spruce_wooden_plank, air},{spruce_wooden_plank, spruce_wooden_plank, spruce_wooden_plank}}),
+	escalier_de_bouleau(135,0,"birch_wood_stairs",craft, 4, new EItem[][]{{birch_wooden_plank, air, air},{birch_wooden_plank, birch_wooden_plank, air},{birch_wooden_plank, birch_wooden_plank, birch_wooden_plank}}),
+	escalier_d_acajou(136,0,"jungle_wood_stairs",craft, 4, new EItem[][]{{jungle_wooden_plank, air, air},{jungle_wooden_plank, jungle_wooden_plank, air},{jungle_wooden_plank, jungle_wooden_plank, jungle_wooden_plank}}),
+	escalier_d_acacia(163,0,"acacia_wood_stairs",craft, 4, new EItem[][]{{acacia_wooden_plank, air, air},{acacia_wooden_plank, acacia_wooden_plank, air},{acacia_wooden_plank, acacia_wooden_plank, acacia_wooden_plank}}),
+	escalier_de_chene_noir(164,0,"dark_oak_wood_stairs",craft, 4, new EItem[][]{{dark_oak_wooden_plank, air, air},{dark_oak_wooden_plank, dark_oak_wooden_plank, air},{dark_oak_wooden_plank, dark_oak_wooden_plank, dark_oak_wooden_plank}}),
+	escalier_de_quartz(156,0,"quartz_stairs",craft, 4, new EItem[][]{{quartz_block, air, air},{quartz_block, quartz_block, air},{quartz_block, quartz_block, quartz_block}}),
+	
+	// BLOCS DIVERS
+	
 	brique(45,0,"bricks",craft, 1, new EItem[][]{{air, air, air},{air, brick, brick},{air, brick, brick}}),
+	
 	
 	
 	
