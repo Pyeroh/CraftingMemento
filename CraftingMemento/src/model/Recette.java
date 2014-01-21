@@ -26,9 +26,17 @@ public enum Recette {
 	 * Blocs naturels
 	 * 
 	 * blocs a rajouter :
-	 * 						-granite
-	 * 						-diorite
-	 * 						-andesite
+	 * 						-granite (v 1.8)
+	 * 						-diorite (v 1.8)
+	 * 						-andesite (v1.8)
+	 * 						
+	 * 
+	 * 						-bois de chene (oak_wood)
+	 * 						-bois de sapin (spruce_wood)
+	 * 						-bois de bouleau (birch_wood)
+	 * 						-bois de acajou (jungle_wood)
+	 * 						-bois de acacia (acacia_wood)
+	 * 						-bois de chene noir (dark_oak_wood)
 	 *
 	 * 						
 	 * 
@@ -39,14 +47,14 @@ public enum Recette {
 
 	
 	
-	//roche(1,0,"stone",four,new EItem[][]{}),
+	//roche(1,0,"stone", 1,four,new EItem[][]{}),
 	/*Il va falloir redéfinir la manière dont on crée une recette de four, de telle manière à ce
 	 * qu'on ait même pas besoin d'indiquer craft, four ou alambic. Donc pour le moment, pas de recettes
 	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
-	//granite(1,01,"stone",craft,new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
-	//diorite(1,03,"stone",craft,new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
-	//andesite(1,05,"stone",craft,new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
+	//granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
+	//diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
+	//andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
 	gres(24,0,"sandstone",craft,1,new EItem[][]{{air,air,air},{air,sand,sand},{air,sand,sand}}),
 	gres_taille(24,01,"sandstone",craft, 1, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
 	gres_poli(24,02,"sandstone",craft, 4, new EItem[][]{{air, air, air},{air, sandstone, sandstone},{air, sandstone, sandstone}}),
@@ -56,7 +64,6 @@ public enum Recette {
 	//pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}), //pas encore ajouté, v1.8
 	//pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}), //v1.8
 	
-	
 	/*
 	 * Produits manufacturés
 	 * 
@@ -64,6 +71,16 @@ public enum Recette {
 	//granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}), //v1.8
 	//diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}), //v1.8
 	//andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}), //v1.8
+	
+	
+	planche_chene(5,0,"oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_sapin(5,1,"spruce_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_bouleau(5,2,"birch_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_acajou(5,3,"jungle_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_acacia(5,4,"acacia_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_chene_noir(5,5,"dark_oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	// verre(20,0,"glass",four, 4, new EItem[][]{{air, air, air},{air, sand, air},{air, air, air}}),  recette avec un four
+	
 	
 	
 	;
