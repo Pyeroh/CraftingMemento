@@ -37,6 +37,12 @@ public enum Recette {
 	 * 						-bois de acajou (jungle_wood)
 	 * 						-bois de acacia (acacia_wood)
 	 * 						-bois de chene noir (dark_oak_wood)
+	 * 						-pierre taillée (stone_brick)
+	 * 
+	 * a	corriger :
+	 * 					-nether_brick_     ----> nether_brick
+	 * 
+	 * 
 	 *
 	 * 						
 	 * 
@@ -47,39 +53,90 @@ public enum Recette {
 
 	
 	
-	//roche(1,0,"stone", 1,four,new EItem[][]{}),
-	/*Il va falloir redéfinir la manière dont on crée une recette de four, de telle manière à ce
+	/* LES RECETTES AU FOUR
+	 * 
+	 * 
+	 * roche(1,0,"stone", 1,four,new EItem[][]{}),
+	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, sand, air},{air, air, air}}),  recette avec un four
+	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, red_sand, air},{air, air, air}}),  recette avec un four | attention 2eme recette !
+	 * 
+	 * 
+	 * 
+	 * 
+	 * Il va falloir redéfinir la manière dont on crée une recette de four, de telle manière à ce
 	 * qu'on ait même pas besoin d'indiquer craft, four ou alambic. Donc pour le moment, pas de recettes
 	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
-	//granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
-	//diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
-	//andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
+	
+	/*
+	 * LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
+	 * 
+	 * 
+	 * 	
+	 * granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
+	 * diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
+	 * andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
+	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}), //pas encore ajouté, 
+	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}), 
+	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
+	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
+	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
+	 * 
+	 */
+
+	
+	
+	
+	
 	gres(24,0,"sandstone",craft,1,new EItem[][]{{air,air,air},{air,sand,sand},{air,sand,sand}}),
-	gres_taille(24,01,"sandstone",craft, 1, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
-	gres_poli(24,02,"sandstone",craft, 4, new EItem[][]{{air, air, air},{air, sandstone, sandstone},{air, sandstone, sandstone}}),
+	gres_taille(24,1,"sandstone",craft, 1, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
+	gres_poli(24,2,"sandstone",craft, 4, new EItem[][]{{air, air, air},{air, sandstone, sandstone},{air, sandstone, sandstone}}),
 	gres_poli2(24,2,"sandstone",craft, 4, new EItem[][]{{air, air, air},{air, chiseled_sandstone, chiseled_sandstone},{air, chiseled_sandstone, chiseled_sandstone}}),
 	gres_poli3(24,2,"sandstone",craft, 4, new EItem[][]{{air,air,air},{air,smooth_sandstone,smooth_sandstone},{air,smooth_sandstone,smooth_sandstone}}),
 	pierre_taillee(98,0,"stonebrick",craft, 4, new EItem[][]{{air, air, air},{air, stone, stone},{air, stone, stone}}),
-	//pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}), //pas encore ajouté, v1.8
-	//pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}), //v1.8
+
+	
+	
 	
 	/*
 	 * Produits manufacturés
 	 * 
 	 */
-	//granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}), //v1.8
-	//diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}), //v1.8
-	//andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}), //v1.8
+
 	
-	
+	// LES PLANCHES
 	planche_chene(5,0,"oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_sapin(5,1,"spruce_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_bouleau(5,2,"birch_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_acajou(5,3,"jungle_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_acacia(5,4,"acacia_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
 	planche_chene_noir(5,5,"dark_oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	// verre(20,0,"glass",four, 4, new EItem[][]{{air, air, air},{air, sand, air},{air, air, air}}),  recette avec un four
+	
+	
+	
+	// LES DALLES
+	dalle_de_roche(44,0,"stone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
+	dalle_de_sable(44,1,"sandstone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
+	dalle_de_bois_de_chene(44,2,"oak_wood_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
+	dalle_de_pierre(44,3,"cobblestone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{cobblestone, cobblestone, cobblestone}}),
+	dalle_de_brique(44,4,"bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{brick, brick, brick}}),
+	dalle_de_pierre_taillee(44,5,"stone_bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone_brick, stone_brick, stone_brick}}),
+	dalle_de_brick_du_nether(44,6,"nether_bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{nether_brick, nether_brick, nether_brick}}),
+	dalle_de_quartz(44,7,"quartz_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{quartz_block, quartz_block, quartz_block}}),
+	
+	
+	brique(45,0,"bricks",craft, 1, new EItem[][]{{air, air, air},{air, brick, brick},{air, brick, brick}}),
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
