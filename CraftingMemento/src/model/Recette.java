@@ -47,6 +47,16 @@ public enum Recette {
 	 * 						
 	 * 
 	 * problème rencontrés : 1 objet peut etre obtenus de différentes manières : grès_gravé * 4   OU  grès_taillé * 4   = grès poli
+	 * même problemes avec : 
+	 * 							-lit (laine de couleur + planches de bois)
+	 * 							-bibliotheque (planches)
+	 * 							-portillon (planches)
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 * 
 	 * Modèle à copier pour une recette : new EItem[][]{{air,air,air},{air,air,air},{air,air,air}}
 	 */
@@ -75,13 +85,13 @@ public enum Recette {
 	 * granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
 	 * diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
 	 * andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
-	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}), //pas encore ajouté, 
+	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}),
 	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}), 
 	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
 	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
 	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
-	 * bloc_de_slime(45,0,"slime_block",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
-	 * terre_cuite(45,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
+	 * bloc_de_slime(165,0,"slime_block",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
+	 * terre_cuite(172,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
 	 */
 
 	
@@ -140,16 +150,22 @@ public enum Recette {
 	// BLOCS DIVERS
 	
 	brique(45,0,"bricks",craft, 1, new EItem[][]{{air, air, air},{air, brick, brick},{air, brick, brick}}),
+	bloc_de_quartz(155,0,"quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz, quartz},{air, quartz, quartz}}),
+	bloc_de_quartz_sculptee(155,1,"chiseled_quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
+	bloc_de_quartz_rayee(155,2,"pillar_quartz_block",craft, 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
 	
 	
 	
+	// TABLE DE CRAFT
+	
+	enclume(47,0,"anvil",craft, 1, new EItem[][]{{iron_block, iron_block, iron_block},{air, iron_bars, air},{iron_bars, iron_bars, iron_bars}}),
 	
 	
 	
+	//BLOCS DECORATIFS
 	
-	
-	
-	
+	//bibliotheque(155,2,"bookshelf",craft, 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{book, book, book},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}), *** plusieurs recettes possibles
+	//portillon(156,0,"fence_gate",craft, 1, new EItem[][]{{air, air, air},{stick, oak_wooden_plank, stick},{stick, oak_wooden_plank, stick}}), ***
 	
 	
 	
