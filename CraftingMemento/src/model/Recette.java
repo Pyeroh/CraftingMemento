@@ -15,13 +15,13 @@ public enum Recette {
 	 * x|x|x
 	 * x|x|x
 	 */
-	
+
 	/*roche,
 	granite,
 	diorite,
 	andesite,
-	*/
-	
+	 */
+
 	/*
 	 * Blocs naturels
 	 * 
@@ -61,8 +61,8 @@ public enum Recette {
 	 * Modèle à copier pour une recette : new EItem[][]{{air,air,air},{air,air,air},{air,air,air}}
 	 */
 
-	
-	
+
+
 	/* LES RECETTES AU FOUR
 	 * 
 	 * 
@@ -78,7 +78,7 @@ public enum Recette {
 	 * qu'on ait même pas besoin d'indiquer craft, four ou alambic. Donc pour le moment, pas de recettes
 	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
-	
+
 	/* LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
 	 * 
 	 * 
@@ -94,10 +94,10 @@ public enum Recette {
 	 * bloc_de_slime(165,0,"slime",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
 	 */
 
-	
-	
-	
-	
+
+
+
+
 	gres(24,0,"sandstone",craft,1,new EItem[][]{{air,air,air},{air,sand,sand},{air,sand,sand}}),
 	gres_taille(24,1,"sandstone",craft, 1, new EItem[][]{{air,air,air},{air,sandstone_slab,air},{air,sandstone_slab,air}}),
 	gres_poli(24,2,"sandstone",craft, 4, new EItem[][]{{air, air, air},{air, sandstone, sandstone},{air, sandstone, sandstone}}),
@@ -105,15 +105,15 @@ public enum Recette {
 	gres_poli3(24,2,"sandstone",craft, 4, new EItem[][]{{air,air,air},{air,smooth_sandstone,smooth_sandstone},{air,smooth_sandstone,smooth_sandstone}}),
 	pierre_taillee(98,0,"stonebrick",craft, 4, new EItem[][]{{air, air, air},{air, stone, stone},{air, stone, stone}}),
 
-	
-	
-	
+
+
+
 	/*
 	 * Produits manufacturés
 	 * 
 	 */
 
-	
+
 	// LES PLANCHES
 	planche_chene(5,0,"planks",craft, 4, oak_log),
 	planche_sapin(5,1,"planks",craft, 4, spruce_log),
@@ -121,7 +121,7 @@ public enum Recette {
 	planche_acajou(5,3,"planks",craft, 4, jungle_log),
 	planche_acacia(5,4,"planks",craft, 4, acacia_log),
 	planche_chene_noir(5,5,"planks",craft, 4, darkoak_log),
-	
+
 	// LES DALLES
 	dalle_de_roche(44,0,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
 	dalle_de_roche_de_sable(44,1,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
@@ -136,10 +136,10 @@ public enum Recette {
 	dalle_de_bois_d_acajou(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{jungle_wood, jungle_wood, jungle_wood}}),
 	dalle_de_bois_d_acacia(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{acacia_wood, acacia_wood, acacia_wood}}),
 	dalle_de_bois_de_chene_noir(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
-	
-	
+
+
 	//LES ESCALIERS
-	
+
 	escalier_de_chene(53,0,"oak_stairs",craft, 4, new EItem[][]{{oak_wood, air, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, oak_wood}}),
 	escalier_de_pierre(67,0,"stone_stairs",craft, 4, new EItem[][]{{cobblestone, air, air},{cobblestone, cobblestone, air},{cobblestone, cobblestone, cobblestone}}),
 	escalier_de_brique(108,0,"brick_stairs",craft, 4, new EItem[][]{{brick, air, air},{brick, brick, air},{brick, brick, brick}}),
@@ -151,42 +151,42 @@ public enum Recette {
 	escalier_d_acacia(163,0,"acacia_stairs",craft, 4, new EItem[][]{{acacia_wood, air, air},{acacia_wood, acacia_wood, air},{acacia_wood, acacia_wood, acacia_wood}}),
 	escalier_de_chene_noir(164,0,"dark_oak_stairs",craft, 4, new EItem[][]{{darkoak_wood, air, air},{darkoak_wood, darkoak_wood, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
 	escalier_de_quartz(156,0,"quartz_stairs",craft, 4, new EItem[][]{{quartz_block, air, air},{quartz_block, quartz_block, air},{quartz_block, quartz_block, quartz_block}}),
-	
+
 	// BLOCS DIVERS
-	
+
 	brique(45,0,"bricks",craft, 1, new EItem[][]{{air, air, air},{air, clay_brick, clay_brick},{air, clay_brick, clay_brick}}),
 	bloc_de_quartz(155,0,"quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz, quartz},{air, quartz, quartz}}),
 	bloc_de_quartz_sculpte(155,1,"quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
 	bloc_de_quartz_raye(155,2,"quartz_block",craft, 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
-	
-	
-	
+
+
+
 	// TABLE DE CRAFT
-	
+
 	enclume(47,0,"anvil",craft, 1, new EItem[][]{{iron_block, iron_block, iron_block},{air, iron_ingot, air},{iron_ingot, iron_ingot, iron_ingot}}),
-	
-	
-	
+
+
+
 	//BLOCS DECORATIFS
-	
+
 	//bibliotheque(155,2,"bookshelf",craft, 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{book, book, book},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}), *** plusieurs recettes possibles
 	//portillon(156,0,"fence_gate",craft, 1, new EItem[][]{{air, air, air},{stick, oak_wooden_plank, stick},{stick, oak_wooden_plank, stick}}), ***
-	
-	
-	
-	
-	
+
+
+
+
+
 	;
-	
+
 	private int id;
 	private int metadata;
 	private String mid;
-	private ERecetteForme forme;
+	private ERecetteForme forme = null;
 	private ERecetteType type;
 	private EItem[][] recette = new EItem[3][3];
 	private ArrayList<EItem> ingredients = new ArrayList<EItem>();
 	private int quantite;
-	
+
 	/**
 	 * Constructeur à ne pas appeler, permet de construire rapidement et sans répétition
 	 * un enum
@@ -203,11 +203,11 @@ public enum Recette {
 		this.type = type;
 		this.quantite = quantite;
 	}
-	
+
 	/**
 	 * Constructeur pour une recette en craft, de type "avec forme"
 	 * @param recette Tableau d'ingrédients, 3x3, tout doit être rempli (même par de l'{@linkplain EItem#air air})
-	 * @see Recette#Recette(int, int, String, ERecetteType)
+	 * @see Recette#Recette(int, int, String, ERecetteType, int)
 	 */
 	Recette(int id, int metadata, String mid, ERecetteType type, int quantite, EItem[][] recette) {
 		this(id, metadata, mid, type, quantite);
@@ -220,11 +220,11 @@ public enum Recette {
 		}
 		else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3");
 	}
-	
+
 	/**
-	 * Constructeur pour une recette en craft, de type "sans forme"
+	 * Constructeur pour une recette, de type "sans forme"
 	 * @param ingredients Liste des ingrédients
-	 * @see Recette#Recette(int, int, String, ERecetteType)
+	 * @see Recette#Recette(int, int, String, ERecetteType, int
 	 */
 	Recette(int id, int metadata, String mid, ERecetteType type, int quantite, EItem... ingredients) {
 		this(id, metadata, mid, type, quantite);
@@ -232,6 +232,28 @@ public enum Recette {
 			this.ingredients.add(ingredients[i]);
 		}
 		this.forme = ERecetteForme.sansforme;
+	}
+	
+	/**
+	 * Constructeur pour une recette de four
+	 * @param acuire l'ingrédient à cuire
+	 * @see Recette#Recette(int, int, String, ERecetteType, int
+	 */
+	Recette(int id, int metadata, String mod, EItem acuire) {
+		this(id, metadata, mod, four, 1);
+		this.ingredients.add(acuire);
+	}
+	
+	/**
+	 * Constructeur pour une recette de potion
+	 * @param ingredient L'ingrédient nécessaire à l'obtention de la potion
+	 * @param potion_base La potion utilisée pour devenir la nouvelle potion
+	 * @see Recette#Recette(int, int, String, ERecetteType, int
+	 */
+	Recette(int metadata, EItem ingredient, EItem potion_base) {
+		this(373, metadata, "potion", alambic, 1);
+		this.ingredients.add(ingredient);
+		this.ingredients.add(potion_base);
 	}
 
 	public int getId() {
