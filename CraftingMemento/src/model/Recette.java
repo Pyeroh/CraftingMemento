@@ -66,18 +66,35 @@ public enum Recette {
 	/* LES RECETTES AU FOUR
 	 * 
 	 * 
-	 * roche(1,0,"stone", 1,four,new EItem[][]{}),
-	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, sand, air},{air, air, air}}),  recette avec un four
-	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, red_sand, air},{air, air, air}}),  recette avec un four | attention 2eme recette !
-	 * terre_cuite(172,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
-	 * 
-	 * 
-	 * 
-	 * 
-	 * Il va falloir redéfinir la manière dont on crée une recette de four, de telle manière à ce
-	 * qu'on ait même pas besoin d'indiquer craft, four ou alambic. Donc pour le moment, pas de recettes
-	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
+	 roche(1,0,"stone",cobblestone),
+	 verre(20,0,"glass", sand),
+	 verre2(20,0,"glass",redsand), // recette avec un four | attention 2eme recette !
+	 terre_cuite(172,0,"hardened_clay",clay),
+	 charbon(263,0,"coal",coal_ore),
+	 charbon_de_bois(263,1,"coal",oak_log),
+	 charbon_de_bois2(263,1,"coal",spruce_log),
+	 charbon_de_bois3(263,1,"coal",birch_log),
+	 charbon_de_bois4(263,1,"coal",jungle_log),
+	 charbon_de_bois5(263,1,"coal",acacia_log),
+	 charbon_de_bois6(263,1,"coal",darkoak_log),
+	 diamant(264,0,"diamond",diamond_ore),
+	 fer(265,0,"iron_ingot",iron_ore),
+	 or(266,0,"gold_ingot",gold_ore),
+	 redstone(331,0,"redstone",redstone_ore),
+	 lapis_lazuli(351,4,"dye",lapis_ore),
+	 emeraude(388,0,"emerald",emerald_ore),
+	 brique_du_nether(405,0,"netherbrick",netherrack),
+	 quartz(406,0,"quartz",quartz_ore),
+	 cote_porc_cuite(320,0,"cooked_porkchop",raw_pork),
+	 poisson_cuit(350,0,"cooked_fished",raw_fish),
+	 saumon_cuit(350,1,"cooked_fished",raw_salmon),
+	 steak(364,0,"cooked_beef",raw_beef),
+	 poulet_roti(366,0,"cooked_chicken",raw_chicken),
+	 patate_cuite(393,0,"baked_potato",potato),
+	 colorant_vert(351,2,"dye",cactus),
+	 brique_d_argile(336,0,"brick",clay_ball),
+	 
 
 	/* LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
 	 * 
@@ -155,7 +172,7 @@ public enum Recette {
 	// BLOCS DIVERS
 
 	brique(45,0,"bricks", 1, new EItem[][]{{air, air, air},{air, clay_brick, clay_brick},{air, clay_brick, clay_brick}}),
-	bloc_de_quartz(155,0,"quartz_block", 1, new EItem[][]{{air, air, air},{air, quartz, quartz},{air, quartz, quartz}}),
+	bloc_de_quartz(155,0,"quartz_block", 1, new EItem[][]{{air, air, air},{air, EItem.quartz, EItem.quartz},{air, EItem.quartz, EItem.quartz}}),
 	bloc_de_quartz_sculpte(155,1,"quartz_block", 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
 	bloc_de_quartz_raye(155,2,"quartz_block", 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
 
