@@ -115,12 +115,12 @@ public enum Recette {
 
 	
 	// LES PLANCHES
-	planche_chene(5,0,"oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	planche_sapin(5,1,"spruce_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	planche_bouleau(5,2,"birch_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	planche_acajou(5,3,"jungle_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	planche_acacia(5,4,"acacia_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
-	planche_chene_noir(5,5,"dark_oak_wooden_plank",craft, 4, new EItem[][]{{air, air, air},{air, wood, air},{air, air, air}}),
+	planche_chene(5,0,"oak_wooden_plank",craft, 4, oak_log),
+	planche_sapin(5,1,"spruce_wooden_plank",craft, 4, red_log),
+	planche_bouleau(5,2,"birch_wooden_plank",craft, 4, birch_log),
+	planche_acajou(5,3,"jungle_wooden_plank",craft, 4, jungle_log),
+	planche_acacia(5,4,"acacia_wooden_plank",craft, 4, acacia_log),
+	planche_chene_noir(5,5,"dark_oak_wooden_plank",craft, 4, darkoak_log),
 	
 	// LES DALLES
 	dalle_de_roche(44,0,"stone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
