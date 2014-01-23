@@ -31,16 +31,6 @@ public enum Recette {
 	 * 						-andesite (v1.8)
 	 * 						
 	 * 
-	 * 						-bois de chene (oak_wood)             	|
-	 * 						-bois de sapin (spruce_wood)			|
-	 * 						-bois de bouleau (birch_wood)			|
-	 * 						-bois de acajou (jungle_wood)			|
-	 * 						-bois de acacia (acacia_wood)			|
-	 * 						-bois de chene noir (dark_oak_wood)		|
-	 * 						-pierre taillée (stone_brick)			|
-	 * 
-	 *	 a	corriger :
-	 * 					-nether_brick_     ----> nether_brick
 	 * 
 	 * 
 	 *
@@ -203,6 +193,7 @@ public enum Recette {
 	private EItem[][] recette = new EItem[3][3];
 	private ArrayList<EItem> ingredients = new ArrayList<EItem>();
 	private int quantite;
+	private boolean combinable = false;
 
 	/**
 	 * Constructeur à ne pas appeler, permet de construire rapidement et sans répétition
@@ -236,6 +227,11 @@ public enum Recette {
 			else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3"); 
 		}
 		else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3");
+	}
+	
+	Recette(int id, int metadata, String mid, int quantite, EItem[][] recette, boolean combinable) {
+		this(id, metadata, mid, quantite, recette);
+		this.combinable = combinable;
 	}
 
 	/**
@@ -303,6 +299,10 @@ public enum Recette {
 
 	public int getQuantite() {
 		return quantite;
+	}
+
+	public boolean isCombinable() {
+		return combinable;
 	}
 
 }
