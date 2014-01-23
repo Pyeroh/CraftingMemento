@@ -69,6 +69,7 @@ public enum Recette {
 	 * roche(1,0,"stone", 1,four,new EItem[][]{}),
 	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, sand, air},{air, air, air}}),  recette avec un four
 	 * verre(20,0,"glass",four, 1, new EItem[][]{{air, air, air},{air, red_sand, air},{air, air, air}}),  recette avec un four | attention 2eme recette !
+	 * terre_cuite(172,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
 	 * 
 	 * 
 	 * 
@@ -90,8 +91,7 @@ public enum Recette {
 	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
 	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
 	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
-	 * bloc_de_slime(165,0,"slime_block",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
-	 * terre_cuite(172,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
+	 * bloc_de_slime(165,0,"slime",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
 	 */
 
 	
@@ -123,36 +123,41 @@ public enum Recette {
 	planche_chene_noir(5,5,"planks",craft, 4, darkoak_log),
 	
 	// LES DALLES
-	dalle_de_roche(44,0,"stone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
-	dalle_de_roche_de_sable(44,1,"sandstone-slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
-	dalle_de_bois_de_chene(44,2,"oak_wood_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{oak_wood, oak_wood, oak_wood}}),
-	dalle_de_pierre(44,3,"cobblestone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{cobblestone, cobblestone, cobblestone}}),
-	dalle_de_brique(44,4,"bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{brick, brick, brick}}),
-	dalle_de_pierre_taillee(44,5,"stone_bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{smooth_brick, smooth_brick, smooth_brick}}),
-	dalle_de_brick_du_nether(44,6,"nether_bricks_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{nether_brick_block, nether_brick_block, nether_brick_block}}),
-	dalle_de_quartz(44,7,"quartz_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{quartz_block, quartz_block, quartz_block}}),
+	dalle_de_roche(44,0,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
+	dalle_de_roche_de_sable(44,1,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
+	dalle_de_pierre(44,3,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{cobblestone, cobblestone, cobblestone}}),
+	dalle_de_brique(44,4,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{brick, brick, brick}}),
+	dalle_de_pierre_taillee(44,5,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{smooth_brick, smooth_brick, smooth_brick}}),
+	dalle_de_brick_du_nether(44,6,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{nether_brick_block, nether_brick_block, nether_brick_block}}),
+	dalle_de_quartz(44,7,"stone_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{quartz_block, quartz_block, quartz_block}}),
+	dalle_de_bois_de_chene(126,0,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{oak_wood, oak_wood, oak_wood}}),
+	dalle_de_bois_de_sapin(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{spruce_wood, spruce_wood, spruce_wood}}),
+	dalle_de_bois_de_bouleau(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{birch_wood, birch_wood, birch_wood}}),
+	dalle_de_bois_d_acajou(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{jungle_wood, jungle_wood, jungle_wood}}),
+	dalle_de_bois_d_acacia(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{acacia_wood, acacia_wood, acacia_wood}}),
+	dalle_de_bois_de_chene_noir(126,1,"wooden_slab",craft, 6, new EItem[][]{{air, air, air},{air, air, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
 	
 	
 	//LES ESCALIERS
 	
-	escalier_de_chene(53,0,"oak_wood_stairs",craft, 4, new EItem[][]{{oak_wood, air, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, oak_wood}}),
-	escalier_de_pierre(67,0,"cobblestone_stairs",craft, 4, new EItem[][]{{cobblestone, air, air},{cobblestone, cobblestone, air},{cobblestone, cobblestone, cobblestone}}),
+	escalier_de_chene(53,0,"oak_stairs",craft, 4, new EItem[][]{{oak_wood, air, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, oak_wood}}),
+	escalier_de_pierre(67,0,"stone_stairs",craft, 4, new EItem[][]{{cobblestone, air, air},{cobblestone, cobblestone, air},{cobblestone, cobblestone, cobblestone}}),
 	escalier_de_brique(108,0,"brick_stairs",craft, 4, new EItem[][]{{brick, air, air},{brick, brick, air},{brick, brick, brick}}),
 	escalier_de_pierre_taillee(109,0,"stone_brick_stairs",craft, 4, new EItem[][]{{smooth_brick, air, air},{smooth_brick, smooth_brick, air},{smooth_brick, smooth_brick, smooth_brick}}),
-	escalier_de_roche_de_sable(135,0,"sandstone_brick_stairs",craft, 4, new EItem[][]{{sandstone, air, air},{sandstone, sandstone, air},{sandstone, sandstone, sandstone}}),
-	escalier_de_sapin(134,0,"spruce_wood_stairs",craft, 4, new EItem[][]{{spruce_wood, air, air},{spruce_wood, spruce_wood, air},{spruce_wood, spruce_wood, spruce_wood}}),
-	escalier_de_bouleau(135,0,"birch_wood_stairs",craft, 4, new EItem[][]{{birch_wood, air, air},{birch_wood, birch_wood, air},{birch_wood, birch_wood, birch_wood}}),
-	escalier_d_acajou(136,0,"jungle_wood_stairs",craft, 4, new EItem[][]{{jungle_wood, air, air},{jungle_wood, jungle_wood, air},{jungle_wood, jungle_wood, jungle_wood}}),
-	escalier_d_acacia(163,0,"acacia_wood_stairs",craft, 4, new EItem[][]{{acacia_wood, air, air},{acacia_wood, acacia_wood, air},{acacia_wood, acacia_wood, acacia_wood}}),
-	escalier_de_chene_noir(164,0,"dark_oak_wood_stairs",craft, 4, new EItem[][]{{darkoak_wood, air, air},{darkoak_wood, darkoak_wood, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
+	escalier_de_roche_de_sable(135,0,"sandstone_stairs",craft, 4, new EItem[][]{{sandstone, air, air},{sandstone, sandstone, air},{sandstone, sandstone, sandstone}}),
+	escalier_de_sapin(134,0,"spruce_stairs",craft, 4, new EItem[][]{{spruce_wood, air, air},{spruce_wood, spruce_wood, air},{spruce_wood, spruce_wood, spruce_wood}}),
+	escalier_de_bouleau(135,0,"birch_stairs",craft, 4, new EItem[][]{{birch_wood, air, air},{birch_wood, birch_wood, air},{birch_wood, birch_wood, birch_wood}}),
+	escalier_d_acajou(136,0,"jungle_stairs",craft, 4, new EItem[][]{{jungle_wood, air, air},{jungle_wood, jungle_wood, air},{jungle_wood, jungle_wood, jungle_wood}}),
+	escalier_d_acacia(163,0,"acacia_stairs",craft, 4, new EItem[][]{{acacia_wood, air, air},{acacia_wood, acacia_wood, air},{acacia_wood, acacia_wood, acacia_wood}}),
+	escalier_de_chene_noir(164,0,"dark_oak_stairs",craft, 4, new EItem[][]{{darkoak_wood, air, air},{darkoak_wood, darkoak_wood, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
 	escalier_de_quartz(156,0,"quartz_stairs",craft, 4, new EItem[][]{{quartz_block, air, air},{quartz_block, quartz_block, air},{quartz_block, quartz_block, quartz_block}}),
 	
 	// BLOCS DIVERS
 	
 	brique(45,0,"bricks",craft, 1, new EItem[][]{{air, air, air},{air, clay_brick, clay_brick},{air, clay_brick, clay_brick}}),
 	bloc_de_quartz(155,0,"quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz, quartz},{air, quartz, quartz}}),
-	bloc_de_quartz_sculpte(155,1,"chiseled_quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
-	bloc_de_quartz_raye(155,2,"pillar_quartz_block",craft, 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
+	bloc_de_quartz_sculpte(155,1,"quartz_block",craft, 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
+	bloc_de_quartz_raye(155,2,"quartz_block",craft, 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
 	
 	
 	
