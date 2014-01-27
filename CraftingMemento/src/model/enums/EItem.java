@@ -479,7 +479,7 @@ public enum EItem {
 	firework_star(402,0,"FIREWORK_CHARGE",EItemCat.misc),
 	enchanted_book(403,0,"ENCHANTED_BOOK",EItemCat.misc),
 	redstone_comparator(404,0,"REDSTONE_COMPARATOR",EItemCat.redstone),
-	nether_brick_(405,0,"NETHER_BRICK_ITEM",EItemCat.materials),
+	nether_brick(405,0,"NETHER_BRICK_ITEM",EItemCat.materials),
 	quartz(406,0,"QUARTZ",EItemCat.materials),
 	minecart_with_tnt(407,0,"EXPLOSIVE_MINECART",EItemCat.transport),
 	minecart_with_hopper(408,0,"HOPPER_MINECART",EItemCat.transport),

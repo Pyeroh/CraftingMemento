@@ -23,7 +23,10 @@ public enum Recette {
 	 */
 
 	/*
-	 * ATTENTION :  j'ai remarqué un doublon pour un Eitem  :  nether_brick_    et nether_brick_bloc
+	 * ATTENTION :  j'ai remarqué un doublon pour un Eitem  :  nether_brick    et nether_brickbloc
+	 * Réponse : ce n'est pas une erreur, t'inquiète pas ^^ C'est vrai que le "_" peut porter à confusion, je l'ai d'ailleurs retiré
+	 * Par contre, y'a une différence entre la nether brick, et le bloc de nether brick. Qu'est-ce qui se passe 
+	 * si tu fais cuire de la netherrack, d'après toi...? :p
 	 * 
 	 * 
 	 */
@@ -34,12 +37,6 @@ public enum Recette {
 	
 	/* LES RECETTES AU FOUR
 	 * 
-	 * 
-	 * 
-	 * 
-	 * Il va falloir redéfinir la manière dont on crée une recette de four, de telle manière à ce
-	 * qu'on ait même pas besoin d'indiquer craft, four ou alambic. Donc pour le moment, pas de recettes
-	 * avec un four ou un alambic tant qu'on a pas fini les recettes sur table de craft. 
 	 */
 	
 	
@@ -54,11 +51,11 @@ public enum Recette {
 	 charbon_bois4(263,1,"coal",jungle_log),
 	 charbon_bois5(263,1,"coal",acacia_log),
 	 charbon_bois6(263,1,"coal",darkoak_log),
-	 diamant_cuit(264,0,"diamond",diamond_ore),
-	 cuit(265,0,"iron_ingot",iron_ore),
-	 or_cuit(266,0,"gold_ingot",gold_ore),
-	 redstone_cuite(331,0,"redstone",redstone_ore),
-	 lapis_lazuli_cuit(351,4,"dye",lapis_ore),
+	 diamant(264,0,"diamond",diamond_ore),
+	 fer(265,0,"iron_ingot",iron_ore),
+	 or(266,0,"gold_ingot",gold_ore),
+	 redstone(331,0,"redstone",redstone_ore),
+	 lapis_lazuli(351,4,"dye",lapis_ore),
 	 emeraude_cuite(388,0,"emerald",emerald_ore),
 	 brique_du_nether(405,0,"netherbrick",netherrack),
 	 quartz(406,0,"quartz",quartz_ore),
@@ -85,7 +82,6 @@ public enum Recette {
 	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
 	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
 	 * bloc_slime(165,0,"slime",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
-	 * terre_cuite(172,0,"hardened_clay",four, 1, new EItem[][]{{air, air, air},{air, clay_block, air},{air, air, air}}),
 	 */
 
 
@@ -150,18 +146,18 @@ public enum Recette {
 	
 	bloc_brique(45,0,"bricks", 1, new EItem[][]{{air, air, air},{air, brick, brick},{air, brick, brick}}),
 	bloc_quartz(155,0,"quartz_block", 1, new EItem[][]{{air, air, air},{air, EItem.quartz, EItem.quartz},{air, EItem.quartz, EItem.quartz}}),
-	bloc_quartz_sculptee(155,1,"chiseled_quartz_block", 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
-	bloc_quartz_rayee(155,2,"pillar_quartz_block", 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
+	bloc_quartz_sculptee(155,1,"quartz_block", 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
+	bloc_quartz_rayee(155,2,"quartz_block", 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
 	
 	
 	
 	// TABLE DE CRAFT
 
 	enclume(47,0,"anvil", 1, new EItem[][]{{iron_block, iron_block, iron_block},{air, iron_ingot, air},{iron_ingot, iron_ingot, iron_ingot}}),
-	table_craft(58,0,"crafting_table", 1, new EItem[][]{{air, air, air},{air, oak_wooden_plank, oak_wooden_plank},{air, oak_wooden_plank, oak_wooden_plank}}), //recettes multiples
+	table_craft(58,0,"crafting_table", 1, new EItem[][]{{air, air, air},{air, oak_wood, oak_wood},{air, oak_wood, oak_wood}}), //recettes multiples
 	fourneau(61,0,"furnace", 1, new EItem[][]{{cobblestone, cobblestone, cobblestone},{cobblestone, air, cobblestone},{cobblestone, cobblestone, cobblestone}}),
 	table_enchantement(116,0,"enchanting_table", 1, new EItem[][]{{air, book, air},{diamond, obsidian, diamond},{obsidian, obsidian, obsidian}}),
-	alambique(117,0,"brewing_stand", 1, new EItem[][]{{air, air, air},{air, blaze_rod, air},{cobblestone, cobblestone, cobblestone}}),
+	alambic(117,0,"brewing_stand", 1, new EItem[][]{{air, air, air},{air, blaze_rod, air},{cobblestone, cobblestone, cobblestone}}),
 	
 	
 	
@@ -173,14 +169,14 @@ public enum Recette {
 	
 	
 	barreaux_fer(101,0,"iron_bars", 16, new EItem[][]{{air, air, air},{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot}}),
-	muret(139,0,"clobblestone_wall", 6, new EItem[][]{{air, air, air},{cobblestone, cobblestone, cobblestone},{cobblestone, cobblestone, cobblestone}}),
-	muret_moussu(139,1,"clobblestone_wall", 6, new EItem[][]{{air, air, air},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone}}),
+	muret(139,0,"cobblestone_wall", 6, new EItem[][]{{air, air, air},{cobblestone, cobblestone, cobblestone},{cobblestone, cobblestone, cobblestone}}),
+	muret_moussu(139,1,"cobblestone_wall", 6, new EItem[][]{{air, air, air},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone}}),
 	pot_fleur(140,0,"flower_pot", 1, new EItem[][]{{air, air, air},{brick, air, brick},{air, brick, air}}),
 	bloc_neige(80,0,"snow", 1, new EItem[][]{{air, air, air},{air, snow_ball, snow_ball},{air, snow_ball, snow_ball}}),
 	neige(78,0,"snow_layer", 6, new EItem[][]{{air, air, air},{air, air, air},{snow_block, snow_block, snow_block}}),
 	bloc_argile(82,0,"clay", 1, new EItem[][]{{air, air, air},{clay_ball, clay_ball, air},{clay_ball, clay_ball, air}}),
 	balise(138,0,"beacon", 1, new EItem[][]{{glass, glass, glass},{glass, nether_star, glass},{obsidian, obsidian, obsidian}}),
-	
+	barriere(85,0,"fence", 2, new EItem[][]{{air, air, air},{stick, stick, stick},{stick, stick, stick}}),
 	
 	
 	
@@ -191,25 +187,29 @@ public enum Recette {
 	
 	
 	bloc_charbon(173,0,"block_of_coal", 1, new EItem[][]{{coal, coal, coal},{coal, coal, coal},{coal, coal, coal}}),
-	charbon(173,0,"coal", 9, new EItem[][]{{air, air, air},{air, coal_block, air},{air, air, air}}),
+	charbon(173,0,"coal", 9, coal_block),
 
-	bloc_redstone(152,0,"redstone_block", 1, new EItem[][]{{coal, coal, coal},{coal, coal, coal},{coal, coal, coal}}),
-	redstone(331,0,"redstone", 9, new EItem[][]{{air, air, air},{air, redstone_block, air},{air, air, air}}),
+	bloc_redstone(152,0,"redstone_block", 1, new EItem[][]{	{EItem.redstone, EItem.redstone, EItem.redstone},
+															{EItem.redstone, EItem.redstone, EItem.redstone},
+															{EItem.redstone, EItem.redstone, EItem.redstone}}),
+	redstone2(331,0,"redstone", 9, redstone_block),
 	
 	bloc_emeraude(133,0,"redstone_block", 1, new EItem[][]{{emerald, emerald, emerald},{emerald, emerald, emerald},{emerald, emerald, emerald}}),
-	emeraude(388,0,"redstone", 9, new EItem[][]{{air, air, air},{air, emerald_block, air},{air, air, air}}),
+	emeraude(388,0,"redstone", 9, emerald_block),
 	
 	bloc_diamant(133,0,"diamond_block", 1, new EItem[][]{{diamond, diamond, diamond},{diamond, diamond, diamond},{diamond, diamond, diamond}}),
-	diamant(388,0,"diamond", 9, new EItem[][]{{air, air, air},{air, diamond_block, air},{air, air, air}}),
+	diamant2(388,0,"diamond", 9, diamond_block),
 	
 	bloc_fer(42,0,"iron_block", 1, new EItem[][]{{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot}}),
-	fer(265,0,"iron_ingot", 9, new EItem[][]{{air, air, air},{air, iron_block, air},{air, air, air}}),
+	fer2(265,0,"iron_ingot", 9, iron_block),
 	
 	bloc_or(41,0,"gold_block", 1, new EItem[][]{{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot}}),
-	or(266,0,"gold_ingot", 9, new EItem[][]{{air, air, air},{air, gold_block, air},{air, air, air}}),
+	or2(266,0,"gold_ingot", 9, gold_block),
 	
-	bloc_lapis_lazuli(41,0,"gold_block", 1, new EItem[][]{{lapis_lazuli, lapis_lazuli, lapis_lazuli},{lapis_lazuli, lapis_lazuli, lapis_lazuli},{lapis_lazuli, lapis_lazuli, lapis_lazuli}}),
-	gemme_lapis_lazuli(266,0,"lapis_lazuli", 9, new EItem[][]{{air, air, air},{air, lapis_block, air},{air, air, air}}),
+	bloc_lapis_lazuli(41,0,"gold_block", 1, new EItem[][]{	{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
+															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
+															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli}}),
+	lapis_lazuli2(266,0,"lapis_lazuli", 9, lapis_block),
 	
 	
 	
@@ -223,19 +223,39 @@ public enum Recette {
 	
 	
 	botte_foin(170,0,"hay_block", 1, new EItem[][]{{wheat, wheat, wheat},{wheat, wheat, wheat},{wheat, wheat, wheat}}),
-	ble(296,0,"wheat", 9, new EItem[][]{{air, air, air},{air, hay_block, air},{air, air, air}}),
+	ble(296,0,"wheat", 9, hay_block),
 	
 	pasteque(103,0,"melon_block", 1, new EItem[][]{{melon, melon, melon},{melon, melon, melon},{melon, melon, melon}}),
-	tranche_pasteque(360,0,"melon", 9, new EItem[][]{{air, air, air},{air, melon_block, air},{air, air, air}}),
+	tranche_pasteque(360,0,"melon", 9, melon_block),
 	
-	graines_citrouille(86,0,"pumpkin", 4, new EItem[][]{{air, air, air},{air, pumpkin, air},{air, air, air}}),
+	graines_citrouille(361,0,"pumpkin", 4, pumpkin),
 	
 	
 	
-		//VITRES ET BLOCS DE VERRE
-		
-		vitre(102,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
-		vitre_teinte(160,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
+	/*
+	 * BLOCS COLORABLES
+	 */
+	
+	laine_blanche(35,0,"wool",1,new EItem[][]{{air,air,air},{air,string,string},{air,string,string}}),
+	laine_blanche2(35,0,"wool",1,white_wool,white_dye),
+	laine_orange(35,1,"wool",1,white_wool,orange_dye),
+	laine_magenta(35,2,"wool",1,white_wool,magenta_dye),
+	laine_bleu_clair(35,3,"wool",1,white_wool,l_blue_dye),
+	laine_jaune(35,4,"wool",1,white_wool,dandelion_yellow),
+	laine_vert_clair(35,5,"wool",1,white_wool,l_green_dye),
+	laine_rose(35,6,"wool",1,white_wool,pink_dye),
+	laine_grise(35,7,"wool",1,white_wool,gray_dye),
+	laine_gris_clair(35,8,"wool",1,white_wool,l_gray_dye),
+	laine_cyan(35,9,"wool",1,white_wool,cyan_dye),
+	laine_violette(35,10,"wool",1,white_wool,purple_dye),
+	laine_bleue(35,11,"wool",1,white_wool,EItem.lapis_lazuli),
+	laine_marron(35,12,"wool",1,white_wool,orange_dye),
+	laine_verte(35,13,"wool",1,white_wool,orange_dye),
+	laine_rouge(35,14,"wool",1,white_wool,orange_dye),
+	laine_noire(35,15,"wool",1,white_wool,orange_dye),
+	
+	vitre(102,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
+	vitre_teinte(160,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
 		
 	
 
@@ -248,7 +268,7 @@ public enum Recette {
 	torche2(50,0,"torch", 4, new EItem[][]{{air, air, air},{air, charcoal, air},{air, stick, air}}),
 	porte_fer(71,0,"iron_door", 1, new EItem[][]{{iron_ingot, iron_ingot, air},{iron_ingot, iron_ingot, air},{iron_ingot, iron_ingot, air}}),
 	echelle(65,0,"ladder", 3, new EItem[][]{{stick, air, stick},{stick, stick, air},{stick, air, stick}}),
-	coffre_ender(130,2,"ender_chest", 1, new EItem[][]{{air, air, air},{tripwire_hook, chest, air},{air, air, air}}),
+	coffre_ender(130,2,"ender_chest", 1, new EItem[][]{{obsidian, obsidian, obsidian},{obsidian, eye_of_ender, obsidian},{obsidian, obsidian, obsidian}}),
 	
 	lanterne(91,0,"lit_pumpkin", 1, new EItem[][]{{air, air, air},{air, pumpkin, air},{air, torch, air}}),
 	
@@ -258,8 +278,8 @@ public enum Recette {
 	 */
 	
 	pierre_lumineuse(89,0,"glowstone", 1, new EItem[][]{{air, air, air},{glowstone_dust, glowstone_dust, air},{glowstone_dust, glowstone_dust, air}}),
-	barriere_nether(113,0,"nether_brick_fence", 6, new EItem[][]{{air, air, air},{nether_brick_, nether_brick_, nether_brick_},{nether_brick_, nether_brick_, nether_brick_}}),
-	escalier_nether(114,0,"nether_brick_stairs", 4, new EItem[][]{{nether_brick_, air, air},{nether_brick_, nether_brick_, air},{nether_brick_, nether_brick_, nether_brick_}}),
+	barriere_nether(113,0,"nether_brickfence", 6, new EItem[][]{{air, air, air},{nether_brick, nether_brick, nether_brick},{nether_brick, nether_brick, nether_brick}}),
+	escalier_nether(114,0,"nether_brickstairs", 4, new EItem[][]{{nether_brick, air, air},{nether_brick, nether_brick, air},{nether_brick, nether_brick, nether_brick}}),
 	
 	
 	/*
@@ -274,19 +294,19 @@ public enum Recette {
 	 * 
 	 * 
 	 * Plusieurs combinaions possibles préciser dans le constructeur ?
+	 * J'ai oublié de faire ça...
+	 * TODO Faire un constructeur pour spécifier les items à combinabilité variable (\o/)
 	 */
 
-	lit(26,0,"bed", 1, new EItem[][]{{air, air, air},{white_wool, white_wool, white_wool},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
-	bibliotheque(155,2,"bookshelf", 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{book, book, book},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
-	portillon(107,0,"fence_gate", 1, new EItem[][]{{air, air, air},{stick, oak_wooden_plank, stick},{stick, oak_wooden_plank, stick}}),
-	barriere(85,0,"fence", 2, new EItem[][]{{air, air, air},{stick, stick, stick},{stick, stick, stick}}),
-	sign(68,0,"standing_sign", 3, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{air, stick, air}}),
-	coffre(54,0,"chest", 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{oak_wooden_plank, air, oak_wooden_plank},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
-	coffre_piege(146,0,"trapped_chest", 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{oak_wooden_plank, air, oak_wooden_plank},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
-	
-	porte_bois(64,0,"wooden_door", 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, air},{oak_wooden_plank, oak_wooden_plank, air},{oak_wooden_plank, oak_wooden_plank, air}}),
-	jukebox(84,0,"jukebox", 1, new EItem[][]{{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{oak_wooden_plank, diamond, oak_wooden_plank},{oak_wooden_plank, stick, oak_wooden_plank}}),
-	trappe(96,0,"trapdoor", 2, new EItem[][]{{air, air, air},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank},{oak_wooden_plank, oak_wooden_plank, oak_wooden_plank}}),
+	lit(26,0,"bed", 1, new EItem[][]{{air, air, air},{white_wool, white_wool, white_wool},{oak_wood, oak_wood, oak_wood}}),
+	bibliotheque(155,2,"bookshelf", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{book, book, book},{oak_wood, oak_wood, oak_wood}}),
+	portillon(107,0,"fence_gate", 1, new EItem[][]{{air, air, air},{stick, oak_wood, stick},{stick, oak_wood, stick}}),
+	panneau(68,0,"standing_sign", 3, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood},{air, stick, air}}),
+	coffre(54,0,"chest", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, air, oak_wood},{oak_wood, oak_wood, oak_wood}}),
+	coffre_piege(146,0,"trapped_chest", 1, new EItem[][]{{air, air, air},{tripwire_hook, chest, air},{air, air, air}}),
+	porte_bois(64,0,"wooden_door", 1, new EItem[][]{{oak_wood, oak_wood, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, air}}),
+	jukebox(84,0,"jukebox", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, diamond, oak_wood},{oak_wood, oak_wood, oak_wood}}),
+	trappe(96,0,"trapdoor", 2, new EItem[][]{{air, air, air},{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood}}),
 	
 	
 	
@@ -378,7 +398,7 @@ public enum Recette {
       * @see Recette#Recette(int, int, String, ERecetteType, int
       */
      Recette(int metadata, EItem ingredient, EItem potion_base) {
-             this(373, metadata, "potion", alambic, 1);
+             this(373, metadata, "potion", ERecetteType.alambic, 1);
              this.ingredients.add(ingredient);
              this.ingredients.add(potion_base);
      }
