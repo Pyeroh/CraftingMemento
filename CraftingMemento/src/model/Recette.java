@@ -228,12 +228,12 @@ public enum Recette {
 	pasteque(103,0,"melon_block", 1, new EItem[][]{{melon, melon, melon},{melon, melon, melon},{melon, melon, melon}}),
 	tranche_pasteque(360,0,"melon", 9, melon_block),
 	
-	graines_citrouille(361,0,"pumpkin", 4, pumpkin),
-	
+	graines_citrouille(361,0,"pumpkin_seeds", 4, pumpkin),
+	graines_pasteque(362,0,"melon_seeds", 4, melon),
 	
 	
 	/*
-	 * BLOCS COLORABLES
+	 * BLOCS COLORES
 	 */
 	
 	laine_blanche(35,0,"wool",1,new EItem[][]{{air,air,air},{air,string,string},{air,string,string}}),
@@ -249,15 +249,80 @@ public enum Recette {
 	laine_cyan(35,9,"wool",1,white_wool,cyan_dye),
 	laine_violette(35,10,"wool",1,white_wool,purple_dye),
 	laine_bleue(35,11,"wool",1,white_wool,EItem.lapis_lazuli),
-	laine_marron(35,12,"wool",1,white_wool,orange_dye),
-	laine_verte(35,13,"wool",1,white_wool,orange_dye),
-	laine_rouge(35,14,"wool",1,white_wool,orange_dye),
-	laine_noire(35,15,"wool",1,white_wool,orange_dye),
+	laine_marron(35,12,"wool",1,white_wool,cocoa_beans),
+	laine_verte(35,13,"wool",1,white_wool,cactus_green),
+	laine_rouge(35,14,"wool",1,white_wool,rose_red),
+	laine_noire(35,15,"wool",1,white_wool,ink_sack),
 	
-	vitre(102,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
-	vitre_teinte(160,0,"glass_pane", 1, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
-		
+	verre_blanc(95,0,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,white_dye,glass},{glass,glass,glass}}),
+	verre_orange(95,1,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,orange_dye,glass},{glass,glass,glass}}),
+	verre_magenta(95,2,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,magenta_dye,glass},{glass,glass,glass}}),
+	verre_bleu_clair(95,3,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,l_blue_dye,glass},{glass,glass,glass}}),
+	verre_jaune(95,4,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,dandelion_yellow,glass},{glass,glass,glass}}),
+	verre_vert_clair(95,5,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,l_green_dye,glass},{glass,glass,glass}}),
+	verre_rose(95,6,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,pink_dye,glass},{glass,glass,glass}}),
+	verre_gris(95,7,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,gray_dye,glass},{glass,glass,glass}}),
+	verre_gris_clair(95,8,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,l_gray_dye,glass},{glass,glass,glass}}),
+	verre_cyan(95,9,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,cyan_dye,glass},{glass,glass,glass}}),
+	verre_violet(95,10,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,purple_dye,glass},{glass,glass,glass}}),
+	verre_bleu(95,11,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,EItem.lapis_lazuli,glass},{glass,glass,glass}}),
+	verre_marron(95,12,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,cocoa_beans,glass},{glass,glass,glass}}),
+	verre_vert(95,13,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,cactus_green,glass},{glass,glass,glass}}),
+	verre_rouge(95,14,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,rose_red,glass},{glass,glass,glass}}),
+	verre_noir(95,15,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,ink_sack,glass},{glass,glass,glass}}),
 	
+	terre_cuite_blanche(159,0,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,white_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_orange(159,1,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,orange_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_magenta(159,2,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,magenta_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_bleu_clair(159,3,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,l_blue_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_jaune(159,4,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,dandelion_yellow,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_vert_clair(159,5,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,l_green_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_rose(159,6,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,pink_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_grise(159,7,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,gray_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_gris_clair(159,8,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,l_gray_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_cyan(159,9,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,cyan_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_violette(159,10,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,purple_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_bleue(159,11,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,EItem.lapis_lazuli,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_marron(159,12,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,cocoa_beans,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_verte(159,13,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,cactus_green,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_rouge(159,14,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,rose_red,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	terre_cuite_noire(159,15,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,ink_sack,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
+	
+	vitre(102,0,"glass_pane", 16, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
+	
+	vitre_blanche(160,0,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{white_glass, white_glass, white_glass},{white_glass, white_glass, white_glass}}),
+	vitre_orange(160,1,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{orange_glass_pane, orange_glass_pane, orange_glass_pane},{orange_glass_pane, orange_glass_pane, orange_glass_pane}}),
+	vitre_magenta(160,2,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{magenta_glass_pane, magenta_glass_pane, magenta_glass_pane},{magenta_glass_pane, magenta_glass_pane, magenta_glass_pane}}),
+	vitre_bleu_clair(160,3,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_blue_glass_pane, l_blue_glass_pane, l_blue_glass_pane},{l_blue_glass_pane, l_blue_glass_pane, l_blue_glass_pane}}),
+	vitre_jaune(160,4,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{yellow_glass_pane, yellow_glass_pane, yellow_glass_pane},{yellow_glass_pane, yellow_glass_pane, yellow_glass_pane}}),
+	vitre_vert_clair(160,5,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_green_glass_pane, l_green_glass_pane, l_green_glass_pane},{l_green_glass_pane, l_green_glass_pane, l_green_glass_pane}}),
+	vitre_rose(160,6,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{pink_glass_pane, pink_glass_pane, pink_glass_pane},{pink_glass_pane, pink_glass_pane, pink_glass_pane}}),
+	vitre_grise(160,7,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{gray_glass_pane, gray_glass_pane, gray_glass_pane},{gray_glass_pane, gray_glass_pane, gray_glass_pane}}),
+	vitre_gris_clair(160,8,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_gray_stained_clay, l_gray_stained_clay, l_gray_stained_clay},{l_gray_stained_clay, l_gray_stained_clay, l_gray_stained_clay}}),
+	vitre_cyan(160,9,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{cyan_glass_pane, cyan_glass_pane, cyan_glass_pane},{cyan_glass_pane, cyan_glass_pane, cyan_glass_pane}}),
+	vitre_violette(160,10,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{purple_glass_pane, purple_glass_pane, purple_glass_pane},{purple_glass_pane, purple_glass_pane, purple_glass_pane}}),
+	vitre_bleue(160,11,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{blue_glass_pane, blue_glass_pane, blue_glass_pane},{blue_glass_pane, blue_glass_pane, blue_glass_pane}}),
+	vitre_marron(160,12,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{brown_glass_pane, brown_glass_pane, brown_glass_pane},{brown_glass_pane, brown_glass_pane, brown_glass_pane}}),
+	vitre_verte(160,13,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{green_glass_pane, green_glass_pane, green_glass_pane},{green_glass_pane, green_glass_pane, green_glass_pane}}),
+	vitre_rouge(160,14,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{red_glass_pane, red_glass_pane, red_glass_pane},{red_glass_pane, red_glass_pane, red_glass_pane}}),
+	vitre_noire(160,15,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{black_glass_pane, black_glass_pane, black_glass_pane},{black_glass_pane, black_glass_pane, black_glass_pane}}),
+	
+	tapis_blanc(171,0,"carpet", 3, new EItem[][]{{air, air, air},{white_wool, white_wool, air},{air, air, air}}),
+	tapis_orange(171,1,"carpet", 3, new EItem[][]{{air, air, air},{orange_wool, orange_wool, air},{air, air, air}}),
+	tapis_magenta(171,2,"carpet", 3, new EItem[][]{{air, air, air},{magenta_wool, magenta_wool, air},{air, air, air}}),
+	tapis_bleu_clair(171,3,"carpet", 3, new EItem[][]{{air, air, air},{l_blue_wool, l_blue_wool, air},{air, air, air}}),
+	tapis_jaune(171,4,"carpet", 3, new EItem[][]{{air, air, air},{yellow_wool, yellow_wool, air},{air, air, air}}),
+	tapis_vert_clair(171,5,"carpet", 3, new EItem[][]{{air, air, air},{l_green_wool, l_green_wool, air},{air, air, air}}),
+	tapis_rose(171,6,"carpet", 3, new EItem[][]{{air, air, air},{pink_wool, pink_wool, air},{air, air, air}}),
+	tapis_gris(171,7,"carpet", 3, new EItem[][]{{air, air, air},{gray_wool, gray_wool, air},{air, air, air}}),
+	tapis_gris_clair(171,8,"carpet", 3, new EItem[][]{{air, air, air},{l_gray_wool, l_gray_wool, air},{air, air, air}}),
+	tapis_cyan(171,9,"carpet", 3, new EItem[][]{{air, air, air},{cyan_wool, cyan_wool, air},{air, air, air}}),
+	tapis_violet(171,10,"carpet", 3, new EItem[][]{{air, air, air},{purple_wool, purple_wool, air},{air, air, air}}),
+	tapis_bleu(171,11,"carpet", 3, new EItem[][]{{air, air, air},{blue_wool, blue_wool, air},{air, air, air}}),
+	tapis_marron(171,12,"carpet", 3, new EItem[][]{{air, air, air},{brown_wool, brown_wool, air},{air, air, air}}),
+	tapis_vert(171,13,"carpet", 3, new EItem[][]{{air, air, air},{green_wool, green_wool, air},{air, air, air}}),
+	tapis_rouge(171,14,"carpet", 3, new EItem[][]{{air, air, air},{red_wool, red_wool, air},{air, air, air}}),
+	tapis_noir(171,15,"carpet", 3, new EItem[][]{{air, air, air},{black_wool, black_wool, air},{air, air, air}}),
 
 	/*
 	 *	OBJETS
@@ -280,12 +345,6 @@ public enum Recette {
 	pierre_lumineuse(89,0,"glowstone", 1, new EItem[][]{{air, air, air},{glowstone_dust, glowstone_dust, air},{glowstone_dust, glowstone_dust, air}}),
 	barriere_nether(113,0,"nether_brickfence", 6, new EItem[][]{{air, air, air},{nether_brick, nether_brick, nether_brick},{nether_brick, nether_brick, nether_brick}}),
 	escalier_nether(114,0,"nether_brickstairs", 4, new EItem[][]{{nether_brick, air, air},{nether_brick, nether_brick, air},{nether_brick, nether_brick, nether_brick}}),
-	
-	
-	/*
-	 * BLOCS COLORES
-	 * 
-	 */
 	
 	
 	
