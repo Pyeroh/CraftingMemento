@@ -371,7 +371,7 @@ public enum Recette {
 	 */
 	
 	distributeur(23,0,"dispenser",1, new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,bow,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
-	noteblock(25,0,"noteblock",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{oak_wood,EItem.redstone},{oak_wood,oak_wood,oak_wood}},true),
+	noteblock(25,0,"noteblock",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{oak_wood,EItem.redstone,oak_wood},{oak_wood,oak_wood,oak_wood}},true),
 	rail_booster(27,0,"golden_rail",6,new EItem[][]{{gold_ingot,air,gold_ingot},{gold_ingot,stick,gold_ingot},{gold_ingot,EItem.redstone,gold_ingot}}),
 	rail_detecteur(28,0,"detector_rail",6,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,stone_plate,iron_ingot},{iron_ingot,EItem.redstone,iron_ingot}}),
 	piston_collant(29,0,"sticky_piston",1,new EItem[][]{{air,air,air},{air,slime_ball,air},{air,EItem.piston,air}}),
