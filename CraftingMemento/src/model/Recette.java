@@ -194,8 +194,8 @@ public enum Recette {
 															{EItem.redstone, EItem.redstone, EItem.redstone}}),
 	redstone2(331,0,"redstone", 9, redstone_block),
 	
-	bloc_emeraude(133,0,"redstone_block", 1, new EItem[][]{{emerald, emerald, emerald},{emerald, emerald, emerald},{emerald, emerald, emerald}}),
-	emeraude(388,0,"redstone", 9, emerald_block),
+	bloc_emeraude(133,0,"emerald_block", 1, new EItem[][]{{emerald, emerald, emerald},{emerald, emerald, emerald},{emerald, emerald, emerald}}),
+	emeraude(388,0,"emerald", 9, emerald_block),
 	
 	bloc_diamant(133,0,"diamond_block", 1, new EItem[][]{{diamond, diamond, diamond},{diamond, diamond, diamond},{diamond, diamond, diamond}}),
 	diamant2(388,0,"diamond", 9, diamond_block),
@@ -205,13 +205,13 @@ public enum Recette {
 	
 	bloc_or(41,0,"gold_block", 1, new EItem[][]{{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot}}),
 	or2(266,0,"gold_ingot", 9, gold_block),
+	or3(266,0,"gold_ingot",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
+	pepite_or(371,0,"gold_nugget",9,gold_ingot),
 	
 	bloc_lapis_lazuli(41,0,"gold_block", 1, new EItem[][]{	{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
 															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
 															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli}}),
 	lapis_lazuli2(266,0,"lapis_lazuli", 9, lapis_block),
-	
-	
 	
 	
 	
@@ -343,6 +343,7 @@ public enum Recette {
 	 */
 	
 	pierre_lumineuse(89,0,"glowstone", 1, new EItem[][]{{air, air, air},{glowstone_dust, glowstone_dust, air},{glowstone_dust, glowstone_dust, air}}),
+	bloc_de_brique_du_nether(112,0,"nether_brick", 1, new EItem[][]{{air, air, air},{air, nether_brick, nether_brick},{air, nether_brick, nether_brick}}),
 	barriere_nether(113,0,"nether_brickfence", 6, new EItem[][]{{air, air, air},{nether_brick, nether_brick, nether_brick},{nether_brick, nether_brick, nether_brick}}),
 	escalier_nether(114,0,"nether_brickstairs", 4, new EItem[][]{{nether_brick, air, air},{nether_brick, nether_brick, air},{nether_brick, nether_brick, nether_brick}}),
 	
@@ -394,9 +395,20 @@ public enum Recette {
 	droppeur(158,0,"dropper",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,air,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
 	
 	
+	/*
+	 * NOURRITURE
+	 * 
+	 */
 	
-	
-	
+	soupe_champi(282,0,"mushroom_stew",1,red_mushroom,brown_mushroom,bowl),
+	pain(297,0,"bread",1,new EItem[][]{{air,air,air},{air,air,air},{wheat,wheat,wheat}}),
+	pomme_or(322,0,"golden_apple",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,apple,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
+	pomme_or_enchant(322,1,"golden_apple",1,new EItem[][]{{gold_block,gold_block,gold_block},{gold_block,apple,gold_block},{gold_block,gold_block,gold_block}}),
+	sucre(353,0,"sugar",1,sugar_cane),
+	gateau(354,0,"cake",1,new EItem[][]{{milk_bucket,milk_bucket,milk_bucket},{sugar,egg,sugar},{wheat,wheat,wheat}}),
+	cookie(357,0,"cookie",8,new EItem[][]{{air,air,air},{wheat,cocoa_beans,wheat},{air,air,air}}),
+	carotte_doree(396,0,"golden_carrot",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,carrot,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
+	tarte_citrouille(400,0,"pumpkin_pie",1,egg,pumpkin,sugar),
 	
 	
 	
