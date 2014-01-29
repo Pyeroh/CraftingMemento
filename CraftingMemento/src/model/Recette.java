@@ -154,7 +154,7 @@ public enum Recette {
 	// TABLE DE CRAFT
 
 	enclume(47,0,"anvil", 1, new EItem[][]{{iron_block, iron_block, iron_block},{air, iron_ingot, air},{iron_ingot, iron_ingot, iron_ingot}}),
-	table_craft(58,0,"crafting_table", 1, new EItem[][]{{air, air, air},{air, oak_wood, oak_wood},{air, oak_wood, oak_wood}}), //recettes multiples
+	table_craft(58,0,"crafting_table", 1, new EItem[][]{{air, air, air},{air, oak_wood, oak_wood},{air, oak_wood, oak_wood}},true),
 	fourneau(61,0,"furnace", 1, new EItem[][]{{cobblestone, cobblestone, cobblestone},{cobblestone, air, cobblestone},{cobblestone, cobblestone, cobblestone}}),
 	table_enchantement(116,0,"enchanting_table", 1, new EItem[][]{{air, book, air},{diamond, obsidian, diamond},{obsidian, obsidian, obsidian}}),
 	alambic(117,0,"brewing_stand", 1, new EItem[][]{{air, air, air},{air, blaze_rod, air},{cobblestone, cobblestone, cobblestone}}),
@@ -348,24 +348,51 @@ public enum Recette {
 	
 	
 	
-	/*____________________________________________________________
+	/*
+	 * ITEMS A COMBINABILITES VARIABLE 
 	 * 
-	 * 
-	 * 
-	 * Plusieurs combinaions possibles préciser dans le constructeur ?
-	 * J'ai oublié de faire ça...
-	 * TODO Faire un constructeur pour spécifier les items à combinabilité variable (\o/)
 	 */
 
-	lit(26,0,"bed", 1, new EItem[][]{{air, air, air},{white_wool, white_wool, white_wool},{oak_wood, oak_wood, oak_wood}}),
-	bibliotheque(155,2,"bookshelf", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{book, book, book},{oak_wood, oak_wood, oak_wood}}),
-	portillon(107,0,"fence_gate", 1, new EItem[][]{{air, air, air},{stick, oak_wood, stick},{stick, oak_wood, stick}}),
-	panneau(68,0,"standing_sign", 3, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood},{air, stick, air}}),
-	coffre(54,0,"chest", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, air, oak_wood},{oak_wood, oak_wood, oak_wood}}),
+	lit(26,0,"bed", 1, new EItem[][]{{air, air, air},{white_wool, white_wool, white_wool},{oak_wood, oak_wood, oak_wood}}, true),
+	bibliotheque(155,2,"bookshelf", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{book, book, book},{oak_wood, oak_wood, oak_wood}},true),
+	portillon(107,0,"fence_gate", 1, new EItem[][]{{air, air, air},{stick, oak_wood, stick},{stick, oak_wood, stick}},true),
+	panneau(68,0,"standing_sign", 3, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood},{air, stick, air}},true),
+	coffre(54,0,"chest", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, air, oak_wood},{oak_wood, oak_wood, oak_wood}},true),
 	coffre_piege(146,0,"trapped_chest", 1, new EItem[][]{{air, air, air},{tripwire_hook, chest, air},{air, air, air}}),
-	porte_bois(64,0,"wooden_door", 1, new EItem[][]{{oak_wood, oak_wood, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, air}}),
-	jukebox(84,0,"jukebox", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, diamond, oak_wood},{oak_wood, oak_wood, oak_wood}}),
-	trappe(96,0,"trapdoor", 2, new EItem[][]{{air, air, air},{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood}}),
+	porte_bois(64,0,"wooden_door", 1, new EItem[][]{{oak_wood, oak_wood, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, air}},true),
+	jukebox(84,0,"jukebox", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, diamond, oak_wood},{oak_wood, oak_wood, oak_wood}},true),
+	trappe(96,0,"trapdoor", 2, new EItem[][]{{air, air, air},{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood}},true),
+	
+	
+	/*
+	 * MECANIQUE ET REDSTONE
+	 * 
+	 */
+	
+	distributeur(23,0,"dispenser",1, new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,bow,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
+	noteblock(25,0,"noteblock",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{oak_wood,EItem.redstone},{oak_wood,oak_wood,oak_wood}},true),
+	rail_booster(27,0,"golden_rail",6,new EItem[][]{{gold_ingot,air,gold_ingot},{gold_ingot,stick,gold_ingot},{gold_ingot,EItem.redstone,gold_ingot}}),
+	rail_detecteur(28,0,"detector_rail",6,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,stone_plate,iron_ingot},{iron_ingot,EItem.redstone,iron_ingot}}),
+	piston_collant(29,0,"sticky_piston",1,new EItem[][]{{air,air,air},{air,slime_ball,air},{air,EItem.piston,air}}),
+	piston(33,0,"piston",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{cobblestone,iron_ingot,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
+	tnt(46,0,"tnt",1,new EItem[][]{{gunpowder,sand,gunpowder},{sand,gunpowder,sand},{gunpowder,sand,gunpowder}}),
+	tnt2(46,0,"tnt",1,new EItem[][]{{gunpowder,redsand,gunpowder},{redsand,gunpowder,redsand},{gunpowder,redsand,gunpowder}}),
+	rail(66,0,"rail",16,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,stick,iron_ingot},{iron_ingot,air,iron_ingot}}),
+	levier(69,0,"lever",1,new EItem[][]{{air,air,air},{air,stick,air},{air,cobblestone,air}}),
+	plaque_pression_pierre(70,0,"stone_pressure_plate",1,new EItem[][]{{air,air,air},{air,air,air},{stone,stone,air}}),
+	plaque_pression_bois(72,0,"wooden_pressure_plate",1,new EItem[][]{{air,air,air},{air,air,air},{oak_wood,oak_wood,air}},true),
+	torche_redstone(76,0,"redstone_torch",1,new EItem[][]{{air,air,air},{air,EItem.redstone,air},{air,stick,air}}),
+	bouton_pierre(77,0,"stone_button",1,stone),
+	lampe_redstone(123,0,"redstone_lamp",1,new EItem[][]{{air,EItem.redstone,air},{EItem.redstone,glowstone,EItem.redstone},{air,EItem.redstone,air}}),
+	crochet(131,0,"tripwire_hook",2,new EItem[][]{{air,iron_ingot,air},{air,stick,air},{air,oak_wood,air}},true),
+	bouton_bois(143,0,"wooden_button",1,true,oak_wood),
+	plaque_pression_sensible(147,0,"light_weighted_pressure_plate",1,new EItem[][]{{air,air,air},{air,air,air},{gold_ingot,gold_ingot,air}}),
+	plaque_pression_lourde(148,0,"heavy_weighted_pressure_plate",1,new EItem[][]{{air,air,air},{air,air,air},{iron_ingot,iron_ingot,air}}),
+	capteur_solaire(151,0,"daylight_detector",1,new EItem[][]{{glass,glass,glass},{EItem.quartz,EItem.quartz,EItem.quartz},{oakwood_slab,oakwood_slab,oakwood_slab}},true),
+	entonnoir(154,0,"hopper",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,chest,iron_ingot},{air,iron_ingot,air}}),
+	raill_activation(157,0,"activator_rail",6,new EItem[][]{{iron_ingot,stick,iron_ingot},{iron_ingot,redstone_torch_on,iron_ingot},{iron_ingot,stick,iron_ingot}}),
+	droppeur(158,0,"dropper",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,air,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
+	
 	
 	
 	
@@ -438,6 +465,11 @@ public enum Recette {
                      this.ingredients.add(ingredients[i]);
              }
              this.forme = ERecetteForme.sansforme;
+     }
+     
+     Recette(int id, int metadata, String mid, int quantite, boolean combinable, EItem... ingredients) {
+    	 this(id,metadata,mid,quantite,ingredients);
+    	 this.combinable = combinable;
      }
      
      /**
