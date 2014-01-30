@@ -411,8 +411,44 @@ public enum Recette {
 	tarte_citrouille(400,0,"pumpkin_pie",1,egg,pumpkin,sugar),
 	
 	
+	/*
+	 * OUTILS
+	 * 
+	 */
 	
+	pelle_fer(256,0,"iron_shovel",1,new EItem[][]{{air,iron_ingot,air},{air,stick,air},{air,stick,air}}),
+	pioche_fer(257,0,"iron_pickaxe",1,new EItem[][]{{iron_ingot,iron_ingot,iron_ingot},{air,stick,air},{air,stick,air}}),
+	hache_fer(258,0,"iron_axe",1,new EItem[][]{{iron_ingot,iron_ingot,air},{iron_ingot,stick,air},{air,stick,air}}),
 	
+	briquet(259,0,"flint_and_steel",1,new EItem[][]{{air,air,air},{iron_ingot,air,air},{air,flint,air}}),
+	
+	pelle_bois(269,0,"wooden_shovel",1,new EItem[][]{{air,oak_wood,air},{air,stick,air},{air,stick,air}},true),
+	pioche_bois(270,0,"wooden_pickaxe",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{air,stick,air},{air,stick,air}},true),
+	hache_bois(271,0,"wooden_axe",1,new EItem[][]{{oak_wood,oak_wood,air},{oak_wood,stick,air},{air,stick,air}},true),
+	
+	pelle_pierre(273,0,"stone_shovel",1,new EItem[][]{{air,cobblestone,air},{air,stick,air},{air,stick,air}}),
+	pioche_pierre(274,0,"stone_pickaxe",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{air,stick,air},{air,stick,air}}),
+	hache_pierre(275,0,"stone_axe",1,new EItem[][]{{cobblestone,cobblestone,air},{cobblestone,stick,air},{air,stick,air}}),
+	
+	pelle_diamant(277,0,"diamond_shovel",1,new EItem[][]{{air,diamond,air},{air,stick,air},{air,stick,air}}),
+	pioche_diamant(278,0,"diamond_pickaxe",1,new EItem[][]{{diamond,diamond,diamond},{air,stick,air},{air,stick,air}}),
+	hache_diamant(279,0,"diamond_axe",1,new EItem[][]{{diamond,diamond,air},{diamond,stick,air},{air,stick,air}}),
+	
+	pelle_or(284,0,"gold_shovel",1,new EItem[][]{{air,gold_ingot,air},{air,stick,air},{air,stick,air}}),
+	pioche_or(285,0,"gold_pickaxe",1,new EItem[][]{{gold_ingot,gold_ingot,gold_ingot},{air,stick,air},{air,stick,air}}),
+	hache_or(286,0,"gold_axe",1,new EItem[][]{{gold_ingot,gold_ingot,air},{gold_ingot,stick,air},{air,stick,air}}),
+	
+	faux_bois(290,0,"wooden_hoe",1,new EItem[][]{{oak_wood,oak_wood,air},{air,stick,air},{air,stick,air}},true),
+	faux_pierre(291,0,"stone_hoe",1,new EItem[][]{{cobblestone,cobblestone,air},{air,stick,air},{air,stick,air}}),
+	faux_fer(292,0,"iron_hoe",1,new EItem[][]{{iron_ingot,iron_ingot,air},{air,stick,air},{air,stick,air}}),
+	faux_diamant(293,0,"diamond_hoe",1,new EItem[][]{{diamond,diamond,air},{air,stick,air},{air,stick,air}}),
+	faux_or(294,0,"gold_hoe",1,new EItem[][]{{gold_ingot,gold_ingot,air},{air,stick,air},{air,stick,air}}),
+	
+	seau(325,0,"bucket",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{air,iron_ingot,air}}),
+	boussole(345,0,"compass",1,new EItem[][]{{air,iron_ingot,air},{iron_ingot,EItem.redstone,iron_ingot},{air,iron_ingot,air}}),
+	canne_a_peche(346,0,"fishing_rod",1,new EItem[][]{{air,air,stick},{air,stick,string},{stick,air,string}}),
+	montre(347,0,"clock",1,new EItem[][]{{air,gold_ingot,air},{gold_ingot,EItem.redstone,gold_ingot},{air,gold_ingot,air}}),
+	cisailles(359,0,"shears",1, new EItem[][]{{air,air,air},{air,iron_ingot,air},{iron_ingot,air,air}}),
 	
 	
 	;
