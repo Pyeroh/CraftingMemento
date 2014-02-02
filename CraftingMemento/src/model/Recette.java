@@ -490,6 +490,21 @@ public enum Recette {
 	jambes_or(316,0,"golden_leggings",1,new EItem[][]{{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
 	pieds_or(317,0,"golden_boots",1,new EItem[][]{{air,air,air},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
 	
+	/*
+	 * TRANSPORT
+	 * 
+	 */
+	
+	wagon(328,0,"minecart",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
+	bateau(333,0,"boat",1,new EItem[][]{{air,air,air},{oak_wood,air,oak_wood},{oak_wood,oak_wood,oak_wood}},true),
+	wagon_coffre(342,0,"chest_minecart",1,new EItem[][]{{air,air,air},{air,chest,air},{air,minecart,air}}),
+	locomotive(343,0,"furnace_minecart",1,new EItem[][]{{air,air,air},{air,furnace,air},{air,minecart,air}}),
+	carte(358,0,"filled_map",1,new EItem[][]{{paper,paper,paper},{paper,map,paper},{paper,paper,paper}}),
+	carte2(358,0,"filled_map",2,empty_map,map),
+	carte_vierge(395,0,"map",1,new EItem[][]{{paper,paper,paper},{paper,compass,paper},{paper,paper,paper}}),
+	wagon_tnt(407,0,"tnt_minecart",1,new EItem[][]{{air,air,air},{air,EItem.tnt,air},{air,minecart,air}}),
+	wagon_entonnoir(408,0,"hopper_minecart",1,new EItem[][]{{air,air,air},{air,hopper,air},{air,minecart,air}}),
+	
 	
 	
 	
