@@ -451,6 +451,58 @@ public enum Recette {
 	cisailles(359,0,"shears",1, new EItem[][]{{air,air,air},{air,iron_ingot,air},{iron_ingot,air,air}}),
 	
 	
+	/*
+	 * ARMES ET ARMURES
+	 * 
+	 */
+	
+	arc(261,0,"bow",1,new EItem[][]{{string,stick,air},{string,air,stick},{string,stick,air}}),
+	fleche(262,0,"arrow",4,new EItem[][]{{air,flint,air},{air,stick,air},{air,feather,air}}),
+	
+	epee_fer(267,0,"iron_sword",1,new EItem[][]{{air,iron_ingot,air},{air,iron_ingot,air},{air,stick,air}}),
+	epee_bois(268,0,"wooden_sword",1,new EItem[][]{{air,oak_wood,air},{air,oak_wood,air},{air,stick,air}},true),
+	epee_pierre(272,0,"stone_sword",1,new EItem[][]{{air,cobblestone,air},{air,cobblestone,air},{air,stick,air}}),
+	epee_diamant(276,0,"diamond_sword",1,new EItem[][]{{air,diamond,air},{air,diamond,air},{air,stick,air}}),
+	epee_or(283,0,"golden_sword",1,new EItem[][]{{air,gold_ingot,air},{air,gold_ingot,air},{air,stick,air}}),
+	
+	tete_cuir(298,0,"leather_helmet",1,new EItem[][]{{air,air,air},{leather,leather,leather},{leather,air,leather}}),
+	torse_cuir(299,0,"leather_chestplate",1,new EItem[][]{{leather,air,leather},{leather,leather,leather},{leather,leather,leather}}),
+	jambes_cuir(300,0,"leather_leggings",1,new EItem[][]{{leather,leather,leather},{leather,air,leather},{leather,air,leather}}),
+	pieds_cuir(301,0,"leather_boots",1,new EItem[][]{{air,air,air},{leather,air,leather},{leather,air,leather}}),
+	
+	tete_maille(302,0,"chainmail_helmet",1,new EItem[][]{{air,air,air},{fire,fire,fire},{fire,air,fire}}),
+	torse_maille(303,0,"chainmail_chestplate",1,new EItem[][]{{fire,air,fire},{fire,fire,fire},{fire,fire,fire}}),
+	jambes_maille(304,0,"chainmail_leggings",1,new EItem[][]{{fire,fire,fire},{fire,air,fire},{fire,air,fire}}),
+	pieds_maille(305,0,"chainmail_boots",1,new EItem[][]{{air,air,air},{fire,air,fire},{fire,air,fire}}),
+	
+	tete_fer(306,0,"iron_helmet",1,new EItem[][]{{air,air,air},{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,air,iron_ingot}}),
+	torse_fer(307,0,"iron_chestplate",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
+	jambes_fer(308,0,"iron_leggings",1,new EItem[][]{{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot}}),
+	pieds_fer(309,0,"iron_boots",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot}}),
+	
+	tete_diamant(310,0,"diamond_helmet",1,new EItem[][]{{air,air,air},{diamond,diamond,diamond},{diamond,air,diamond}}),
+	torse_diamant(311,0,"diamond_chestplate",1,new EItem[][]{{diamond,air,diamond},{diamond,diamond,diamond},{diamond,diamond,diamond}}),
+	jambes_diamant(312,0,"diamond_leggings",1,new EItem[][]{{diamond,diamond,diamond},{diamond,air,diamond},{diamond,air,diamond}}),
+	pieds_diamant(313,0,"diamond_boots",1,new EItem[][]{{air,air,air},{diamond,air,diamond},{diamond,air,diamond}}),
+	
+	tete_or(314,0,"golden_helmet",1,new EItem[][]{{air,air,air},{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,air,gold_ingot}}),
+	torse_or(315,0,"golden_chestplate",1,new EItem[][]{{gold_ingot,air,gold_ingot},{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,gold_ingot,gold_ingot}}),
+	jambes_or(316,0,"golden_leggings",1,new EItem[][]{{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
+	pieds_or(317,0,"golden_boots",1,new EItem[][]{{air,air,air},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	;
 
 	 private int id;
