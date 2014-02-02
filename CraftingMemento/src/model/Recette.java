@@ -391,8 +391,11 @@ public enum Recette {
 	plaque_pression_lourde(148,0,"heavy_weighted_pressure_plate",1,new EItem[][]{{air,air,air},{air,air,air},{iron_ingot,iron_ingot,air}}),
 	capteur_solaire(151,0,"daylight_detector",1,new EItem[][]{{glass,glass,glass},{EItem.quartz,EItem.quartz,EItem.quartz},{oakwood_slab,oakwood_slab,oakwood_slab}},true),
 	entonnoir(154,0,"hopper",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,chest,iron_ingot},{air,iron_ingot,air}}),
-	raill_activation(157,0,"activator_rail",6,new EItem[][]{{iron_ingot,stick,iron_ingot},{iron_ingot,redstone_torch_on,iron_ingot},{iron_ingot,stick,iron_ingot}}),
+	rail_activation(157,0,"activator_rail",6,new EItem[][]{{iron_ingot,stick,iron_ingot},{iron_ingot,redstone_torch_on,iron_ingot},{iron_ingot,stick,iron_ingot}}),
 	droppeur(158,0,"dropper",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,air,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
+	
+	repeteur(356,0,"repeater",1,new EItem[][]{{air,air,air},{redstone_torch_on,EItem.redstone,redstone_torch_on},{stone,stone,stone}}),
+	comparateur(404,0,"comparator",1,new EItem[][]{{air,redstone_torch_on,air},{redstone_torch_on,EItem.quartz,redstone_torch_on},{stone,stone,stone}}),
 	
 	
 	/*
@@ -504,6 +507,40 @@ public enum Recette {
 	carte_vierge(395,0,"map",1,new EItem[][]{{paper,paper,paper},{paper,compass,paper},{paper,paper,paper}}),
 	wagon_tnt(407,0,"tnt_minecart",1,new EItem[][]{{air,air,air},{air,EItem.tnt,air},{air,minecart,air}}),
 	wagon_entonnoir(408,0,"hopper_minecart",1,new EItem[][]{{air,air,air},{air,hopper,air},{air,minecart,air}}),
+	
+	
+	/*
+	 * COLORANTS
+	 * 
+	 */
+	
+	colorant_rouge(351,1,"dye",1,poppy),
+	colorant_rouge1(351,1,"dye",1,red_tulip),
+	colorant_rouge2(351,1,"dye",2,rose_bush),
+	colorant_violet(351,5,"dye",2,rose_red,EItem.lapis_lazuli),
+	colorant_cyan(351,6,"dye",2,cactus_green,EItem.lapis_lazuli),
+	colorant_gris_clair(351,7,"dye",3,ink_sack,white_dye,white_dye),
+	colorant_gris_clair2(351,7,"dye",2,gray_dye,white_dye),
+	colorant_gris_clair3(351,7,"dye",1,azure_bluet),
+	colorant_gris_clair4(351,7,"dye",1,white_tulip),
+	colorant_gris_clair5(351,7,"dye",1,oxeye_daisy),
+	colorant_gris(351,8,"dye",2,ink_sack,white_dye),
+	colorant_rose(351,9,"dye",2,rose_red,white_dye),
+	colorant_rose2(351,9,"dye",1,pink_tulip),
+	colorant_rose3(351,9,"dye",2,peony),
+	colorant_vert_clair(351,9,"dye",1,cactus_green,white_dye),
+	colorant_jaune(351,11,"dye",1,yellow_flower),
+	colorant_jaune2(351,11,"dye",2,sunflower),
+	colorant_bleu_clair(351,12,"dye",2,EItem.lapis_lazuli,white_dye),
+	colorant_bleu_clair2(351,12,"dye",1,blue_orchid),
+	colorant_magenta(351,13,"dye",2,purple_dye,pink_dye),
+	colorant_magenta2(351,13,"dye",3,pink_dye,rose_red,EItem.lapis_lazuli),
+	colorant_magenta3(351,13,"dye",4,EItem.lapis_lazuli,white_dye,rose_red,rose_red),
+	colorant_magenta4(351,13,"dye",1,allium),
+	colorant_magenta5(351,13,"dye",2,lilac),
+	colorant_orange(351,14,"dye",2,rose_red,dandelion_yellow),
+	colorant_orange2(351,14,"dye",1,orange_tulipe),
+	engrais(351,15,"dye",3,bone),
 	
 	
 	
