@@ -1,14 +1,11 @@
 package view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
+
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
 
 public class FenPrincipale extends JFrame {
 
@@ -50,55 +47,48 @@ public class FenPrincipale extends JFrame {
 		onglet.addTab("Craft", ongletCraft);
 		
 		JLabel labelCraft1 = new JLabel("Veuillez saisir le nom de l'objet recherché.");
-		labelCraft1.setBounds(10, 11, 200, 22);
 		
 		txtObjetRecherch = new JTextField();
-		txtObjetRecherch.setBounds(10, 39, 200, 29);
 		txtObjetRecherch.setText("Objet recherch\u00E9...");
 		txtObjetRecherch.setColumns(10);
 		
+		JButton btnNewButton = new JButton("rechercher");
+		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(250, 138, 1, 1);
-		caseCraft3.setBounds(157, 109, 48, 47);
-		caseCraft3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		ongletCraft.setLayout(null);
-		ongletCraft.add(txtObjetRecherch);
-		ongletCraft.add(labelCraft1);
-		ongletCraft.add(caseCraft1);
-		ongletCraft.add(caseCraft2);
-		ongletCraft.add(caseCraft3);
-		ongletCraft.add(layeredPane);
-		caseCraft4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft4.setBounds(41, 167, 48, 47);
 		
-		ongletCraft.add(caseCraft4);
-		caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft5.setBounds(99, 167, 48, 47);
 		
-		ongletCraft.add(caseCraft5);
-		caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft6.setBounds(157, 167, 48, 47);
 		
-		ongletCraft.add(caseCraft6);
-		caseCraft7.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft7.setBounds(41, 225, 48, 47);
-		
-		ongletCraft.add(caseCraft7);
-		
-		JLabel caseCraft8 = new JLabel("New label");
-		caseCraft8.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft8.setBounds(99, 225, 48, 47);
-		ongletCraft.add(caseCraft8);
-		
-		JLabel caseCraft9 = new JLabel("New label");
-		caseCraft9.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft9.setBounds(157, 225, 48, 47);
-		ongletCraft.add(caseCraft9);
-		
-		JLabel caseCraftResultat = new JLabel("New label");
-		caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraftResultat.setBounds(426, 167, 48, 47);
-		ongletCraft.add(caseCraftResultat);
+		//généré automatiquement par eclipse
+		GroupLayout gl_ongletCraft = new GroupLayout(ongletCraft);
+		gl_ongletCraft.setHorizontalGroup(
+			gl_ongletCraft.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_ongletCraft.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_ongletCraft.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtObjetRecherch, 200, 200, 200)
+						.addComponent(labelCraft1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnNewButton)
+					.addContainerGap(413, Short.MAX_VALUE))
+				.addGroup(gl_ongletCraft.createSequentialGroup()
+					.addGap(246)
+					.addComponent(layeredPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(471, Short.MAX_VALUE))
+		);
+		gl_ongletCraft.setVerticalGroup(
+			gl_ongletCraft.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_ongletCraft.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(labelCraft1, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_ongletCraft.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtObjetRecherch, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton))
+					.addGap(70)
+					.addComponent(layeredPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(210, Short.MAX_VALUE))
+		);
+		ongletCraft.setLayout(gl_ongletCraft);
 		
 		
 		//onglet Four
