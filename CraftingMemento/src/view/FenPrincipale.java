@@ -1,17 +1,14 @@
 package view;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 
 public class FenPrincipale extends JFrame {
 
@@ -31,11 +28,10 @@ public class FenPrincipale extends JFrame {
 		private final JLabel caseCraft5 = new JLabel("New label");
 		private final JLabel caseCraft6 = new JLabel("New label");
 		private final JLabel caseCraft7 = new JLabel("New label");
-		private final JLabel lblNewLabel = new JLabel("");
 	
 	
 	public FenPrincipale() {
-		caseCraft2.setBounds(97, 109, 48, 47);
+		caseCraft2.setBounds(99, 109, 48, 47);
 		caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		caseCraft1.setBounds(41, 109, 48, 47);
 		caseCraft1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -77,7 +73,7 @@ public class FenPrincipale extends JFrame {
 		
 		ongletCraft.add(caseCraft4);
 		caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft5.setBounds(97, 167, 48, 47);
+		caseCraft5.setBounds(99, 167, 48, 47);
 		
 		ongletCraft.add(caseCraft5);
 		caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -91,22 +87,18 @@ public class FenPrincipale extends JFrame {
 		
 		JLabel caseCraft8 = new JLabel("New label");
 		caseCraft8.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft8.setBounds(97, 225, 48, 47);
+		caseCraft8.setBounds(99, 225, 48, 47);
 		ongletCraft.add(caseCraft8);
 		
 		JLabel caseCraft9 = new JLabel("New label");
 		caseCraft9.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft9.setBounds(157, 226, 48, 47);
+		caseCraft9.setBounds(157, 225, 48, 47);
 		ongletCraft.add(caseCraft9);
 		
 		JLabel caseCraftResultat = new JLabel("New label");
 		caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraftResultat.setBounds(500, 167, 48, 47);
+		caseCraftResultat.setBounds(426, 167, 48, 47);
 		ongletCraft.add(caseCraftResultat);
-		lblNewLabel.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/crafting_table.png")));
-		lblNewLabel.setBounds(239, 109, 144, 75);
-		
-		ongletCraft.add(lblNewLabel);
 		
 		
 		//onglet Four
@@ -132,17 +124,6 @@ public class FenPrincipale extends JFrame {
 		
 				   
 	}
-	
-	
-	//fonction de quentin
-	public static Image scaleImage(Image source, JComponent component) {
-        int height = component.getHeight();
-        int width = component.getWidth();
-        return source.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
-    }
-	
-	
-	
 	
 	
 	
