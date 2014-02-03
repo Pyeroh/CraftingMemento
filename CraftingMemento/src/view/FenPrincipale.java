@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class FenPrincipale extends JFrame {
 
@@ -28,7 +29,11 @@ public class FenPrincipale extends JFrame {
 		private final JLabel caseCraft5 = new JLabel("New label");
 		private final JLabel caseCraft6 = new JLabel("New label");
 		private final JLabel caseCraft7 = new JLabel("New label");
+		private final JLabel caseCraft8 = new JLabel("New label");
+		private final JLabel caseCraft9 = new JLabel("New label");
+		private final JLabel lblNewLabel = new JLabel("New label");
 	
+		
 	
 	public FenPrincipale() {
 		caseCraft2.setBounds(99, 109, 48, 47);
@@ -97,8 +102,12 @@ public class FenPrincipale extends JFrame {
 		
 		JLabel caseCraftResultat = new JLabel("New label");
 		caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraftResultat.setBounds(426, 167, 48, 47);
+		caseCraftResultat.setBounds(489, 167, 48, 47);
 		ongletCraft.add(caseCraftResultat);
+		lblNewLabel.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/crafting_table.png")));
+		lblNewLabel.setBounds(303, 124, 150, 148);
+		
+		ongletCraft.add(lblNewLabel);
 		
 		
 		//onglet Four
