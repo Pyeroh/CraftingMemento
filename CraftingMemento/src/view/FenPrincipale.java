@@ -12,6 +12,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JList;
+import javax.swing.JLayeredPane;
 
 public class FenPrincipale extends JFrame {
 
@@ -49,6 +50,8 @@ public class FenPrincipale extends JFrame {
 		
 		JButton btnNewButton = new JButton("rechercher");
 		
+		JLayeredPane layeredPane = new JLayeredPane();
+		
 		
 		
 		//généré automatiquement par eclipse
@@ -63,6 +66,10 @@ public class FenPrincipale extends JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnNewButton)
 					.addContainerGap(413, Short.MAX_VALUE))
+				.addGroup(gl_ongletCraft.createSequentialGroup()
+					.addGap(246)
+					.addComponent(layeredPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(471, Short.MAX_VALUE))
 		);
 		gl_ongletCraft.setVerticalGroup(
 			gl_ongletCraft.createParallelGroup(Alignment.LEADING)
@@ -73,7 +80,9 @@ public class FenPrincipale extends JFrame {
 					.addGroup(gl_ongletCraft.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtObjetRecherch, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton))
-					.addContainerGap(281, Short.MAX_VALUE))
+					.addGap(70)
+					.addComponent(layeredPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(210, Short.MAX_VALUE))
 		);
 		ongletCraft.setLayout(gl_ongletCraft);
 		
