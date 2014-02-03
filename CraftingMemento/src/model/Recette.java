@@ -325,7 +325,7 @@ public enum Recette {
 	tapis_noir(171,15,"carpet", 3, new EItem[][]{{air, air, air},{black_wool, black_wool, air},{air, air, air}}),
 
 	/*
-	 *	OBJETS
+	 *	OBJETS DIVERS
 	 * 
 	 */
 	
@@ -336,6 +336,33 @@ public enum Recette {
 	coffre_ender(130,2,"ender_chest", 1, new EItem[][]{{obsidian, obsidian, obsidian},{obsidian, eye_of_ender, obsidian},{obsidian, obsidian, obsidian}}),
 	
 	lanterne(91,0,"lit_pumpkin", 1, new EItem[][]{{air, air, air},{air, pumpkin, air},{air, torch, air}}),
+	
+	papier(339,0,"paper",1,new EItem[][]{{air,air,air},{air,air,air},{sugar_cane,sugar_cane,sugar_cane}}),
+	livre(340,0,"book",1,leather,paper,paper,paper),
+	cahier(386,0,"writable_book",1,feather,ink_sack,book),
+	livre_manuscrit(387,0,"written_book",1,written_book,book_and_quill),
+	livre_manuscrit2(387,0,"written_book",2,written_book,book_and_quill,book_and_quill),
+	livre_manuscrit3(387,0,"written_book",3,written_book,book_and_quill,book_and_quill,book_and_quill),
+	livre_manuscrit4(387,0,"written_book",4,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
+	livre_manuscrit5(387,0,"written_book",5,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
+	livre_manuscrit6(387,0,"written_book",6,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
+	livre_manuscrit7(387,0,"written_book",7,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
+	livre_manuscrit8(387,0,"written_book",8,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
+	cadre(389,0,"item_frame",1,new EItem[][]{{stick,stick,stick},{stick,leather,stick},{stick,stick,stick}}),
+	pot_de_fleur(390,0,"flower_pot",1,new EItem[][]{{air,air,air},{clay_brick,air,clay_brick},{air,clay_brick,air}}),
+	
+	chaudron(380,0,"cauldron",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
+	boule_de_feu(385,0,"fire_charge",3,new EItem[][]{{air,gunpowder,air},{air,coal,air},{air,blaze_powder,air}}),
+	boule_de_feu2(385,0,"fire_charge",3,new EItem[][]{{air,gunpowder,air},{air,charcoal,air},{air,blaze_powder,air}}),
+	
+	carotte_sur_baton(398,0,"carrot_on_a_stick",1,new EItem[][]{{fishing_rod,air,air},{air,carrot,air},{air,air,air}}),
+	
+	feu_dartifice(401,0,"fireworks",1,paper,gunpowder),
+	explosif_dartifice(402,0,"firework_charge",1,gunpowder,ink_sack),
+	
+	laisse(420,0,"lead",1,new EItem[][]{{string,string,air},{string,slime_ball,air},{air,air,string}}),
+	
+	
 	
 	/*
 	 * ELEMENTS DU NETHER
@@ -350,7 +377,7 @@ public enum Recette {
 	
 	
 	/*
-	 * ITEMS A COMBINABILITES VARIABLE 
+	 * ITEMS A COMBINABILITES VARIABLE (DIVERS)
 	 * 
 	 */
 
@@ -363,6 +390,9 @@ public enum Recette {
 	porte_bois(64,0,"wooden_door", 1, new EItem[][]{{oak_wood, oak_wood, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, air}},true),
 	jukebox(84,0,"jukebox", 1, new EItem[][]{{oak_wood, oak_wood, oak_wood},{oak_wood, diamond, oak_wood},{oak_wood, oak_wood, oak_wood}},true),
 	trappe(96,0,"trapdoor", 2, new EItem[][]{{air, air, air},{oak_wood, oak_wood, oak_wood},{oak_wood, oak_wood, oak_wood}},true),
+	baton(280,0,"stick",4,new EItem[][]{{air,air,air},{air,oak_wood,air},{air,oak_wood,air}},true),
+	bol(281,0,"bowl",4,new EItem[][]{{air,air,air},{oak_wood,air,oak_wood},{air,oak_wood,air}},true),
+	tableau(321,0,"painting",1,new EItem[][]{{stick,stick,stick},{stick,white_wool,stick},{stick,stick,stick}},true),
 	
 	
 	/*
@@ -542,6 +572,18 @@ public enum Recette {
 	colorant_orange2(351,14,"dye",1,orange_tulipe),
 	engrais(351,15,"dye",3,bone),
 	
+	/*
+	 * ALCHIMIE
+	 * 
+	 */
+	
+	fiole(374,0,"glass_bottle",3,new EItem[][]{{air,air,air},{glass,air,glass},{air,glass,air}}),
+	
+	oeil_araignee_fermente(376,0,"fermented_spider_eye",1,spider_eye,sugar,brown_mushroom),
+	poudre_blaze(377,0,"blaze_powder",2,blaze_rod),
+	creme_magma(378,0,"magma_cream",1,slime_ball,blaze_powder),
+	oeil_ender(381,0,"ender_eye",1,blaze_powder,ender_pearl),
+	pasteque_scintillante(382,0,"speckled_melon",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,melon,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
 	
 	
 	
