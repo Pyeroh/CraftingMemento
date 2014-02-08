@@ -32,7 +32,7 @@ public class FenPrincipale extends JFrame {
 	private final JLabel caseCraft8 = new JLabel("New label");
 	private final JLabel caseCraft9 = new JLabel("New label");
 	private final JLabel lblFondGrille = new JLabel("");
-
+	private final JLabel lblFondFour = new JLabel("");
 
 
 	public FenPrincipale() {
@@ -43,26 +43,6 @@ public class FenPrincipale extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(onglet);
 		onglet.setBounds(0, 0, 723, 377);
-
-
-		//onglet Four
-
-
-		onglet.addTab("Four", ongletFour);
-
-
-
-
-		//onglet Potion
-
-		onglet.addTab("Potion", ongletPotion);
-
-
-
-
-		//onglet Calcul
-
-		onglet.addTab("Calcul", ongletCalcul);
 		caseCraft2.setBounds(138, 119, 55, 55);
 		caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		caseCraft1.setBounds(76, 119, 55, 55);
@@ -75,7 +55,7 @@ public class FenPrincipale extends JFrame {
 				onglet.addTab("Craft", ongletCraft);
 				
 						JLabel labelCraft1 = new JLabel("Veuillez saisir le nom de l'objet recherché.");
-						labelCraft1.setBounds(10, 11, 200, 22);
+						labelCraft1.setBounds(10, 11, 230, 22);
 						
 								txtObjetRecherch = new JTextField();
 								txtObjetRecherch.setBounds(10, 39, 200, 29);
@@ -122,10 +102,38 @@ public class FenPrincipale extends JFrame {
 																						ongletCraft.add(caseCraftResultat);
 																						
 																						lblFondGrille.setBounds(20, 80, 506, 261);
-																						Image img = new ImageIcon(FenPrincipale.class.getResource("/gui/crafting_table.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
-																						lblFondGrille.setIcon(new ImageIcon(img));
+																						Image imgCraft = new ImageIcon(FenPrincipale.class.getResource("/gui/crafting_table.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
+																						lblFondGrille.setIcon(new ImageIcon(imgCraft));
+																						
+																						lblFondFour.setBounds(20, 80, 506, 261);
+																						Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
+																						lblFondFour.setIcon(new ImageIcon(imgFour));
+																						
+																						
+																						
+																						
 																						
 																								ongletCraft.add(lblFondGrille);
+																								ongletFour.add(lblFondFour);
+
+		//onglet Four
+
+
+		onglet.addTab("Four", ongletFour);
+
+
+
+
+		//onglet Potion
+
+		onglet.addTab("Potion", ongletPotion);
+
+
+
+
+		//onglet Calcul
+
+		onglet.addTab("Calcul", ongletCalcul);
 
 
 
