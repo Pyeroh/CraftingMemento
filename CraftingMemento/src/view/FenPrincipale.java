@@ -14,12 +14,14 @@ import javax.swing.JSeparator;
 import javax.swing.JList;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
 
 public class FenPrincipale extends JFrame {
 
 	private static final long serialVersionUID = 2540259731678095668L;
 
 
+	//initialisation onglets
 	private JTabbedPane onglet = new JTabbedPane();
 	private JPanel ongletCraft=new JPanel();
 	private JPanel ongletFour=new JPanel();
@@ -27,23 +29,39 @@ public class FenPrincipale extends JFrame {
 	private JPanel ongletCalcul=new JPanel();
 	private JTextField txtObjetRecherch;
 	
+	
+	//initialisation des éléments dans l'onglet "Craft"
 	private final JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
-	private final JLabel caseCraft1 = new JLabel("New label");
-	private final JLabel caseCraft2 = new JLabel("New label");
-	private final JLabel caseCraft3 = new JLabel("New label");
-	private final JLabel caseCraft4 = new JLabel("New label");
-	private final JLabel caseCraft5 = new JLabel("New label");
-	private final JLabel caseCraft6 = new JLabel("New label");
-	private final JLabel caseCraft7 = new JLabel("New label");
-	private final JLabel caseCraft8 = new JLabel("New label");
-	private final JLabel caseCraft9 = new JLabel("New label");
-	private final JLabel caseCraftResultat = new JLabel("New label");
-
 	private final JLabel lblFondGrille = new JLabel("");
-	private final JLabel caseFourResultat = new JLabel("");
-	private final JLabel caseFour1 = new JLabel("");
-	private final JLabel label = new JLabel("New label");
-
+	private final JLabel caseCraft1 = new JLabel("1");
+	private final JLabel caseCraft2 = new JLabel("2");
+	private final JLabel caseCraft3 = new JLabel("3");
+	private final JLabel caseCraft4 = new JLabel("4");
+	private final JLabel caseCraft5 = new JLabel("5");
+	private final JLabel caseCraft6 = new JLabel("6");
+	private final JLabel caseCraft7 = new JLabel("7");
+	private final JLabel caseCraft8 = new JLabel("8");
+	private final JLabel caseCraft9 = new JLabel("9");
+	private final JLabel caseCraftResultat = new JLabel("Res");
+	
+	//initialisation des éléments dans l'onglet "Four"
+	private final JLabel lblFondFour = new JLabel("");
+	private final JLabel caseFour1 = new JLabel("1");
+	private final JLabel caseFourResultat = new JLabel("Res");
+	
+	//initialisation des éléments dans l'onglet "Potion"
+	private final JLabel labelFondAlambic = new JLabel("");
+	private final JLabel caseAlambic1 = new JLabel("1");
+	private final JLabel caseAlambic2 = new JLabel("2");
+	private final JLabel caseAlambic3 = new JLabel("3");
+	
+	
+	
+	//initialisation des éléments dans l'onglet "Calcul"
+	
+	
+	
+	
 	public FenPrincipale() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +69,7 @@ public class FenPrincipale extends JFrame {
 		setSize(665,682);
 		getContentPane().setLayout(null);
 		getContentPane().add(onglet);
-		onglet.setBounds(0, 32, 636, 345);
+		onglet.setBounds(10, 32, 626, 345);
 		
 		
 		
@@ -74,10 +92,6 @@ public class FenPrincipale extends JFrame {
 		txtObjetRecherch.setText("Objet recherch\u00E9...");
 		txtObjetRecherch.setColumns(10);
 				
-		
-		
-		
-		
 		
 				//onglet Craft
 		
@@ -129,38 +143,55 @@ public class FenPrincipale extends JFrame {
 								
 								
 						onglet.addTab("Four", ongletFour);
-										
 						caseFour1.setBounds(210, 78, 55, 54);	
 						caseFour1.setBorder(new LineBorder(new Color(0, 0, 0)));
-						caseFourResultat.setBounds(24, 20, 592, 261);					
+						caseFourResultat.setVerticalAlignment(SwingConstants.TOP);
+						caseFourResultat.setBounds(400, 127, 80, 80);					
+						caseFourResultat.setBorder(new LineBorder(new Color(0, 0, 0)));	
 						
 											ongletFour.setLayout(null);
 											ongletFour.add(caseFour1);
 											ongletFour.add(caseFourResultat);
+											lblFondFour.setBounds(24, 20, 590, 261);
+											ongletFour.add(lblFondFour);
+											lblFondFour.setVerticalAlignment(SwingConstants.BOTTOM);
 											
-											Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(caseFourResultat.getWidth(), caseFourResultat.getHeight(), Image.SCALE_AREA_AVERAGING);
-											caseFourResultat.setIcon(new ImageIcon(imgFour));
-											label.setBounds(401, 128, 79, 79);
+											Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(lblFondFour.getWidth(), lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
+											lblFondFour.setIcon(new ImageIcon(imgFour));
 											
-											ongletFour.add(label);
-																											
-
-
+											
+											
 
 
 		//onglet Potion
 
-		onglet.addTab("Potion", ongletPotion);
-		GroupLayout gl_ongletPotion = new GroupLayout(ongletPotion);
-		gl_ongletPotion.setHorizontalGroup(
-			gl_ongletPotion.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 723, Short.MAX_VALUE)
-		);
-		gl_ongletPotion.setVerticalGroup(
-			gl_ongletPotion.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 347, Short.MAX_VALUE)
-		);
-		ongletPotion.setLayout(gl_ongletPotion);
+						onglet.addTab("Potion", ongletPotion);
+						ongletPotion.setLayout(null);
+						labelFondAlambic.setBounds(24, 20, 590, 261);
+						
+						caseAlambic1.setVerticalAlignment(SwingConstants.TOP);
+						caseAlambic1.setBounds(211, 178, 54, 54);
+						caseAlambic1.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseAlambic2.setVerticalAlignment(SwingConstants.TOP);
+						caseAlambic2.setBounds(288, 203, 54, 54);
+						caseAlambic2.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseAlambic3.setVerticalAlignment(SwingConstants.TOP);
+						caseAlambic3.setBounds(365, 178, 54, 54);
+						caseAlambic3.setBorder(new LineBorder(new Color(0, 0, 0)));
+						
+						ongletPotion.add(caseAlambic1);
+						ongletPotion.add(caseAlambic2);
+						ongletPotion.add(caseAlambic3);
+						
+						
+						
+						
+						
+						ongletPotion.add(labelFondAlambic);
+						Image imgAlambic = new ImageIcon(FenPrincipale.class.getResource("/gui/alambic-minecraft.png")).getImage().getScaledInstance(labelFondAlambic.getWidth(), labelFondAlambic.getHeight(), Image.SCALE_AREA_AVERAGING);
+						labelFondAlambic.setIcon(new ImageIcon(imgAlambic));
+						
+						
 
 
 
