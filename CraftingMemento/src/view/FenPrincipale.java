@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.JSeparator;
+import javax.swing.JList;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class FenPrincipale extends JFrame {
 
@@ -22,6 +26,8 @@ public class FenPrincipale extends JFrame {
 	private JPanel ongletPotion=new JPanel();
 	private JPanel ongletCalcul=new JPanel();
 	private JTextField txtObjetRecherch;
+	
+	private final JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
 	private final JLabel caseCraft1 = new JLabel("New label");
 	private final JLabel caseCraft2 = new JLabel("New label");
 	private final JLabel caseCraft3 = new JLabel("New label");
@@ -31,95 +37,113 @@ public class FenPrincipale extends JFrame {
 	private final JLabel caseCraft7 = new JLabel("New label");
 	private final JLabel caseCraft8 = new JLabel("New label");
 	private final JLabel caseCraft9 = new JLabel("New label");
-	private final JLabel lblFondGrille = new JLabel("");
-	private final JLabel lblFondFour = new JLabel("");
+	private final JLabel caseCraftResultat = new JLabel("New label");
 
+	private final JLabel lblFondGrille = new JLabel("");
+	private final JLabel caseFourResultat = new JLabel("");
+	private final JLabel caseFour1 = new JLabel("");
+	private final JLabel label = new JLabel("New label");
 
 	public FenPrincipale() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		setSize(739,415);
+		setSize(665,682);
 		getContentPane().setLayout(null);
 		getContentPane().add(onglet);
-		onglet.setBounds(0, 0, 723, 377);
-		caseCraft2.setBounds(138, 119, 55, 55);
-		caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		caseCraft1.setBounds(76, 119, 55, 55);
-		caseCraft1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		onglet.setBounds(0, 32, 636, 345);
+		
+		
+		
+		
+		labelRecherche.setBounds(10, 9, 257, 22);
+		getContentPane().add(labelRecherche);
+		
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(0, 376, 615, 14);
+		getContentPane().add(separator);
+		
+		JList list = new JList();
+		list.setBounds(10, 402, 626, 236);
+		getContentPane().add(list);
+		
+		txtObjetRecherch = new JTextField();
+		txtObjetRecherch.setBounds(261, 6, 200, 29);
+		getContentPane().add(txtObjetRecherch);
+		txtObjetRecherch.setText("Objet recherch\u00E9...");
+		txtObjetRecherch.setColumns(10);
+				
+		
+		
 		
 		
 		
 				//onglet Craft
 		
 				onglet.addTab("Craft", ongletCraft);
-				
-						JLabel labelCraft1 = new JLabel("Veuillez saisir le nom de l'objet recherché.");
-						labelCraft1.setBounds(10, 11, 230, 22);
 						
-								txtObjetRecherch = new JTextField();
-								txtObjetRecherch.setBounds(10, 39, 200, 29);
-								txtObjetRecherch.setText("Objet recherch\u00E9...");
-								txtObjetRecherch.setColumns(10);
-								caseCraft3.setBounds(202, 119, 55, 55);
-								caseCraft3.setBorder(new LineBorder(new Color(0, 0, 0)));
+				
+						lblFondGrille.setBounds(24, 20, 593, 261);
+						caseCraft1.setBounds(125, 78, 54, 54);
+						caseCraft1.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft2.setBounds(185, 78, 54, 54);
+						caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft3.setBounds(245, 78, 54, 54);
+						caseCraft3.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft4.setBounds(125, 139, 55, 54);
+						caseCraft4.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft5.setBounds(185, 139, 55, 54);
+						caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft6.setBounds(245, 139, 55, 54);
+						caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft7.setBounds(125, 200, 55, 54);
+						caseCraft7.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft8.setBounds(185, 200, 55, 54);
+						caseCraft8.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraft9.setBounds(245, 200, 55, 54);
+						caseCraft9.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseCraftResultat.setBounds(428, 125, 80, 80);
+						caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
+						
+						
 								ongletCraft.setLayout(null);
-								ongletCraft.add(txtObjetRecherch);
-								ongletCraft.add(labelCraft1);
 								ongletCraft.add(caseCraft1);
 								ongletCraft.add(caseCraft2);
 								ongletCraft.add(caseCraft3);
-								caseCraft4.setBorder(new LineBorder(new Color(0, 0, 0)));
-								caseCraft4.setBounds(76, 181, 55, 55);
+								ongletCraft.add(caseCraft4);
+								ongletCraft.add(caseCraft5);
+								ongletCraft.add(caseCraft6);
+								ongletCraft.add(caseCraft7);
+								ongletCraft.add(caseCraft8);
+								ongletCraft.add(caseCraft9);								
+								ongletCraft.add(caseCraftResultat);
+								ongletCraft.add(lblFondGrille);
 								
-										ongletCraft.add(caseCraft4);
-										caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
-										caseCraft5.setBounds(138, 181, 55, 55);
+								Image imgCraft = new ImageIcon(FenPrincipale.class.getResource("/gui/tablecraft-minecraft.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
+								lblFondGrille.setIcon(new ImageIcon(imgCraft));
+																						
+																						
+																							
+						//onglet Four
+								
+								
+						onglet.addTab("Four", ongletFour);
 										
-												ongletCraft.add(caseCraft5);
-												caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
-												caseCraft6.setBounds(202, 181, 55, 55);
-												
-														ongletCraft.add(caseCraft6);
-														caseCraft7.setBorder(new LineBorder(new Color(0, 0, 0)));
-														caseCraft7.setBounds(76, 244, 55, 55);
-														
-																ongletCraft.add(caseCraft7);
-																
-																		JLabel caseCraft8_1 = new JLabel("New label");
-																		caseCraft8_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-																		caseCraft8_1.setBounds(138, 244, 55, 55);
-																		ongletCraft.add(caseCraft8_1);
-																		
-																				JLabel caseCraft9_1 = new JLabel("New label");
-																				caseCraft9_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-																				caseCraft9_1.setBounds(202, 244, 55, 55);
-																				ongletCraft.add(caseCraft9_1);
-																				
-																						JLabel caseCraftResultat = new JLabel("New label");
-																						caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
-																						caseCraftResultat.setBounds(391, 168, 86, 82);
-																						ongletCraft.add(caseCraftResultat);
-																						
-																						lblFondGrille.setBounds(20, 80, 506, 261);
-																						Image imgCraft = new ImageIcon(FenPrincipale.class.getResource("/gui/crafting_table.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
-																						lblFondGrille.setIcon(new ImageIcon(imgCraft));
-																						
-																						lblFondFour.setBounds(20, 80, 506, 261);
-																						Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(lblFondGrille.getWidth(), lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
-																						lblFondFour.setIcon(new ImageIcon(imgFour));
-																						
-																						
-																						
-																						
-																						
-																								ongletCraft.add(lblFondGrille);
-																								ongletFour.add(lblFondFour);
-
-		//onglet Four
-
-
-		onglet.addTab("Four", ongletFour);
+						caseFour1.setBounds(210, 78, 55, 54);	
+						caseFour1.setBorder(new LineBorder(new Color(0, 0, 0)));
+						caseFourResultat.setBounds(24, 20, 592, 261);					
+						
+											ongletFour.setLayout(null);
+											ongletFour.add(caseFour1);
+											ongletFour.add(caseFourResultat);
+											
+											Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(caseFourResultat.getWidth(), caseFourResultat.getHeight(), Image.SCALE_AREA_AVERAGING);
+											caseFourResultat.setIcon(new ImageIcon(imgFour));
+											label.setBounds(401, 128, 79, 79);
+											
+											ongletFour.add(label);
+																											
 
 
 
@@ -127,13 +151,32 @@ public class FenPrincipale extends JFrame {
 		//onglet Potion
 
 		onglet.addTab("Potion", ongletPotion);
+		GroupLayout gl_ongletPotion = new GroupLayout(ongletPotion);
+		gl_ongletPotion.setHorizontalGroup(
+			gl_ongletPotion.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 723, Short.MAX_VALUE)
+		);
+		gl_ongletPotion.setVerticalGroup(
+			gl_ongletPotion.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 347, Short.MAX_VALUE)
+		);
+		ongletPotion.setLayout(gl_ongletPotion);
 
 
 
 
 		//onglet Calcul
-
+		
 		onglet.addTab("Calcul", ongletCalcul);
+		ongletCalcul.setLayout(null);
+		
+		
+		
+		
+				
+				
+			
+								
 
 
 
