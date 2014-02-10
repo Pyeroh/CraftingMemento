@@ -45,11 +45,15 @@ public class FenPrincipale extends JFrame {
 		private final JLabel caseAlambic2 = new JLabel("2");
 		private final JLabel caseAlambic3 = new JLabel("3");
 		JLabel caseIngredientAlambic = new JLabel("ingredient");
-
+		
 
 	//initialisation des éléments dans l'onglet "Calcul"
 
-
+		private final JLabel lblQuantite = new JLabel("Saisir la quantité désirée : ");
+		private JTextField  txtQuantite = new JTextField();
+		private final JScrollPane scrollPane_NbIngredient = new JScrollPane();
+		
+		
 
 
 	public FenPrincipale() {
@@ -78,7 +82,7 @@ public class FenPrincipale extends JFrame {
 						getContentPane().add(separator);
 		
 							JScrollPane scrollPane = new JScrollPane();
-							scrollPane.setBounds(10, 384, 615, 254);
+							scrollPane.setBounds(10, 384, 626, 254);
 							getContentPane().add(scrollPane);
 		
 								JList listeSuggestion = new JList();
@@ -209,14 +213,23 @@ public class FenPrincipale extends JFrame {
 		//onglet Calcul
 
 		onglet.addTab("Calcul", ongletCalcul);
+		ongletCalcul.add(txtQuantite);
 		ongletCalcul.setLayout(null);
+		ongletCalcul.add(lblQuantite);
+		lblQuantite.setBounds(6, 87, 161, 16);
 		
-
-
-
-
-
-
+		txtQuantite.setBounds(179, 81, 62, 28);
+		txtQuantite.setColumns(10);
+		scrollPane_NbIngredient.setBounds(283, 81, 337, 210);
+		
+		ongletCalcul.add(scrollPane_NbIngredient);
+		
+		JList listIngredient = new JList();
+		scrollPane_NbIngredient.setViewportView(listIngredient);
+		
+		
+		
+		
 
 
 
