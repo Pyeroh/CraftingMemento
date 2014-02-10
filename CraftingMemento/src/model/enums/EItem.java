@@ -19,7 +19,7 @@ public enum EItem {
 	
 	//Blocks
 	stone(1,0,"STONE",EItemCat.block),
-	/* 1.8
+	/* TODO 1.8
 	 * granite(1,1,"STONE",EItemCat.block),
 	 * granite_polished(1,2,"STONE",EItemCat.block),
 	 * diorite(1,3,"STONE",EItemCat.block),
@@ -503,6 +503,12 @@ public enum EItem {
 	wait_disc(2267,0,"RECORD_12",EItemCat.misc),
 
 	//Potions
+	p_waterB(373,0,"POTION",EItemCat.potion),
+	p_mundane(373,8192,"POTION",EItemCat.potion),
+	p_mundane_ext(373,64,"POTION",EItemCat.potion),
+	p_awkward(373,16,"POTION",EItemCat.potion),
+	p_thick(373,16,"POTION",EItemCat.potion),
+	
 	p_regeneration(373,8193,"POTION",EItemCat.potion),
 	p_regeneration_ext(373,8257,"POTION",EItemCat.potion),
 	p_regeneration_II(373,8225,"POTION",EItemCat.potion),
@@ -533,6 +539,8 @@ public enum EItem {
 	p_harming_II(373,8236,"POTION",EItemCat.potion),
 
 	//Splash potions
+	s_p_mundane(373,16384,"POTION",EItemCat.potion),
+	
 	s_p_regeneration(373,16385,"POTION",EItemCat.potion),
 	s_p_regeneration_ext(373,16449,"POTION",EItemCat.potion),
 	s_p_regeneration_II(373,16417,"POTION",EItemCat.potion),

@@ -15,25 +15,6 @@ public enum Recette {
 	 * x|x|x
 	 * x|x|x
 	 */
-
-	/*roche,
-	granite,
-	diorite,
-	andesite,
-	 */
-
-	/*
-	 * ATTENTION :  j'ai remarqué un doublon pour un Eitem  :  nether_brick    et nether_brickbloc
-	 * Réponse : ce n'est pas une erreur, t'inquiète pas ^^ C'est vrai que le "_" peut porter à confusion, je l'ai d'ailleurs retiré
-	 * Par contre, y'a une différence entre la nether brick, et le bloc de nether brick. Qu'est-ce qui se passe 
-	 * si tu fais cuire de la netherrack, d'après toi...? :p
-	 * 
-	 * 
-	 */
-
-
-
-	
 	
 	/* LES RECETTES AU FOUR
 	 * 
@@ -85,7 +66,10 @@ public enum Recette {
 	 */
 
 
-
+	 /*
+	  * BLOCS ROCHEUX
+	  * 
+	  */
 
 
 	gres(24,0,"sandstone",1,new EItem[][]{{air,air,air},{air,sand,sand},{air,sand,sand}}),
@@ -585,6 +569,96 @@ public enum Recette {
 	oeil_ender(381,0,"ender_eye",1,blaze_powder,ender_pearl),
 	pasteque_scintillante(382,0,"speckled_melon",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,melon,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
 	
+	
+	/*
+	 * POTIONS
+	 * 
+	 */
+	
+	potion_malsaine(16,nether_wart,p_waterB),
+	potion_epaisse(32,glowstone_dust,p_waterB),
+	potion_banale(8192,sugar,p_waterB),
+	potion_banale2(8192,ghast_tear,p_waterB),
+	potion_banale3(8192,spider_eye,p_waterB),
+	potion_banale4(8192,blaze_powder,p_waterB),
+	potion_banale5(8192,magma_cream,p_waterB),
+	potion_banale6(8192,speckled_melon,p_waterB),
+	potion_banale_ext(64,EItem.redstone,p_waterB),
+	
+	potion_regeneration(1,ghast_tear,p_awkward),
+	potion_regeneration_ext(65,EItem.redstone,p_regeneration),
+	potion_regeneration_ext2(65,EItem.redstone,p_regeneration_II),
+	potion_regeneration_II(33,glowstone_dust,p_regeneration),
+	potion_regeneration_II2(33,glowstone_dust,p_regeneration_ext),
+	
+	potion_vitesse(2,sugar,p_awkward),
+	potion_vitesse_ext(66,EItem.redstone,p_swiftness),
+	potion_vitesse_ext2(66,EItem.redstone,p_swiftness_II),
+	potion_vitesse_II(34,glowstone_dust,p_swiftness),
+	potion_vitesse_II2(34,glowstone_dust,p_swiftness_ext),
+	
+	potion_resistance_feu(3,magma_cream,p_awkward),
+	potion_resistance_feu_ext(67,EItem.redstone,p_fire_resistance),
+	
+	potion_poison(4,spider_eye,p_awkward),
+	potion_poison_ext(68,EItem.redstone,p_poison),
+	potion_poison_ext2(68,EItem.redstone,p_poison_II),
+	potion_poison_II(36,glowstone_dust,p_poison),
+	potion_poison_II2(36,glowstone_dust,p_poison_ext),
+	
+	potion_soin(5,speckled_melon,p_awkward),
+	potion_soin_II(37,EItem.redstone,p_healing),
+	
+	potion_vision_nocturne(6,golden_carrot,p_awkward),
+	potion_vision_nocturne_ext(70,EItem.redstone,p_night_vision),
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	potion_splash_banale(16384,gunpowder,p_mundane),
+	
+	potion_splash_regeneration(16385,gunpowder,p_regeneration),
+	potion_splash_regeneration_ext(16449,gunpowder,p_regeneration_ext),
+	potion_splash_regeneration_ext2(16449,EItem.redstone,s_p_regeneration),
+	potion_splash_regeneration_ext3(16449,EItem.redstone,s_p_regeneration_II),
+	potion_splash_regeneration_II(16417,gunpowder,p_regeneration_II),
+	potion_splash_regeneration_II2(16417,glowstone_dust,s_p_regeneration),
+	potion_splash_regeneration_II3(16417,glowstone_dust,s_p_regeneration_ext),
+	
+	potion_splash_vitesse(16386,gunpowder,p_swiftness),
+	potion_splash_vitesse_ext(16450,gunpowder,p_swiftness_ext),
+	potion_splash_vitesse_ext2(16450,EItem.redstone,s_p_swiftness),
+	potion_splash_vitesse_ext3(16450,EItem.redstone,s_p_swiftness_II),
+	potion_splash_vitesse_II(16418,gunpowder,p_swiftness_II),
+	potion_splash_vitesse_II2(16418,glowstone_dust,s_p_swiftness),
+	potion_splash_vitesse_II3(16418,glowstone_dust,s_p_swiftness_ext),
+	
+	potion_splash_resistance_feu(16387,gunpowder,p_fire_resistance),
+	potion_splash_resistance_feu_ext(16451,gunpowder,p_fire_resistance_ext),
+	potion_splash_resistance_feu_ext2(16451,EItem.redstone,s_p_fire_resistance),
+	
+	potion_splash_poison(16388,gunpowder,p_poison),
+	potion_splash_poison_ext(16452,gunpowder,p_poison_ext),
+	potion_splash_poison_ext2(16452,EItem.redstone,s_p_poison),
+	potion_splash_poison_ext3(16452,EItem.redstone,s_p_poison_II),
+	potion_splash_poison_II(16420,gunpowder,p_poison_II),
+	potion_splash_poison_II2(16420,glowstone_dust,s_p_poison),
+	potion_splash_poison_II3(16420,glowstone_dust,s_p_poison_ext),
+	
+	potion_splash_soin(16389,gunpowder,p_healing),
+	potion_splash_soin_ext(16421,gunpowder,p_healing_II),
+	potion_splash_soin_ext2(16421,EItem.redstone,s_p_healing),
+	
+	potion_splash_vision_nocturne(16390,gunpowder,p_night_vision),
+	potion_splash_vision_nocturne_ext(16454,gunpowder,p_night_vision_ext),
+	potion_splash_vision_nocturne_ext2(16454,EItem.redstone,s_p_night_vision),
 	
 	
 	
