@@ -612,6 +612,29 @@ public enum Recette {
 	potion_vision_nocturne(6,golden_carrot,p_awkward),
 	potion_vision_nocturne_ext(70,EItem.redstone,p_night_vision),
 	
+	potion_faiblesse(8,fermented_spider_eye,p_mundane),
+	potion_faiblesse2(8,fermented_spider_eye,p_waterB),
+	potion_faiblesse3(8,fermented_spider_eye,p_thick),
+	potion_faiblesse4(8,glowstone_dust,p_weakness_ext),
+	potion_faiblesse5(8,fermented_spider_eye,p_healing_II),
+	potion_faiblesse6(8,fermented_spider_eye,p_strength),
+	potion_faiblesse7(8,fermented_spider_eye,p_strength_II),
+	potion_faiblesse8(8,fermented_spider_eye,p_regeneration),
+	potion_faiblesse9(8,fermented_spider_eye,p_regeneration_II),
+	
+	potion_faiblesse_ext(72,fermented_spider_eye,p_mundane_ext),
+	potion_faiblesse_ext2(72,EItem.redstone,p_weakness),
+	potion_faiblesse_ext3(72,fermented_spider_eye,p_healing),
+	potion_faiblesse_ext4(72,fermented_spider_eye,p_strength_ext),
+	potion_faiblesse_ext5(72,fermented_spider_eye,p_regeneration_ext),
+	
+	potion_force(9,blaze_powder,p_awkward),
+	
+	potion_force_ext(73,EItem.redstone,p_strength),
+	potion_force_ext2(73,EItem.redstone,p_strength_II),
+	
+	potion_force_II(41,glowstone_dust,p_strength),
+	potion_force_II2(41,glowstone_dust,p_strength_ext),
 	
 	
 	
@@ -659,6 +682,24 @@ public enum Recette {
 	potion_splash_vision_nocturne(16390,gunpowder,p_night_vision),
 	potion_splash_vision_nocturne_ext(16454,gunpowder,p_night_vision_ext),
 	potion_splash_vision_nocturne_ext2(16454,EItem.redstone,s_p_night_vision),
+	
+	potion_splash_faiblesse(16392,gunpowder,p_weakness),
+	potion_splash_faiblesse2(16392,fermented_spider_eye,s_p_mundane),
+	potion_splash_faiblesse3(16392,glowstone_dust,s_p_weakness_ext),
+	potion_splash_faiblesse4(16392,fermented_spider_eye,s_p_healing),
+	potion_splash_faiblesse5(16392,fermented_spider_eye,s_p_strength),
+	potion_splash_faiblesse6(16392,fermented_spider_eye,s_p_strength_II),
+	potion_splash_faiblesse7(16392,fermented_spider_eye,s_p_regeneration),
+	potion_splash_faiblesse8(16392,fermented_spider_eye,s_p_regeneration_II),
+	
+	potion_splash_force(16393,gunpowder,p_strength),
+	potion_splash_force_ext(16457,gunpowder,p_strength_ext),
+	potion_splash_force_ext2(16457,EItem.redstone,p_strength),
+	potion_splash_force_ext3(16457,EItem.redstone,p_strength_II),
+	potion_splash_force_II(16425,gunpowder,p_strength_II),
+	potion_splash_force_II2(16425,glowstone_dust,p_strength),
+	potion_splash_force_II3(16425,glowstone_dust,p_strength_ext),
+	
 	
 	
 	
