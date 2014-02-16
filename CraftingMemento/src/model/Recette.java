@@ -629,20 +629,29 @@ public enum Recette {
 	potion_faiblesse_ext5(72,fermented_spider_eye,p_regeneration_ext),
 	
 	potion_force(9,blaze_powder,p_awkward),
-	
 	potion_force_ext(73,EItem.redstone,p_strength),
 	potion_force_ext2(73,EItem.redstone,p_strength_II),
-	
 	potion_force_II(41,glowstone_dust,p_strength),
 	potion_force_II2(41,glowstone_dust,p_strength_ext),
 	
+	potion_lenteur(10,fermented_spider_eye,p_fire_resistance),
+	potion_lenteur2(10,fermented_spider_eye,p_swiftness),
+	potion_lenteur3(10,fermented_spider_eye,p_swiftness_II),
+	potion_lenteur_ext(74,EItem.redstone,p_slowness),
+	potion_lenteur_ext2(74,fermented_spider_eye,p_swiftness_ext),
+	potion_lenteur_ext3(74,fermented_spider_eye,p_fire_resistance_ext),
 	
+	potion_degat(12,fermented_spider_eye,p_poison),
+	potion_degat2(12,EItem.redstone,p_harming_II),
+	potion_degat3(12,fermented_spider_eye,p_poison_ext),
+	potion_degat_ext(44,glowstone,p_harming),
+	potion_degat_ext2(44,fermented_spider_eye,p_poison_II),
 	
+	potion_respiration(13,pufferfish,p_awkward),
+	potion_respiration_ext(77,EItem.redstone,p_water_breathing),
 	
-	
-	
-	
-	
+	potion_invisibilite(14,fermented_spider_eye,p_night_vision),
+	potion_invisibilite_ext(78,EItem.redstone,p_invisibility),
 	
 	
 	potion_splash_banale(16384,gunpowder,p_mundane),
@@ -700,13 +709,31 @@ public enum Recette {
 	potion_splash_force_II2(16425,glowstone_dust,p_strength),
 	potion_splash_force_II3(16425,glowstone_dust,p_strength_ext),
 	
+	potion_splash_lenteur(16394,gunpowder,p_slowness),
+	potion_splash_lenteur2(16394,fermented_spider_eye,s_p_fire_resistance),
+	potion_splash_lenteur3(16394,fermented_spider_eye,s_p_swiftness),
+	potion_splash_lenteur4(16394,fermented_spider_eye,s_p_swiftness_II),
+	potion_splash_lenteur_ext(16458,gunpowder,p_slowness_ext),
+	potion_splash_lenteur_ext2(16458,EItem.redstone,s_p_slowness),
+	potion_splash_lenteur_ext3(16458,fermented_spider_eye,s_p_swiftness_ext),
+	potion_splash_lenteur_ext4(16458,fermented_spider_eye,s_p_fire_resistance_ext),
 	
+	potion_splash_degat(16396,gunpowder,p_harming),
+	potion_splash_degat2(16396,fermented_spider_eye,p_poison),
+	potion_splash_degat3(16396,EItem.redstone,p_harming),
+	potion_splash_degat4(16396,fermented_spider_eye,p_poison_ext),
+	potion_splash_degat_II(16428,gunpowder,p_harming_II),
+	potion_splash_degat_II2(16428,glowstone_dust,s_p_harming),
+	potion_splash_degat_II3(16428,fermented_spider_eye,s_p_poison_II),
 	
+	potion_splash_respiration(16397,gunpowder,p_water_breathing),
+	potion_splash_respiration_ext(16461,gunpowder,p_water_breathing_ext),
+	potion_splash_respiration_ext2(16461,EItem.redstone,s_p_water_breathing),
 	
-	
-	
-	
-	
+	potion_splash_invisibilite(16398,gunpowder,p_invisibility),
+	potion_splash_invisibilite2(16398,fermented_spider_eye,s_p_night_vision),
+	potion_splash_invisibilite_ext(16462,gunpowder,p_invisibility_ext),
+	potion_splash_invisibilite_ext2(16462,EItem.redstone,s_p_invisibility),
 	
 	
 	
