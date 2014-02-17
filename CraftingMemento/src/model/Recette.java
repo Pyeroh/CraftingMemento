@@ -865,5 +865,51 @@ public enum Recette {
      public boolean isCombinable() {
              return combinable;
      }
+     
+     public String toString() {
+    	 String sRecette = "\n\t";
+    	 switch (type) {
+		case craft:
+			switch (forme) {
+			case forme:
+				sRecette = "";
+				for(int i=0;i<3;i++) {
+					sRecette += "\n\t";
+					for(int j=0;j<3;j++) {
+						sRecette += recette[i][j].getGuiName()+" | ";
+					}
+				}
+				break;
+			case sansforme:
+				for(int i=0;i<ingredients.size();i++) {
+					 sRecette += ingredients.get(i).getGuiName()+" ";
+				 }
+				break;
+			default:
+				break;
+			}
+			break;
+		case four:
+			sRecette += ingredients.get(0).getGuiName();
+			break;
+		case alambic:
+			sRecette += ingredients.get(1).getGuiName()+" + "+ingredients.get(0).getGuiName();
+			break;
+		default:
+			break;
+		}
+    	 return mid+" : "+type.name()+" "+forme.name()+sRecette;
+     }
+     
+     public static ArrayList<Recette> getRecettes(EItem item) {
+    	 ArrayList<Recette> recettes = new ArrayList<>();
+    	 Recette[] values = values();
+    	 for(int i=0;i<values.length;i++) {
+    		 if(item.getId()==values[i].id && item.getMeta()==values[i].metadata) {
+    			 recettes.add(values[i]);
+    		 }
+    	 }
+    	 return recettes;
+     }
 
 }

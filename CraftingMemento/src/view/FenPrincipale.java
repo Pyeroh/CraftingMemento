@@ -74,7 +74,7 @@ public class FenPrincipale extends JFrame {
 		txtObjetRecherch.setColumns(10);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 376, 615, 14);
+		separator.setBounds(0, 376, 649, 14);
 		getContentPane().add(separator);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -93,34 +93,34 @@ public class FenPrincipale extends JFrame {
 
 
 		lblFondGrille.setBounds(24, 20, 593, 261);
-		caseCraft1.setBounds(125, 78, 54, 54);
 		caseCraft1.setBorder(new LineBorder(new Color(0, 0, 0)));
-
-		caseCraft2.setBounds(185, 78, 54, 54);
+		caseCraft1.setBounds(130, 84, 42, 42);
 		caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft3.setBounds(245, 78, 54, 54);
+		caseCraft2.setBounds(191, 84, 42, 42);
+
+		caseCraft3.setBounds(251, 84, 42, 42);
 		caseCraft3.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft4.setBounds(125, 139, 55, 54);
+		caseCraft4.setBounds(130, 145, 42, 42);
 		caseCraft4.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft5.setBounds(185, 139, 55, 54);
+		caseCraft5.setBounds(191, 145, 42, 42);
 		caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft6.setBounds(245, 139, 55, 54);
+		caseCraft6.setBounds(251, 145, 42, 42);
 		caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft7.setBounds(125, 200, 55, 54);
+		caseCraft7.setBounds(130, 206, 42, 42);
 		caseCraft7.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft8.setBounds(185, 200, 55, 54);
+		caseCraft8.setBounds(191, 206, 42, 42);
 		caseCraft8.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraft9.setBounds(245, 200, 55, 54);
+		caseCraft9.setBounds(251, 206, 42, 42);
 		caseCraft9.setBorder(new LineBorder(new Color(0, 0, 0)));
 
-		caseCraftResultat.setBounds(428, 125, 80, 80);
+		caseCraftResultat.setBounds(433, 130, 70, 70);
 		caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 
@@ -149,11 +149,11 @@ public class FenPrincipale extends JFrame {
 
 		onglet.addTab("Four", ongletFour);
 
-		caseFour1.setBounds(210, 78, 55, 54);	
+		caseFour1.setBounds(216, 84, 42, 42);	
 		caseFour1.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		caseFourResultat.setVerticalAlignment(SwingConstants.TOP);
-		caseFourResultat.setBounds(400, 127, 80, 80);					
+		caseFourResultat.setBounds(404, 132, 70, 70);					
 		caseFourResultat.setBorder(new LineBorder(new Color(0, 0, 0)));	
 
 		ongletFour.setLayout(null);
@@ -181,19 +181,19 @@ public class FenPrincipale extends JFrame {
 
 
 		caseIngredientAlambic.setVerticalAlignment(SwingConstants.TOP);
-		caseIngredientAlambic.setBounds(288, 78, 54, 54);
+		caseIngredientAlambic.setBounds(294, 84, 42, 42);
 		caseIngredientAlambic.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		caseAlambic1.setVerticalAlignment(SwingConstants.TOP);
-		caseAlambic1.setBounds(211, 178, 54, 54);
+		caseAlambic1.setBounds(219, 188, 42, 42);
 		caseAlambic1.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		caseAlambic2.setVerticalAlignment(SwingConstants.TOP);
-		caseAlambic2.setBounds(288, 203, 54, 54);
+		caseAlambic2.setBounds(296, 212, 42, 42);
 		caseAlambic2.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		caseAlambic3.setVerticalAlignment(SwingConstants.TOP);
-		caseAlambic3.setBounds(365, 178, 54, 54);
+		caseAlambic3.setBounds(373, 188, 42, 42);
 		caseAlambic3.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 		ongletPotion.add(caseIngredientAlambic);
@@ -209,30 +209,35 @@ public class FenPrincipale extends JFrame {
 		//onglet Calcul
 
 		onglet.addTab("Calcul", ongletCalcul);
+		txtQuantite.setBorder(null);
 		ongletCalcul.add(txtQuantite);
-		ongletCalcul.add(lblFondCalcul);
 		ongletCalcul.setLayout(null);
+		scrollPane_NbIngredient.setBorder(null);
 		ongletCalcul.add(scrollPane_NbIngredient);
 		ongletCalcul.add(lblImageObjet);
 		
 		txtQuantite.setBounds(162, 107, 80, 25);
 		txtQuantite.setColumns(10);
-		
-		lblFondCalcul.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblFondCalcul.setBounds(24, 20, 590, 261);
+		txtQuantite.setBackground(new Color(139,139,139));
 		
 		JList listIngredient = new JList();
-		
-		Image imgCalcul = new ImageIcon(FenPrincipale.class.getResource("/gui/calculateur-minecraft.png")).getImage().getScaledInstance(lblFondCalcul.getWidth(), lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
-		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
+		listIngredient.setBorder(null);
+		listIngredient.setBackground(new Color(139, 139, 139));
 											
 		scrollPane_NbIngredient.setBounds(325, 85, 260, 170);
 		scrollPane_NbIngredient.setViewportView(listIngredient);
 		
 		
 		lblImageObjet.setVerticalAlignment(SwingConstants.TOP);
-		lblImageObjet.setBounds(93, 171, 80, 80);
+		lblImageObjet.setBounds(98, 177, 70, 70);
 		lblImageObjet.setBorder(new LineBorder(new Color(0, 0, 0)));
+		ongletCalcul.add(lblFondCalcul);
+		
+		lblFondCalcul.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblFondCalcul.setBounds(24, 20, 590, 261);
+		
+		Image imgCalcul = new ImageIcon(FenPrincipale.class.getResource("/gui/calculateur-minecraft.png")).getImage().getScaledInstance(lblFondCalcul.getWidth(), lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
+		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
 		
 		
 
