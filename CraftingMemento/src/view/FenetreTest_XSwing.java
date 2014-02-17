@@ -3,17 +3,11 @@ package view;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import model.enums.EItem;
 
 import org.jdesktop.swingx.JXSearchField;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FenetreTest_XSwing extends JFrame {
 
@@ -24,22 +18,21 @@ public class FenetreTest_XSwing extends JFrame {
 		getContentPane().setLayout(null);
 
 		textField = new JXSearchField();
-		textField.setBounds(85, 60, 122, 28);
-		textField.setInstantSearchDelay(50);
-		textField.setFindAction(new ActionListener() {
+		textField.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(e.toString());
+			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<EItem> searches = EItem.searchBy(textField.getText());
 				for(int i=0;i<searches.size();i++) {
 					System.out.println(searches.get(i).getGuiName());
 				}
 			}
 		});
+		textField.setBounds(85, 60, 122, 28);
+		textField.setInstantSearchDelay(50);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		JButton btnRecentSearches = new JButton("Recent searches");
 		btnRecentSearches.addActionListener(textField.getFindAction());
 		btnRecentSearches.setBounds(150, 128, 157, 28);

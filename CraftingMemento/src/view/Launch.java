@@ -1,11 +1,6 @@
 package view;
 
-import java.util.ArrayList;
-
 import javax.swing.UIManager;
-
-import model.Recette;
-import model.enums.EItem;
 
 
 public class Launch {
