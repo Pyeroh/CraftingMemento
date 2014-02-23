@@ -794,7 +794,7 @@ public enum EItem {
 		EItem[] values = values();
 
 		if (name!=null) {
-			for (int i = 0; i < values.length; i++) {
+			for (int i = 1; i < values.length; i++) {
 				if (values[i].getGuiName().toLowerCase().contains(name.toLowerCase())) {
 					ret.add(values[i]);
 				}
