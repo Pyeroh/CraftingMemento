@@ -1,7 +1,6 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -17,7 +16,7 @@ public class FenPrincipale extends JFrame {
 	private JPanel ongletFour=new JPanel();
 	private JPanel ongletPotion=new JPanel();
 	private JPanel ongletCalcul=new JPanel();
-	private JTextField txtObjetRecherch;
+	private JComboSearchField txtObjetRecherch;
 
 
 	//initialisation des éléments dans l'onglet "Craft"
@@ -56,7 +55,6 @@ public class FenPrincipale extends JFrame {
 
 		//Objets de la fenêtre principale
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 		setSize(665,682);
 		getContentPane().setLayout(null);
 		getContentPane().add(onglet);
@@ -67,10 +65,12 @@ public class FenPrincipale extends JFrame {
 		getContentPane().add(labelRecherche);
 
 
-		txtObjetRecherch = new JTextField();
+		txtObjetRecherch = new JComboSearchField();
+		txtObjetRecherch.setPrompt("Objet recherché...");
+		txtObjetRecherch.setInstantSearchDelay(250);
 		txtObjetRecherch.setBounds(261, 6, 200, 29);
+		txtObjetRecherch.setMargin(new Insets(0, 4, 0, 0));
 		getContentPane().add(txtObjetRecherch);
-		txtObjetRecherch.setText("Objet recherch\u00E9...");
 		txtObjetRecherch.setColumns(10);
 
 		JSeparator separator = new JSeparator();
@@ -245,8 +245,8 @@ public class FenPrincipale extends JFrame {
 
 
 
-
-
+		listeSuggestion.requestFocus();
+		setVisible(true);
 
 	}
 

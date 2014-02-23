@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 
-public class JWideComboBox extends JComboBox<String> {
+public class JWideComboBox<E> extends JComboBox<E> {
 
 	private static final long serialVersionUID = 6402589310783400089L;
 	private boolean layingOut = false; 

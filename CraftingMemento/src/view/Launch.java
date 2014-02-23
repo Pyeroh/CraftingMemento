@@ -1,6 +1,10 @@
 package view;
 
+import java.util.ArrayList;
+
 import javax.swing.UIManager;
+
+import model.enums.EItem;
 
 
 public class Launch {
@@ -9,6 +13,11 @@ public class Launch {
 		/*ArrayList<Recette> recettes = Recette.getRecettes(EItem.white_wool);
 		for(int i=0;i<recettes.size();i++) {
 			System.out.println(recettes.get(i).toString());
+		}*/
+		
+		/*ArrayList<EItem> searches = EItem.searchBy("r");
+		for (EItem eItem : searches) {
+			System.out.println(eItem.getGuiName());
 		}*/
 		
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");

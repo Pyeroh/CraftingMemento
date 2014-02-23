@@ -4,8 +4,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
+import javax.swing.*;
+
+import model.enums.EItem;
 
 public class HoverListCellRenderer extends DefaultListCellRenderer {  
 
@@ -24,18 +25,28 @@ public class HoverListCellRenderer extends DefaultListCellRenderer {
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {  
 		super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);  
 
-		JList thisvalue = (JList) value;
+		/*JList thisvalue = (JList) value;
 		thisvalue.setPreferredSize(new Dimension(list.getWidth()-20, thisvalue.getHeight()));
 		thisvalue.setMinimumSize(thisvalue.getPreferredSize());
-		thisvalue.setMaximumSize(thisvalue.getPreferredSize());
+		thisvalue.setMaximumSize(thisvalue.getPreferredSize());*/
 
 		if (!isSelected) {  
-			thisvalue.setBackground(index == hoverIndex	? HOVER_COLOR : Color.white);  
+			setBackground(index == hoverIndex ? HOVER_COLOR : Color.white);
 		}
 		else {
-			thisvalue.setBackground(new Color(247,212,170));
+			setBackground(new Color(247,212,170));
 		}
-		return thisvalue;  
+
+		setForeground(Color.black);
+		
+		if (value != null) {
+			if (value instanceof EItem) {
+				EItem item = (EItem) value;
+				setIcon(new ImageIcon(item.getImage()));
+				setText(item.getGuiName());
+			}
+		}
+		return this;  
 	}  
 
 	public MouseAdapter getHandler() {  
