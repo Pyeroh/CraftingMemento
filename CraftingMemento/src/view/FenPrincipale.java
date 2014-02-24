@@ -1,13 +1,21 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import model.Recette;
+import model.enums.EItem;
+
 public class FenPrincipale extends JFrame {
 
 	private static final long serialVersionUID = 2540259731678095668L;
+	
+	private ArrayList<Recette> recettes; 
 
 
 	//initialisation onglets
@@ -20,34 +28,34 @@ public class FenPrincipale extends JFrame {
 
 
 	//initialisation des éléments dans l'onglet "Craft"
-	private final JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
-	private final JLabel lblFondGrille = new JLabel("");
-	private final JLabel caseCraft1 = new JLabel("1");
-	private final JLabel caseCraft2 = new JLabel("2");
-	private final JLabel caseCraft3 = new JLabel("3");
-	private final JLabel caseCraft4 = new JLabel("4");
-	private final JLabel caseCraft5 = new JLabel("5");
-	private final JLabel caseCraft6 = new JLabel("6");
-	private final JLabel caseCraft7 = new JLabel("7");
-	private final JLabel caseCraft8 = new JLabel("8");
-	private final JLabel caseCraft9 = new JLabel("9");
-	private final JLabel caseCraftResultat = new JLabel("Res");
+	private JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
+	private JLabel lblFondGrille = new JLabel();
+	private JLabel caseCraft1 = new JLabel();
+	private JLabel caseCraft2 = new JLabel();
+	private JLabel caseCraft3 = new JLabel();
+	private JLabel caseCraft4 = new JLabel();
+	private JLabel caseCraft5 = new JLabel();
+	private JLabel caseCraft6 = new JLabel();
+	private JLabel caseCraft7 = new JLabel();
+	private JLabel caseCraft8 = new JLabel();
+	private JLabel caseCraft9 = new JLabel();
+	private JLabel caseCraftResultat = new JLabel();
 
 	//initialisation des éléments dans l'onglet "Four"
-	private final JLabel lblFondFour = new JLabel("");
-	private final JLabel caseFour1 = new JLabel("1");
-	private final JLabel caseFourResultat = new JLabel("Res");
+	private JLabel lblFondFour = new JLabel();
+	private JLabel caseFour1 = new JLabel("1");
+	private JLabel caseFourResultat = new JLabel("Res");
 
 	//initialisation des éléments dans l'onglet "Potion"
-	private final JLabel labelFondAlambic = new JLabel("");
-	private final JLabel caseAlambic1 = new JLabel("1");
-	private final JLabel caseAlambic2 = new JLabel("2");
-	private final JLabel caseAlambic3 = new JLabel("3");
-	JLabel caseIngredientAlambic = new JLabel("ingredient");
+	private JLabel labelFondAlambic = new JLabel();
+	private JLabel caseAlambic1 = new JLabel("1");
+	private JLabel caseAlambic2 = new JLabel("2");
+	private JLabel caseAlambic3 = new JLabel("3");
+	private JLabel caseIngredientAlambic = new JLabel("ingredient");
 	private JTextField  txtQuantite = new JTextField();
-	private final JScrollPane scrollPane_NbIngredient = new JScrollPane();
-	private final JLabel lblFondCalcul = new JLabel("");
-	private final JLabel lblImageObjet = new JLabel("image");
+	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
+	private JLabel lblFondCalcul = new JLabel();
+	private JLabel lblImageObjet = new JLabel("image");
 
 
 
@@ -56,6 +64,7 @@ public class FenPrincipale extends JFrame {
 		//Objets de la fenêtre principale
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(665,682);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		getContentPane().add(onglet);
 		onglet.setBounds(10, 32, 626, 345);
@@ -66,6 +75,33 @@ public class FenPrincipale extends JFrame {
 
 
 		txtObjetRecherch = new JComboSearchField();
+		txtObjetRecherch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String search = e.getActionCommand();
+				ArrayList<EItem> results = EItem.searchBy(search);
+				if(results.size()>0) {
+					if(results.get(0).getGuiName().equals(search)) {
+						
+						recettes = Recette.getRecettes(results.get(0));
+						int num_onglet = onglet.getSelectedIndex();
+						switch (num_onglet) {
+						case 0:
+							
+							break;
+						case 1:
+							
+							break;
+						case 2:
+							
+							break;
+						default:
+							break;
+						}
+						
+					}
+				}
+			}
+		});
 		txtObjetRecherch.setPrompt("Objet recherché...");
 		txtObjetRecherch.setInstantSearchDelay(250);
 		txtObjetRecherch.setBounds(261, 6, 200, 29);
@@ -93,35 +129,35 @@ public class FenPrincipale extends JFrame {
 
 
 		lblFondGrille.setBounds(24, 20, 593, 261);
-		caseCraft1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft1.setBorder(null);
 		caseCraft1.setBounds(130, 84, 42, 42);
-		caseCraft2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft2.setBorder(null);
 
 		caseCraft2.setBounds(191, 84, 42, 42);
 
 		caseCraft3.setBounds(251, 84, 42, 42);
-		caseCraft3.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft3.setBorder(null);
 
 		caseCraft4.setBounds(130, 145, 42, 42);
-		caseCraft4.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft4.setBorder(null);
 
 		caseCraft5.setBounds(191, 145, 42, 42);
-		caseCraft5.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft5.setBorder(null);
 
 		caseCraft6.setBounds(251, 145, 42, 42);
-		caseCraft6.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft6.setBorder(null);
 
 		caseCraft7.setBounds(130, 206, 42, 42);
-		caseCraft7.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft7.setBorder(null);
 
 		caseCraft8.setBounds(191, 206, 42, 42);
-		caseCraft8.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft8.setBorder(null);
 
 		caseCraft9.setBounds(251, 206, 42, 42);
-		caseCraft9.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraft9.setBorder(null);
 
 		caseCraftResultat.setBounds(433, 130, 70, 70);
-		caseCraftResultat.setBorder(new LineBorder(new Color(0, 0, 0)));
+		caseCraftResultat.setBorder(null);
 
 
 		ongletCraft.setLayout(null);
