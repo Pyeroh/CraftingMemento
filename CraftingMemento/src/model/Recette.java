@@ -910,5 +910,14 @@ public enum Recette {
     	 }
     	 return recettes;
      }
+     
+     public static int getFirst(ERecetteType type, ArrayList<Recette> recettes) {
+    	 int i = 0;
+    	 while(i<recettes.size() && recettes.get(i).getType()!=type) {
+    		 i++;
+    	 }
+    	 if(i<recettes.size()) return i;
+    	 else return -1;
+     }
 
 }

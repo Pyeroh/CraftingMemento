@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import model.Recette;
 import model.enums.EItem;
+import model.enums.ERecetteType;
 
 public class FenPrincipale extends JFrame {
 
@@ -83,16 +84,15 @@ public class FenPrincipale extends JFrame {
 					if(results.get(0).getGuiName().equals(search)) {
 						
 						recettes = Recette.getRecettes(results.get(0));
-						int num_onglet = onglet.getSelectedIndex();
-						switch (num_onglet) {
+						switch (onglet.getSelectedIndex()) {
 						case 0:
-							
+							craft(Recette.getFirst(ERecetteType.craft, recettes));
 							break;
 						case 1:
-							
+							four(Recette.getFirst(ERecetteType.four, recettes));
 							break;
 						case 2:
-							
+							potion(Recette.getFirst(ERecetteType.alambic, recettes));
 							break;
 						default:
 							break;
@@ -289,8 +289,83 @@ public class FenPrincipale extends JFrame {
 
 
 	public static void reset(){}
-	public void craft(){}
-	public void four(){}
-	public void potion(){}
+	
+	public void craft(int index){
+		Recette r = recettes.get(index);
+		
+		switch (r.getForme()) {
+		case forme:
+			if (r.getRecette()[0][0]!=EItem.air) caseCraft1.setIcon(scaleImage(caseCraft1, r.getRecette()[0][0]));
+			if (r.getRecette()[0][1]!=EItem.air) caseCraft2.setIcon(scaleImage(caseCraft2, r.getRecette()[0][1]));
+			if (r.getRecette()[0][2]!=EItem.air) caseCraft3.setIcon(scaleImage(caseCraft3, r.getRecette()[0][2]));
+			if (r.getRecette()[1][0]!=EItem.air) caseCraft4.setIcon(scaleImage(caseCraft4, r.getRecette()[1][0]));
+			if (r.getRecette()[1][1]!=EItem.air) caseCraft5.setIcon(scaleImage(caseCraft5, r.getRecette()[1][1]));
+			if (r.getRecette()[1][2]!=EItem.air) caseCraft6.setIcon(scaleImage(caseCraft6, r.getRecette()[1][2]));
+			if (r.getRecette()[2][0]!=EItem.air) caseCraft7.setIcon(scaleImage(caseCraft7, r.getRecette()[2][0]));
+			if (r.getRecette()[2][1]!=EItem.air) caseCraft8.setIcon(scaleImage(caseCraft8, r.getRecette()[2][1]));
+			if (r.getRecette()[2][2]!=EItem.air) caseCraft9.setIcon(scaleImage(caseCraft9, r.getRecette()[2][2]));
+			
+			break;
+		case sansforme:
+			
+			int i = 0;
+			ArrayList<EItem> ingredients = r.getIngredients();
+			while(i<ingredients.size()) {
+				switch (i) {
+				case 0:
+					caseCraft1.setIcon(scaleImage(caseCraft1, ingredients.get(i)));
+					break;
+				case 1:
+					caseCraft2.setIcon(scaleImage(caseCraft2, ingredients.get(i)));
+					break;
+				case 2:
+					caseCraft3.setIcon(scaleImage(caseCraft3, ingredients.get(i)));
+					break;
+				case 3:
+					caseCraft4.setIcon(scaleImage(caseCraft4, ingredients.get(i)));
+					break;
+				case 4:
+					caseCraft5.setIcon(scaleImage(caseCraft5, ingredients.get(i)));
+					break;
+				case 5:
+					caseCraft6.setIcon(scaleImage(caseCraft6, ingredients.get(i)));
+					break;
+				case 6:
+					caseCraft7.setIcon(scaleImage(caseCraft7, ingredients.get(i)));
+					break;
+				case 7:
+					caseCraft8.setIcon(scaleImage(caseCraft8, ingredients.get(i)));
+					break;
+				case 8:
+					caseCraft9.setIcon(scaleImage(caseCraft9, ingredients.get(i)));
+					break;
+				default:
+					break;
+				}
+				i++;
+			}
+			
+			break;
+		default:
+			break;
+		}
+		
+		caseCraftResultat.setIcon(scaleImage(caseCraftResultat, EItem.searchBy(r.getId(), r.getMetadata())));
+		
+	}
+	
+	public void four(int index){
+		
+	}
+	
+	public void potion(int index){
+		
+	}
+	
 	public void calculateur(){}
+	
+	private Icon scaleImage(JComponent component, EItem eItem){
+		Image img = eItem.getImage().getScaledInstance(component.getWidth(), component.getHeight(), Image.SCALE_AREA_AVERAGING);
+		return new ImageIcon(img);
+	}
 }
