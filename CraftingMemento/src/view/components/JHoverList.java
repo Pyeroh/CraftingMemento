@@ -1,4 +1,4 @@
-package view;
+package view.components;
 
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;

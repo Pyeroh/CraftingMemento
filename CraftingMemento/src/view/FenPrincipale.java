@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import model.Recette;
+import view.components.JComboSearchField;
+
 import model.enums.EItem;
 import model.enums.ERecetteType;
+import model.enums.Recette;
 
 public class FenPrincipale extends JFrame {
 
@@ -84,19 +86,9 @@ public class FenPrincipale extends JFrame {
 					if(results.get(0).getGuiName().equals(search)) {
 						
 						recettes = Recette.getRecettes(results.get(0));
-						switch (onglet.getSelectedIndex()) {
-						case 0:
-							craft(Recette.getFirst(ERecetteType.craft, recettes));
-							break;
-						case 1:
-							four(Recette.getFirst(ERecetteType.four, recettes));
-							break;
-						case 2:
-							potion(Recette.getFirst(ERecetteType.alambic, recettes));
-							break;
-						default:
-							break;
-						}
+						
+						reset();
+						afficheOnglet();
 						
 					}
 				}
@@ -288,7 +280,43 @@ public class FenPrincipale extends JFrame {
 
 
 
-	public static void reset(){}
+	public void reset(){
+		caseCraft1.setIcon(null);
+		caseCraft2.setIcon(null);
+		caseCraft3.setIcon(null);
+		caseCraft4.setIcon(null);
+		caseCraft5.setIcon(null);
+		caseCraft6.setIcon(null);
+		caseCraft7.setIcon(null);
+		caseCraft8.setIcon(null);
+		caseCraft9.setIcon(null);
+		caseCraftResultat.setIcon(null);
+		
+		caseFour1.setIcon(null);
+		caseFourResultat.setIcon(null);
+		
+		caseAlambic1.setIcon(null);
+		caseAlambic2.setIcon(null);
+		caseAlambic3.setIcon(null);
+		
+		 caseIngredientAlambic.setIcon(null);
+	}
+	
+	public void afficheOnglet() {
+		switch (onglet.getSelectedIndex()) {
+		case 0:
+			craft(Recette.getFirst(ERecetteType.craft, recettes));
+			break;
+		case 1:
+			four(Recette.getFirst(ERecetteType.four, recettes));
+			break;
+		case 2:
+			potion(Recette.getFirst(ERecetteType.alambic, recettes));
+			break;
+		default:
+			break;
+		}
+	}
 	
 	public void craft(int index){
 		Recette r = recettes.get(index);
@@ -350,7 +378,7 @@ public class FenPrincipale extends JFrame {
 			break;
 		}
 		
-		caseCraftResultat.setIcon(scaleImage(caseCraftResultat, EItem.searchBy(r.getId(), r.getMetadata())));
+		caseCraftResultat.setIcon(scaleImage(caseCraftResultat, r.getItem().getItem()));
 		
 	}
 	

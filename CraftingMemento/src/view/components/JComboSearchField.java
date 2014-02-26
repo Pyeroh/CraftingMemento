@@ -1,4 +1,4 @@
-package view;
+package view.components;
 
 import java.awt.BorderLayout;
 import java.awt.event.*;
@@ -16,6 +16,7 @@ import sun.font.FontDesignMetrics;
 public class JComboSearchField extends JXSearchField {
 
 	private static final long serialVersionUID = 5987013368749228268L;
+	@SuppressWarnings("unused")
 	private JDropDownList list;
 
 	public JComboSearchField() {
@@ -26,10 +27,7 @@ public class JComboSearchField extends JXSearchField {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!e.getActionCommand().equals("")) {
-					/*try {
-						Thread.sleep(500);
-					} catch (InterruptedException e1) {
-					}*/
+					
 					ArrayList<EItem> searches = EItem.searchBy(e
 							.getActionCommand());
 					if (searches.size() > 1) {

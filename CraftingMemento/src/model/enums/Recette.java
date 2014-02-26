@@ -1,10 +1,12 @@
-package model;
+package model.enums;
+
+import static model.enums.EItem.*;
+import static model.enums.ERecetteType.craft;
+import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
 
-import model.enums.*;
-import static model.enums.EItem.*;
-import static model.enums.ERecetteType.*;
+import model.Item;
 
 public enum Recette {
 
@@ -857,8 +859,8 @@ public enum Recette {
              return ingredients;
      }
 
-     public int getQuantite() {
-             return quantite;
+     public Item getItem() {
+    	 return new Item(EItem.searchBy(id, metadata), quantite);
      }
 
      public boolean isCombinable() {
