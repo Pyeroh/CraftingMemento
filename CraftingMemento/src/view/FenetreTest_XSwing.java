@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.JFrame;
 
+import view.components.JComboSearchField;
+
 public class FenetreTest_XSwing extends JFrame {
 
 	private static final long serialVersionUID = 534961305916486146L;
