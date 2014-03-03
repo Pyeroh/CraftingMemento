@@ -27,7 +27,7 @@ public class JComboSearchField extends JXSearchField {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!e.getActionCommand().equals("")) {
-					
+
 					ArrayList<EItem> searches = EItem.searchBy(e
 							.getActionCommand());
 					if (searches.size() > 1) {
@@ -36,6 +36,8 @@ public class JComboSearchField extends JXSearchField {
 							list = new JDropDownList(JComboSearchField.this, searches);
 
 						}
+					} else if (searches.size() == 1) {
+						JComboSearchField.this.setText(searches.get(0).getGuiName());
 					}
 				}
 			}
@@ -52,14 +54,20 @@ class JDropDownList extends JDialog {
 	private JHoverList<EItem> list;
 
 	public JDropDownList(JTextComponent parent, ArrayList<EItem> results) {
-		addFocusListener(new FocusAdapter() {
+		addWindowFocusListener(new WindowFocusListener() {
+			
 			@Override
-			public void focusLost(FocusEvent e) {
+			public void windowLostFocus(WindowEvent e) {
 				dispose();
+			}
+			
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
 			}
 		});
 		setModalityType(ModalityType.MODELESS);
 		setType(Type.POPUP);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setUndecorated(true);
 		setResizable(false);
 
@@ -86,6 +94,16 @@ class JDropDownList extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				JDropDownList.this.parent.setText(list.getSelectedValue().getGuiName());
 				dispose();
+			}
+		});
+
+		list.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					JDropDownList.this.parent.setText(list.getSelectedValue().getGuiName());
+					dispose();
+				}
 			}
 		});
 
