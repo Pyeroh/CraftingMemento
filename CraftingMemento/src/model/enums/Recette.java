@@ -899,7 +899,7 @@ public enum Recette {
 		default:
 			break;
 		}
-    	 return mid+" : "+type.name()+" "+forme.name()+sRecette;
+    	 return mid+" : "+type.name()+" "+sRecette;
      }
      
      public static ArrayList<Recette> getRecettes(EItem item) {

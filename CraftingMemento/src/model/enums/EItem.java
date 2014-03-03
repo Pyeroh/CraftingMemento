@@ -507,7 +507,7 @@ public enum EItem {
 	p_mundane(373,8192,"POTION",EItemCat.potion),
 	p_mundane_ext(373,64,"POTION",EItemCat.potion),
 	p_awkward(373,16,"POTION",EItemCat.potion),
-	p_thick(373,16,"POTION",EItemCat.potion),
+	p_thick(373,32,"POTION",EItemCat.potion),
 	
 	p_regeneration(373,8193,"potion",EItemCat.potion),
 	p_regeneration_ext(373,8257,"potion",EItemCat.potion),
