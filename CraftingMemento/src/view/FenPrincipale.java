@@ -59,6 +59,7 @@ public class FenPrincipale extends JFrame {
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
 	private JLabel lblImageObjet = new JLabel("image");
+	private JLabel lblCraftNbItems;
 
 
 
@@ -153,6 +154,10 @@ public class FenPrincipale extends JFrame {
 
 
 		ongletCraft.setLayout(null);
+		
+		lblCraftNbItems = new JLabel("");
+		lblCraftNbItems.setBounds(489, 188, 16, 16);
+		ongletCraft.add(lblCraftNbItems);
 
 		ongletCraft.add(caseCraft1);
 		ongletCraft.add(caseCraft2);
