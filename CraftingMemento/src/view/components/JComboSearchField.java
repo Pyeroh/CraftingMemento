@@ -36,7 +36,7 @@ public class JComboSearchField extends JXSearchField {
 							list = new JDropDownList(JComboSearchField.this, searches);
 
 						}
-					} else if (searches.size() == 1) {
+					} else if (searches.size() == 1 && !e.getActionCommand().equals(searches.get(0).getGuiName())) {
 						JComboSearchField.this.setText(searches.get(0).getGuiName());
 					}
 				}
@@ -55,12 +55,12 @@ class JDropDownList extends JDialog {
 
 	public JDropDownList(JTextComponent parent, ArrayList<EItem> results) {
 		addWindowFocusListener(new WindowFocusListener() {
-			
+
 			@Override
 			public void windowLostFocus(WindowEvent e) {
 				dispose();
 			}
-			
+
 			@Override
 			public void windowGainedFocus(WindowEvent e) {
 			}
