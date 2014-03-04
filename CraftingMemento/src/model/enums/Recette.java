@@ -5,6 +5,7 @@ import static model.enums.ERecetteType.craft;
 import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import model.Item;
 
@@ -17,12 +18,12 @@ public enum Recette {
 	 * x|x|x
 	 * x|x|x
 	 */
-	
+
 	/* LES RECETTES AU FOUR
-	 * 
+	 *
 	 */
-	
-	
+
+
 	 roche(1,0,"stone",cobblestone),
 	 verre(20,0,"glass", sand),
 	 verre2(20,0,"glass",redsand),
@@ -50,17 +51,17 @@ public enum Recette {
 	 patate_cuite(393,0,"baked_potato",potato),
 	 colorant_vert(351,2,"dye",cactus),
 	 brique_argile(336,0,"brick",clay_ball),
-	 
+
 
 	/* LES NOUVELLES RECETTES PAS IMPLEMENTEES (v 1.8)
-	 * 
-	 * 
-	 * 	
+	 *
+	 *
+	 *
 	 * granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
 	 * diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
 	 * andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
 	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}),
-	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}), 
+	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}),
 	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
 	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
 	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
@@ -70,7 +71,7 @@ public enum Recette {
 
 	 /*
 	  * BLOCS ROCHEUX
-	  * 
+	  *
 	  */
 
 
@@ -86,7 +87,7 @@ public enum Recette {
 
 	/*
 	 * Produits manufacturés
-	 * 
+	 *
 	 */
 
 
@@ -97,7 +98,7 @@ public enum Recette {
 	planche_acajou(5,3,"planks", 4, jungle_log),
 	planche_acacia(5,4,"planks", 4, acacia_log),
 	planche_chene_noir(5,5,"planks", 4, darkoak_log),
-	
+
 	// LES DALLES
 	dalle_roche(44,0,"stone_slab", 6, new EItem[][]{{air, air, air},{air, air, air},{stone, stone, stone}}),
     dalle_roche_sable(44,1,"stone_slab", 6, new EItem[][]{{air, air, air},{air, air, air},{sandstone, sandstone, sandstone}}),
@@ -112,8 +113,8 @@ public enum Recette {
     dalle_bois_acajou(126,3,"wooden_slab", 6, new EItem[][]{{air, air, air},{air, air, air},{jungle_wood, jungle_wood, jungle_wood}}),
     dalle_bois_acacia(126,4,"wooden_slab", 6, new EItem[][]{{air, air, air},{air, air, air},{acacia_wood, acacia_wood, acacia_wood}}),
     dalle_bois_chene_noir(126,5,"wooden_slab", 6, new EItem[][]{{air, air, air},{air, air, air},{darkoak_wood, darkoak_wood, darkoak_wood}}),
-	
-	
+
+
 	//LES ESCALIERS
 
 	escalier_chene(53,0,"oak_stairs", 4, new EItem[][]{{oak_wood, air, air},{oak_wood, oak_wood, air},{oak_wood, oak_wood, oak_wood}}),
@@ -129,14 +130,14 @@ public enum Recette {
 	escalier_quartz(156,0,"quartz_stairs", 4, new EItem[][]{{quartz_block, air, air},{quartz_block, quartz_block, air},{quartz_block, quartz_block, quartz_block}}),
 
 	// BLOCS DIVERS
-	
+
 	bloc_brique(45,0,"bricks", 1, new EItem[][]{{air, air, air},{air, brick, brick},{air, brick, brick}}),
 	bloc_quartz(155,0,"quartz_block", 1, new EItem[][]{{air, air, air},{air, EItem.quartz, EItem.quartz},{air, EItem.quartz, EItem.quartz}}),
 	bloc_quartz_sculptee(155,1,"quartz_block", 1, new EItem[][]{{air, air, air},{air, quartz_slab, air},{air, quartz_slab, air}}),
 	bloc_quartz_rayee(155,2,"quartz_block", 2, new EItem[][]{{air, air, air},{air, quartz_block, air},{air, quartz_block, air}}),
-	
-	
-	
+
+
+
 	// TABLE DE CRAFT
 
 	enclume(47,0,"anvil", 1, new EItem[][]{{iron_block, iron_block, iron_block},{air, iron_ingot, air},{iron_ingot, iron_ingot, iron_ingot}}),
@@ -144,16 +145,16 @@ public enum Recette {
 	fourneau(61,0,"furnace", 1, new EItem[][]{{cobblestone, cobblestone, cobblestone},{cobblestone, air, cobblestone},{cobblestone, cobblestone, cobblestone}}),
 	table_enchantement(116,0,"enchanting_table", 1, new EItem[][]{{air, book, air},{diamond, obsidian, diamond},{obsidian, obsidian, obsidian}}),
 	alambic(117,0,"brewing_stand", 1, new EItem[][]{{air, air, air},{air, blaze_rod, air},{cobblestone, cobblestone, cobblestone}}),
-	
-	
-	
-	
+
+
+
+
 	/*
 	 *	BLOCS DECORATIFS
-	 * 
+	 *
 	 */
-	
-	
+
+
 	barreaux_fer(101,0,"iron_bars", 16, new EItem[][]{{air, air, air},{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot}}),
 	muret(139,0,"cobblestone_wall", 6, new EItem[][]{{air, air, air},{cobblestone, cobblestone, cobblestone},{cobblestone, cobblestone, cobblestone}}),
 	muret_moussu(139,1,"cobblestone_wall", 6, new EItem[][]{{air, air, air},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone},{mossy_cobblestone, mossy_cobblestone, mossy_cobblestone}}),
@@ -163,15 +164,15 @@ public enum Recette {
 	bloc_argile(82,0,"clay", 1, new EItem[][]{{air, air, air},{clay_ball, clay_ball, air},{clay_ball, clay_ball, air}}),
 	balise(138,0,"beacon", 1, new EItem[][]{{glass, glass, glass},{glass, nether_star, glass},{obsidian, obsidian, obsidian}}),
 	barriere(85,0,"fence", 2, new EItem[][]{{air, air, air},{stick, stick, stick},{stick, stick, stick}}),
-	
-	
-	
+
+
+
 	/*
 	 *	BLOCS MINERAIS
-	 * 
+	 *
 	 */
-	
-	
+
+
 	bloc_charbon(173,0,"block_of_coal", 1, new EItem[][]{{coal, coal, coal},{coal, coal, coal},{coal, coal, coal}}),
 	charbon(173,0,"coal", 9, coal_block),
 
@@ -179,49 +180,49 @@ public enum Recette {
 															{EItem.redstone, EItem.redstone, EItem.redstone},
 															{EItem.redstone, EItem.redstone, EItem.redstone}}),
 	redstone2(331,0,"redstone", 9, redstone_block),
-	
+
 	bloc_emeraude(133,0,"emerald_block", 1, new EItem[][]{{emerald, emerald, emerald},{emerald, emerald, emerald},{emerald, emerald, emerald}}),
 	emeraude(388,0,"emerald", 9, emerald_block),
-	
+
 	bloc_diamant(133,0,"diamond_block", 1, new EItem[][]{{diamond, diamond, diamond},{diamond, diamond, diamond},{diamond, diamond, diamond}}),
 	diamant2(388,0,"diamond", 9, diamond_block),
-	
+
 	bloc_fer(42,0,"iron_block", 1, new EItem[][]{{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot},{iron_ingot, iron_ingot, iron_ingot}}),
 	fer2(265,0,"iron_ingot", 9, iron_block),
-	
+
 	bloc_or(41,0,"gold_block", 1, new EItem[][]{{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot},{gold_ingot, gold_ingot, gold_ingot}}),
 	or2(266,0,"gold_ingot", 9, gold_block),
 	or3(266,0,"gold_ingot",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
 	pepite_or(371,0,"gold_nugget",9,gold_ingot),
-	
+
 	bloc_lapis_lazuli(41,0,"gold_block", 1, new EItem[][]{	{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
 															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli},
 															{EItem.lapis_lazuli, EItem.lapis_lazuli, EItem.lapis_lazuli}}),
 	lapis_lazuli2(266,0,"lapis_lazuli", 9, lapis_block),
-	
-	
-	
+
+
+
 	/*
-	 * 
+	 *
 	 * VEGETATION
-	 * 
+	 *
 	 */
-	
-	
+
+
 	botte_foin(170,0,"hay_block", 1, new EItem[][]{{wheat, wheat, wheat},{wheat, wheat, wheat},{wheat, wheat, wheat}}),
 	ble(296,0,"wheat", 9, hay_block),
-	
+
 	pasteque(103,0,"melon_block", 1, new EItem[][]{{melon, melon, melon},{melon, melon, melon},{melon, melon, melon}}),
 	tranche_pasteque(360,0,"melon", 9, melon_block),
-	
+
 	graines_citrouille(361,0,"pumpkin_seeds", 4, pumpkin),
 	graines_pasteque(362,0,"melon_seeds", 4, melon),
-	
-	
+
+
 	/*
 	 * BLOCS COLORES
 	 */
-	
+
 	laine_blanche(35,0,"wool",1,new EItem[][]{{air,air,air},{air,string,string},{air,string,string}}),
 	laine_blanche2(35,0,"wool",1,white_wool,white_dye),
 	laine_orange(35,1,"wool",1,white_wool,orange_dye),
@@ -239,7 +240,7 @@ public enum Recette {
 	laine_verte(35,13,"wool",1,white_wool,cactus_green),
 	laine_rouge(35,14,"wool",1,white_wool,rose_red),
 	laine_noire(35,15,"wool",1,white_wool,ink_sack),
-	
+
 	verre_blanc(95,0,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,white_dye,glass},{glass,glass,glass}}),
 	verre_orange(95,1,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,orange_dye,glass},{glass,glass,glass}}),
 	verre_magenta(95,2,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,magenta_dye,glass},{glass,glass,glass}}),
@@ -256,7 +257,7 @@ public enum Recette {
 	verre_vert(95,13,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,cactus_green,glass},{glass,glass,glass}}),
 	verre_rouge(95,14,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,rose_red,glass},{glass,glass,glass}}),
 	verre_noir(95,15,"stained_glass",8,new EItem[][]{{glass,glass,glass},{glass,ink_sack,glass},{glass,glass,glass}}),
-	
+
 	terre_cuite_blanche(159,0,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,white_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
 	terre_cuite_orange(159,1,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,orange_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
 	terre_cuite_magenta(159,2,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,magenta_dye,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
@@ -273,26 +274,26 @@ public enum Recette {
 	terre_cuite_verte(159,13,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,cactus_green,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
 	terre_cuite_rouge(159,14,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,rose_red,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
 	terre_cuite_noire(159,15,"stained_hardened_clay",8,new EItem[][]{{hardened_clay,hardened_clay,hardened_clay},{hardened_clay,ink_sack,hardened_clay},{hardened_clay,hardened_clay,hardened_clay}}),
-	
+
 	vitre(102,0,"glass_pane", 16, new EItem[][]{{air, air, air},{glass, glass, glass},{glass, glass, glass}}),
-	
+
 	vitre_blanche(160,0,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{white_glass, white_glass, white_glass},{white_glass, white_glass, white_glass}}),
-	vitre_orange(160,1,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{orange_glass_pane, orange_glass_pane, orange_glass_pane},{orange_glass_pane, orange_glass_pane, orange_glass_pane}}),
-	vitre_magenta(160,2,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{magenta_glass_pane, magenta_glass_pane, magenta_glass_pane},{magenta_glass_pane, magenta_glass_pane, magenta_glass_pane}}),
-	vitre_bleu_clair(160,3,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_blue_glass_pane, l_blue_glass_pane, l_blue_glass_pane},{l_blue_glass_pane, l_blue_glass_pane, l_blue_glass_pane}}),
-	vitre_jaune(160,4,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{yellow_glass_pane, yellow_glass_pane, yellow_glass_pane},{yellow_glass_pane, yellow_glass_pane, yellow_glass_pane}}),
-	vitre_vert_clair(160,5,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_green_glass_pane, l_green_glass_pane, l_green_glass_pane},{l_green_glass_pane, l_green_glass_pane, l_green_glass_pane}}),
-	vitre_rose(160,6,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{pink_glass_pane, pink_glass_pane, pink_glass_pane},{pink_glass_pane, pink_glass_pane, pink_glass_pane}}),
-	vitre_grise(160,7,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{gray_glass_pane, gray_glass_pane, gray_glass_pane},{gray_glass_pane, gray_glass_pane, gray_glass_pane}}),
+	vitre_orange(160,1,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{orange_glass, orange_glass, orange_glass},{orange_glass, orange_glass, orange_glass}}),
+	vitre_magenta(160,2,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{magenta_glass, magenta_glass, magenta_glass},{magenta_glass, magenta_glass, magenta_glass}}),
+	vitre_bleu_clair(160,3,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_blue_glass, l_blue_glass, l_blue_glass},{l_blue_glass, l_blue_glass, l_blue_glass}}),
+	vitre_jaune(160,4,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{yellow_glass, yellow_glass, yellow_glass},{yellow_glass, yellow_glass, yellow_glass}}),
+	vitre_vert_clair(160,5,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_green_glass, l_green_glass, l_green_glass},{l_green_glass, l_green_glass, l_green_glass}}),
+	vitre_rose(160,6,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{pink_glass, pink_glass, pink_glass},{pink_glass, pink_glass, pink_glass}}),
+	vitre_grise(160,7,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{gray_glass, gray_glass, gray_glass},{gray_glass, gray_glass, gray_glass}}),
 	vitre_gris_clair(160,8,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{l_gray_stained_clay, l_gray_stained_clay, l_gray_stained_clay},{l_gray_stained_clay, l_gray_stained_clay, l_gray_stained_clay}}),
-	vitre_cyan(160,9,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{cyan_glass_pane, cyan_glass_pane, cyan_glass_pane},{cyan_glass_pane, cyan_glass_pane, cyan_glass_pane}}),
-	vitre_violette(160,10,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{purple_glass_pane, purple_glass_pane, purple_glass_pane},{purple_glass_pane, purple_glass_pane, purple_glass_pane}}),
-	vitre_bleue(160,11,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{blue_glass_pane, blue_glass_pane, blue_glass_pane},{blue_glass_pane, blue_glass_pane, blue_glass_pane}}),
-	vitre_marron(160,12,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{brown_glass_pane, brown_glass_pane, brown_glass_pane},{brown_glass_pane, brown_glass_pane, brown_glass_pane}}),
-	vitre_verte(160,13,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{green_glass_pane, green_glass_pane, green_glass_pane},{green_glass_pane, green_glass_pane, green_glass_pane}}),
-	vitre_rouge(160,14,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{red_glass_pane, red_glass_pane, red_glass_pane},{red_glass_pane, red_glass_pane, red_glass_pane}}),
-	vitre_noire(160,15,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{black_glass_pane, black_glass_pane, black_glass_pane},{black_glass_pane, black_glass_pane, black_glass_pane}}),
-	
+	vitre_cyan(160,9,"stained_glass", 16, new EItem[][]{{air, air, air},{cyan_glass, cyan_glass, cyan_glass},{cyan_glass, cyan_glass, cyan_glass}}),
+	vitre_violette(160,10,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{purple_glass, purple_glass, purple_glass},{purple_glass, purple_glass, purple_glass}}),
+	vitre_bleue(160,11,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{blue_glass, blue_glass, blue_glass},{blue_glass, blue_glass, blue_glass}}),
+	vitre_marron(160,12,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{brown_glass, brown_glass, brown_glass},{brown_glass, brown_glass, brown_glass}}),
+	vitre_verte(160,13,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{green_glass, green_glass, green_glass},{green_glass, green_glass, green_glass}}),
+	vitre_rouge(160,14,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{red_glass, red_glass, red_glass},{red_glass, red_glass, red_glass}}),
+	vitre_noire(160,15,"stained_glass_pane", 16, new EItem[][]{{air, air, air},{black_glass, black_glass, black_glass},{black_glass, black_glass, black_glass}}),
+
 	tapis_blanc(171,0,"carpet", 3, new EItem[][]{{air, air, air},{white_wool, white_wool, air},{air, air, air}}),
 	tapis_orange(171,1,"carpet", 3, new EItem[][]{{air, air, air},{orange_wool, orange_wool, air},{air, air, air}}),
 	tapis_magenta(171,2,"carpet", 3, new EItem[][]{{air, air, air},{magenta_wool, magenta_wool, air},{air, air, air}}),
@@ -312,17 +313,17 @@ public enum Recette {
 
 	/*
 	 *	OBJETS DIVERS
-	 * 
+	 *
 	 */
-	
+
 	torche(50,0,"torch", 4, new EItem[][]{{air, air, air},{air, coal, air},{air, stick, air}}),
 	torche2(50,0,"torch", 4, new EItem[][]{{air, air, air},{air, charcoal, air},{air, stick, air}}),
 	porte_fer(71,0,"iron_door", 1, new EItem[][]{{iron_ingot, iron_ingot, air},{iron_ingot, iron_ingot, air},{iron_ingot, iron_ingot, air}}),
 	echelle(65,0,"ladder", 3, new EItem[][]{{stick, air, stick},{stick, stick, air},{stick, air, stick}}),
 	coffre_ender(130,2,"ender_chest", 1, new EItem[][]{{obsidian, obsidian, obsidian},{obsidian, eye_of_ender, obsidian},{obsidian, obsidian, obsidian}}),
-	
+
 	lanterne(91,0,"lit_pumpkin", 1, new EItem[][]{{air, air, air},{air, pumpkin, air},{air, torch, air}}),
-	
+
 	papier(339,0,"paper",1,new EItem[][]{{air,air,air},{air,air,air},{sugar_cane,sugar_cane,sugar_cane}}),
 	livre(340,0,"book",1,leather,paper,paper,paper),
 	cahier(386,0,"writable_book",1,feather,ink_sack,book),
@@ -336,35 +337,35 @@ public enum Recette {
 	livre_manuscrit8(387,0,"written_book",8,written_book,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill,book_and_quill),
 	cadre(389,0,"item_frame",1,new EItem[][]{{stick,stick,stick},{stick,leather,stick},{stick,stick,stick}}),
 	pot_de_fleur(390,0,"flower_pot",1,new EItem[][]{{air,air,air},{clay_brick,air,clay_brick},{air,clay_brick,air}}),
-	
+
 	chaudron(380,0,"cauldron",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
 	boule_de_feu(385,0,"fire_charge",3,new EItem[][]{{air,gunpowder,air},{air,coal,air},{air,blaze_powder,air}}),
 	boule_de_feu2(385,0,"fire_charge",3,new EItem[][]{{air,gunpowder,air},{air,charcoal,air},{air,blaze_powder,air}}),
-	
+
 	carotte_sur_baton(398,0,"carrot_on_a_stick",1,new EItem[][]{{fishing_rod,air,air},{air,carrot,air},{air,air,air}}),
-	
+
 	feu_dartifice(401,0,"fireworks",1,paper,gunpowder),
 	explosif_dartifice(402,0,"firework_charge",1,gunpowder,ink_sack),
-	
+
 	laisse(420,0,"lead",1,new EItem[][]{{string,string,air},{string,slime_ball,air},{air,air,string}}),
-	
-	
-	
+
+
+
 	/*
 	 * ELEMENTS DU NETHER
-	 * 
+	 *
 	 */
-	
+
 	pierre_lumineuse(89,0,"glowstone", 1, new EItem[][]{{air, air, air},{glowstone_dust, glowstone_dust, air},{glowstone_dust, glowstone_dust, air}}),
 	bloc_de_brique_du_nether(112,0,"nether_brick", 1, new EItem[][]{{air, air, air},{air, nether_brick, nether_brick},{air, nether_brick, nether_brick}}),
 	barriere_nether(113,0,"nether_brickfence", 6, new EItem[][]{{air, air, air},{nether_brick, nether_brick, nether_brick},{nether_brick, nether_brick, nether_brick}}),
 	escalier_nether(114,0,"nether_brickstairs", 4, new EItem[][]{{nether_brick, air, air},{nether_brick, nether_brick, air},{nether_brick, nether_brick, nether_brick}}),
-	
-	
-	
+
+
+
 	/*
 	 * ITEMS A COMBINABILITES VARIABLE (DIVERS)
-	 * 
+	 *
 	 */
 
 	lit(26,0,"bed", 1, new EItem[][]{{air, air, air},{white_wool, white_wool, white_wool},{oak_wood, oak_wood, oak_wood}}, true),
@@ -379,13 +380,13 @@ public enum Recette {
 	baton(280,0,"stick",4,new EItem[][]{{air,air,air},{air,oak_wood,air},{air,oak_wood,air}},true),
 	bol(281,0,"bowl",4,new EItem[][]{{air,air,air},{oak_wood,air,oak_wood},{air,oak_wood,air}},true),
 	tableau(321,0,"painting",1,new EItem[][]{{stick,stick,stick},{stick,white_wool,stick},{stick,stick,stick}},true),
-	
-	
+
+
 	/*
 	 * MECANIQUE ET REDSTONE
-	 * 
+	 *
 	 */
-	
+
 	distributeur(23,0,"dispenser",1, new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,bow,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
 	noteblock(25,0,"noteblock",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{oak_wood,EItem.redstone,oak_wood},{oak_wood,oak_wood,oak_wood}},true),
 	rail_booster(27,0,"golden_rail",6,new EItem[][]{{gold_ingot,air,gold_ingot},{gold_ingot,stick,gold_ingot},{gold_ingot,EItem.redstone,gold_ingot}}),
@@ -409,16 +410,16 @@ public enum Recette {
 	entonnoir(154,0,"hopper",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,chest,iron_ingot},{air,iron_ingot,air}}),
 	rail_activation(157,0,"activator_rail",6,new EItem[][]{{iron_ingot,stick,iron_ingot},{iron_ingot,redstone_torch_on,iron_ingot},{iron_ingot,stick,iron_ingot}}),
 	droppeur(158,0,"dropper",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{cobblestone,air,cobblestone},{cobblestone,EItem.redstone,cobblestone}}),
-	
+
 	repeteur(356,0,"repeater",1,new EItem[][]{{air,air,air},{redstone_torch_on,EItem.redstone,redstone_torch_on},{stone,stone,stone}}),
 	comparateur(404,0,"comparator",1,new EItem[][]{{air,redstone_torch_on,air},{redstone_torch_on,EItem.quartz,redstone_torch_on},{stone,stone,stone}}),
-	
-	
+
+
 	/*
 	 * NOURRITURE
-	 * 
+	 *
 	 */
-	
+
 	soupe_champi(282,0,"mushroom_stew",1,red_mushroom,brown_mushroom,bowl),
 	pain(297,0,"bread",1,new EItem[][]{{air,air,air},{air,air,air},{wheat,wheat,wheat}}),
 	pomme_or(322,0,"golden_apple",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,apple,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
@@ -428,92 +429,92 @@ public enum Recette {
 	cookie(357,0,"cookie",8,new EItem[][]{{air,air,air},{wheat,cocoa_beans,wheat},{air,air,air}}),
 	carotte_doree(396,0,"golden_carrot",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,carrot,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
 	tarte_citrouille(400,0,"pumpkin_pie",1,egg,pumpkin,sugar),
-	
-	
+
+
 	/*
 	 * OUTILS
-	 * 
+	 *
 	 */
-	
+
 	pelle_fer(256,0,"iron_shovel",1,new EItem[][]{{air,iron_ingot,air},{air,stick,air},{air,stick,air}}),
 	pioche_fer(257,0,"iron_pickaxe",1,new EItem[][]{{iron_ingot,iron_ingot,iron_ingot},{air,stick,air},{air,stick,air}}),
 	hache_fer(258,0,"iron_axe",1,new EItem[][]{{iron_ingot,iron_ingot,air},{iron_ingot,stick,air},{air,stick,air}}),
-	
+
 	briquet(259,0,"flint_and_steel",1,new EItem[][]{{air,air,air},{iron_ingot,air,air},{air,flint,air}}),
-	
+
 	pelle_bois(269,0,"wooden_shovel",1,new EItem[][]{{air,oak_wood,air},{air,stick,air},{air,stick,air}},true),
 	pioche_bois(270,0,"wooden_pickaxe",1,new EItem[][]{{oak_wood,oak_wood,oak_wood},{air,stick,air},{air,stick,air}},true),
 	hache_bois(271,0,"wooden_axe",1,new EItem[][]{{oak_wood,oak_wood,air},{oak_wood,stick,air},{air,stick,air}},true),
-	
+
 	pelle_pierre(273,0,"stone_shovel",1,new EItem[][]{{air,cobblestone,air},{air,stick,air},{air,stick,air}}),
 	pioche_pierre(274,0,"stone_pickaxe",1,new EItem[][]{{cobblestone,cobblestone,cobblestone},{air,stick,air},{air,stick,air}}),
 	hache_pierre(275,0,"stone_axe",1,new EItem[][]{{cobblestone,cobblestone,air},{cobblestone,stick,air},{air,stick,air}}),
-	
+
 	pelle_diamant(277,0,"diamond_shovel",1,new EItem[][]{{air,diamond,air},{air,stick,air},{air,stick,air}}),
 	pioche_diamant(278,0,"diamond_pickaxe",1,new EItem[][]{{diamond,diamond,diamond},{air,stick,air},{air,stick,air}}),
 	hache_diamant(279,0,"diamond_axe",1,new EItem[][]{{diamond,diamond,air},{diamond,stick,air},{air,stick,air}}),
-	
+
 	pelle_or(284,0,"gold_shovel",1,new EItem[][]{{air,gold_ingot,air},{air,stick,air},{air,stick,air}}),
 	pioche_or(285,0,"gold_pickaxe",1,new EItem[][]{{gold_ingot,gold_ingot,gold_ingot},{air,stick,air},{air,stick,air}}),
 	hache_or(286,0,"gold_axe",1,new EItem[][]{{gold_ingot,gold_ingot,air},{gold_ingot,stick,air},{air,stick,air}}),
-	
+
 	faux_bois(290,0,"wooden_hoe",1,new EItem[][]{{oak_wood,oak_wood,air},{air,stick,air},{air,stick,air}},true),
 	faux_pierre(291,0,"stone_hoe",1,new EItem[][]{{cobblestone,cobblestone,air},{air,stick,air},{air,stick,air}}),
 	faux_fer(292,0,"iron_hoe",1,new EItem[][]{{iron_ingot,iron_ingot,air},{air,stick,air},{air,stick,air}}),
 	faux_diamant(293,0,"diamond_hoe",1,new EItem[][]{{diamond,diamond,air},{air,stick,air},{air,stick,air}}),
 	faux_or(294,0,"gold_hoe",1,new EItem[][]{{gold_ingot,gold_ingot,air},{air,stick,air},{air,stick,air}}),
-	
+
 	seau(325,0,"bucket",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{air,iron_ingot,air}}),
 	boussole(345,0,"compass",1,new EItem[][]{{air,iron_ingot,air},{iron_ingot,EItem.redstone,iron_ingot},{air,iron_ingot,air}}),
 	canne_a_peche(346,0,"fishing_rod",1,new EItem[][]{{air,air,stick},{air,stick,string},{stick,air,string}}),
 	montre(347,0,"clock",1,new EItem[][]{{air,gold_ingot,air},{gold_ingot,EItem.redstone,gold_ingot},{air,gold_ingot,air}}),
 	cisailles(359,0,"shears",1, new EItem[][]{{air,air,air},{air,iron_ingot,air},{iron_ingot,air,air}}),
-	
-	
+
+
 	/*
 	 * ARMES ET ARMURES
-	 * 
+	 *
 	 */
-	
+
 	arc(261,0,"bow",1,new EItem[][]{{string,stick,air},{string,air,stick},{string,stick,air}}),
 	fleche(262,0,"arrow",4,new EItem[][]{{air,flint,air},{air,stick,air},{air,feather,air}}),
-	
+
 	epee_fer(267,0,"iron_sword",1,new EItem[][]{{air,iron_ingot,air},{air,iron_ingot,air},{air,stick,air}}),
 	epee_bois(268,0,"wooden_sword",1,new EItem[][]{{air,oak_wood,air},{air,oak_wood,air},{air,stick,air}},true),
 	epee_pierre(272,0,"stone_sword",1,new EItem[][]{{air,cobblestone,air},{air,cobblestone,air},{air,stick,air}}),
 	epee_diamant(276,0,"diamond_sword",1,new EItem[][]{{air,diamond,air},{air,diamond,air},{air,stick,air}}),
 	epee_or(283,0,"golden_sword",1,new EItem[][]{{air,gold_ingot,air},{air,gold_ingot,air},{air,stick,air}}),
-	
+
 	tete_cuir(298,0,"leather_helmet",1,new EItem[][]{{air,air,air},{leather,leather,leather},{leather,air,leather}}),
 	torse_cuir(299,0,"leather_chestplate",1,new EItem[][]{{leather,air,leather},{leather,leather,leather},{leather,leather,leather}}),
 	jambes_cuir(300,0,"leather_leggings",1,new EItem[][]{{leather,leather,leather},{leather,air,leather},{leather,air,leather}}),
 	pieds_cuir(301,0,"leather_boots",1,new EItem[][]{{air,air,air},{leather,air,leather},{leather,air,leather}}),
-	
+
 	tete_maille(302,0,"chainmail_helmet",1,new EItem[][]{{air,air,air},{fire,fire,fire},{fire,air,fire}}),
 	torse_maille(303,0,"chainmail_chestplate",1,new EItem[][]{{fire,air,fire},{fire,fire,fire},{fire,fire,fire}}),
 	jambes_maille(304,0,"chainmail_leggings",1,new EItem[][]{{fire,fire,fire},{fire,air,fire},{fire,air,fire}}),
 	pieds_maille(305,0,"chainmail_boots",1,new EItem[][]{{air,air,air},{fire,air,fire},{fire,air,fire}}),
-	
+
 	tete_fer(306,0,"iron_helmet",1,new EItem[][]{{air,air,air},{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,air,iron_ingot}}),
 	torse_fer(307,0,"iron_chestplate",1,new EItem[][]{{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
 	jambes_fer(308,0,"iron_leggings",1,new EItem[][]{{iron_ingot,iron_ingot,iron_ingot},{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot}}),
 	pieds_fer(309,0,"iron_boots",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{iron_ingot,air,iron_ingot}}),
-	
+
 	tete_diamant(310,0,"diamond_helmet",1,new EItem[][]{{air,air,air},{diamond,diamond,diamond},{diamond,air,diamond}}),
 	torse_diamant(311,0,"diamond_chestplate",1,new EItem[][]{{diamond,air,diamond},{diamond,diamond,diamond},{diamond,diamond,diamond}}),
 	jambes_diamant(312,0,"diamond_leggings",1,new EItem[][]{{diamond,diamond,diamond},{diamond,air,diamond},{diamond,air,diamond}}),
 	pieds_diamant(313,0,"diamond_boots",1,new EItem[][]{{air,air,air},{diamond,air,diamond},{diamond,air,diamond}}),
-	
+
 	tete_or(314,0,"golden_helmet",1,new EItem[][]{{air,air,air},{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,air,gold_ingot}}),
 	torse_or(315,0,"golden_chestplate",1,new EItem[][]{{gold_ingot,air,gold_ingot},{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,gold_ingot,gold_ingot}}),
 	jambes_or(316,0,"golden_leggings",1,new EItem[][]{{gold_ingot,gold_ingot,gold_ingot},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
 	pieds_or(317,0,"golden_boots",1,new EItem[][]{{air,air,air},{gold_ingot,air,gold_ingot},{gold_ingot,air,gold_ingot}}),
-	
+
 	/*
 	 * TRANSPORT
-	 * 
+	 *
 	 */
-	
+
 	wagon(328,0,"minecart",1,new EItem[][]{{air,air,air},{iron_ingot,air,iron_ingot},{iron_ingot,iron_ingot,iron_ingot}}),
 	bateau(333,0,"boat",1,new EItem[][]{{air,air,air},{oak_wood,air,oak_wood},{oak_wood,oak_wood,oak_wood}},true),
 	wagon_coffre(342,0,"chest_minecart",1,new EItem[][]{{air,air,air},{air,chest,air},{air,minecart,air}}),
@@ -523,13 +524,13 @@ public enum Recette {
 	carte_vierge(395,0,"map",1,new EItem[][]{{paper,paper,paper},{paper,compass,paper},{paper,paper,paper}}),
 	wagon_tnt(407,0,"tnt_minecart",1,new EItem[][]{{air,air,air},{air,EItem.tnt,air},{air,minecart,air}}),
 	wagon_entonnoir(408,0,"hopper_minecart",1,new EItem[][]{{air,air,air},{air,hopper,air},{air,minecart,air}}),
-	
-	
+
+
 	/*
 	 * COLORANTS
-	 * 
+	 *
 	 */
-	
+
 	colorant_rouge(351,1,"dye",1,poppy),
 	colorant_rouge1(351,1,"dye",1,red_tulip),
 	colorant_rouge2(351,1,"dye",2,rose_bush),
@@ -557,26 +558,26 @@ public enum Recette {
 	colorant_orange(351,14,"dye",2,rose_red,dandelion_yellow),
 	colorant_orange2(351,14,"dye",1,orange_tulipe),
 	engrais(351,15,"dye",3,bone),
-	
+
 	/*
 	 * ALCHIMIE
-	 * 
+	 *
 	 */
-	
+
 	fiole(374,0,"glass_bottle",3,new EItem[][]{{air,air,air},{glass,air,glass},{air,glass,air}}),
-	
+
 	oeil_araignee_fermente(376,0,"fermented_spider_eye",1,spider_eye,sugar,brown_mushroom),
 	poudre_blaze(377,0,"blaze_powder",2,blaze_rod),
 	creme_magma(378,0,"magma_cream",1,slime_ball,blaze_powder),
 	oeil_ender(381,0,"ender_eye",1,blaze_powder,ender_pearl),
 	pasteque_scintillante(382,0,"speckled_melon",1,new EItem[][]{{gold_nugget,gold_nugget,gold_nugget},{gold_nugget,melon,gold_nugget},{gold_nugget,gold_nugget,gold_nugget}}),
-	
-	
+
+
 	/*
 	 * POTIONS
-	 * 
+	 *
 	 */
-	
+
 	potion_malsaine(16,nether_wart,p_waterB),
 	potion_epaisse(32,glowstone_dust,p_waterB),
 	potion_banale(8192,sugar,p_waterB),
@@ -586,34 +587,34 @@ public enum Recette {
 	potion_banale5(8192,magma_cream,p_waterB),
 	potion_banale6(8192,speckled_melon,p_waterB),
 	potion_banale_ext(64,EItem.redstone,p_waterB),
-	
+
 	potion_regeneration(8193,ghast_tear,p_awkward),
 	potion_regeneration_ext(8257,EItem.redstone,p_regeneration),
 	potion_regeneration_ext2(8257,EItem.redstone,p_regeneration_II),
 	potion_regeneration_II(8225,glowstone_dust,p_regeneration),
 	potion_regeneration_II2(8225,glowstone_dust,p_regeneration_ext),
-	
+
 	potion_vitesse(8194,sugar,p_awkward),
 	potion_vitesse_ext(8258,EItem.redstone,p_swiftness),
 	potion_vitesse_ext2(8258,EItem.redstone,p_swiftness_II),
 	potion_vitesse_II(8226,glowstone_dust,p_swiftness),
 	potion_vitesse_II2(8226,glowstone_dust,p_swiftness_ext),
-	
+
 	potion_resistance_feu(8195,magma_cream,p_awkward),
 	potion_resistance_feu_ext(8259,EItem.redstone,p_fire_resistance),
-	
+
 	potion_poison(8196,spider_eye,p_awkward),
 	potion_poison_ext(8260,EItem.redstone,p_poison),
 	potion_poison_ext2(8260,EItem.redstone,p_poison_II),
 	potion_poison_II(8228,glowstone_dust,p_poison),
 	potion_poison_II2(8228,glowstone_dust,p_poison_ext),
-	
+
 	potion_soin(8197,speckled_melon,p_awkward),
-	potion_soin_II(8261,EItem.redstone,p_healing),
-	
+	potion_soin_II(8229,EItem.redstone,p_healing),
+
 	potion_vision_nocturne(8265,golden_carrot,p_awkward),
 	potion_vision_nocturne_ext(8233,EItem.redstone,p_night_vision),
-	
+
 	potion_faiblesse(8200,fermented_spider_eye,p_mundane),
 	potion_faiblesse2(8200,fermented_spider_eye,p_waterB),
 	potion_faiblesse3(8200,fermented_spider_eye,p_thick),
@@ -628,35 +629,35 @@ public enum Recette {
 	potion_faiblesse_ext3(8264,fermented_spider_eye,p_healing),
 	potion_faiblesse_ext4(8264,fermented_spider_eye,p_strength_ext),
 	potion_faiblesse_ext5(8264,fermented_spider_eye,p_regeneration_ext),
-	
+
 	potion_force(8198,blaze_powder,p_awkward),
 	potion_force_ext(8262,EItem.redstone,p_strength),
 	potion_force_ext2(8262,EItem.redstone,p_strength_II),
 	potion_force_II(8201,glowstone_dust,p_strength),
 	potion_force_II2(8201,glowstone_dust,p_strength_ext),
-	
+
 	potion_lenteur(8202,fermented_spider_eye,p_fire_resistance),
 	potion_lenteur2(8202,fermented_spider_eye,p_swiftness),
 	potion_lenteur3(8202,fermented_spider_eye,p_swiftness_II),
 	potion_lenteur_ext(8266,EItem.redstone,p_slowness),
 	potion_lenteur_ext2(8266,fermented_spider_eye,p_swiftness_ext),
 	potion_lenteur_ext3(8266,fermented_spider_eye,p_fire_resistance_ext),
-	
+
 	potion_degat(8204,fermented_spider_eye,p_poison),
 	potion_degat2(8204,EItem.redstone,p_harming_II),
 	potion_degat3(8204,fermented_spider_eye,p_poison_ext),
-	potion_degat_II(8268,glowstone,p_harming),
-	potion_degat_II2(8268,fermented_spider_eye,p_poison_II),
-	
-	potion_respiration(8205,pufferfish,p_awkward),
+	potion_degat_II(8236,glowstone,p_harming),
+	potion_degat_II2(8236,fermented_spider_eye,p_poison_II),
+
+	potion_respiration(8237,pufferfish,p_awkward),
 	potion_respiration_ext(8269,EItem.redstone,p_water_breathing),
-	
+
 	potion_invisibilite(8206,fermented_spider_eye,p_night_vision),
 	potion_invisibilite_ext(8270,EItem.redstone,p_invisibility),
-	
-	
+
+
 	potion_splash_banale(16384,gunpowder,p_mundane),
-	
+
 	potion_splash_regeneration(16385,gunpowder,p_regeneration),
 	potion_splash_regeneration_ext(16449,gunpowder,p_regeneration_ext),
 	potion_splash_regeneration_ext2(16449,EItem.redstone,s_p_regeneration),
@@ -664,7 +665,7 @@ public enum Recette {
 	potion_splash_regeneration_II(16417,gunpowder,p_regeneration_II),
 	potion_splash_regeneration_II2(16417,glowstone_dust,s_p_regeneration),
 	potion_splash_regeneration_II3(16417,glowstone_dust,s_p_regeneration_ext),
-	
+
 	potion_splash_vitesse(16386,gunpowder,p_swiftness),
 	potion_splash_vitesse_ext(16450,gunpowder,p_swiftness_ext),
 	potion_splash_vitesse_ext2(16450,EItem.redstone,s_p_swiftness),
@@ -672,11 +673,11 @@ public enum Recette {
 	potion_splash_vitesse_II(16418,gunpowder,p_swiftness_II),
 	potion_splash_vitesse_II2(16418,glowstone_dust,s_p_swiftness),
 	potion_splash_vitesse_II3(16418,glowstone_dust,s_p_swiftness_ext),
-	
+
 	potion_splash_resistance_feu(16387,gunpowder,p_fire_resistance),
 	potion_splash_resistance_feu_ext(16451,gunpowder,p_fire_resistance_ext),
 	potion_splash_resistance_feu_ext2(16451,EItem.redstone,s_p_fire_resistance),
-	
+
 	potion_splash_poison(16388,gunpowder,p_poison),
 	potion_splash_poison_ext(16452,gunpowder,p_poison_ext),
 	potion_splash_poison_ext2(16452,EItem.redstone,s_p_poison),
@@ -684,15 +685,15 @@ public enum Recette {
 	potion_splash_poison_II(16420,gunpowder,p_poison_II),
 	potion_splash_poison_II2(16420,glowstone_dust,s_p_poison),
 	potion_splash_poison_II3(16420,glowstone_dust,s_p_poison_ext),
-	
+
 	potion_splash_soin(16389,gunpowder,p_healing),
 	potion_splash_soin_ext(16421,gunpowder,p_healing_II),
 	potion_splash_soin_ext2(16421,EItem.redstone,s_p_healing),
-	
+
 	potion_splash_vision_nocturne(16390,gunpowder,p_night_vision),
 	potion_splash_vision_nocturne_ext(16454,gunpowder,p_night_vision_ext),
 	potion_splash_vision_nocturne_ext2(16454,EItem.redstone,s_p_night_vision),
-	
+
 	potion_splash_faiblesse(16392,gunpowder,p_weakness),
 	potion_splash_faiblesse2(16392,fermented_spider_eye,s_p_mundane),
 	potion_splash_faiblesse3(16392,glowstone_dust,s_p_weakness_ext),
@@ -701,7 +702,7 @@ public enum Recette {
 	potion_splash_faiblesse6(16392,fermented_spider_eye,s_p_strength_II),
 	potion_splash_faiblesse7(16392,fermented_spider_eye,s_p_regeneration),
 	potion_splash_faiblesse8(16392,fermented_spider_eye,s_p_regeneration_II),
-	
+
 	potion_splash_force(16393,gunpowder,p_strength),
 	potion_splash_force_ext(16457,gunpowder,p_strength_ext),
 	potion_splash_force_ext2(16457,EItem.redstone,p_strength),
@@ -709,7 +710,7 @@ public enum Recette {
 	potion_splash_force_II(16425,gunpowder,p_strength_II),
 	potion_splash_force_II2(16425,glowstone_dust,p_strength),
 	potion_splash_force_II3(16425,glowstone_dust,p_strength_ext),
-	
+
 	potion_splash_lenteur(16394,gunpowder,p_slowness),
 	potion_splash_lenteur2(16394,fermented_spider_eye,s_p_fire_resistance),
 	potion_splash_lenteur3(16394,fermented_spider_eye,s_p_swiftness),
@@ -718,7 +719,7 @@ public enum Recette {
 	potion_splash_lenteur_ext2(16458,EItem.redstone,s_p_slowness),
 	potion_splash_lenteur_ext3(16458,fermented_spider_eye,s_p_swiftness_ext),
 	potion_splash_lenteur_ext4(16458,fermented_spider_eye,s_p_fire_resistance_ext),
-	
+
 	potion_splash_degat(16396,gunpowder,p_harming),
 	potion_splash_degat2(16396,fermented_spider_eye,p_poison),
 	potion_splash_degat3(16396,EItem.redstone,p_harming),
@@ -726,26 +727,26 @@ public enum Recette {
 	potion_splash_degat_II(16428,gunpowder,p_harming_II),
 	potion_splash_degat_II2(16428,glowstone_dust,s_p_harming),
 	potion_splash_degat_II3(16428,fermented_spider_eye,s_p_poison_II),
-	
-	potion_splash_respiration(16397,gunpowder,p_water_breathing),
+
+	potion_splash_respiration(16429,gunpowder,p_water_breathing),
 	potion_splash_respiration_ext(16461,gunpowder,p_water_breathing_ext),
 	potion_splash_respiration_ext2(16461,EItem.redstone,s_p_water_breathing),
-	
+
 	potion_splash_invisibilite(16398,gunpowder,p_invisibility),
 	potion_splash_invisibilite2(16398,fermented_spider_eye,s_p_night_vision),
 	potion_splash_invisibilite_ext(16462,gunpowder,p_invisibility_ext),
 	potion_splash_invisibilite_ext2(16462,EItem.redstone,s_p_invisibility),
-	
-	
-	
-	
-	
+
+
+
+
+
 	;
 
 	 private int id;
      private int metadata;
      private String mid;
-     private ERecetteForme forme = null;
+     private ERecetteForme forme = ERecetteForme.sansforme;
      private ERecetteType type;
      private EItem[][] recette = new EItem[3][3];
      private ArrayList<EItem> ingredients = new ArrayList<EItem>();
@@ -781,11 +782,11 @@ public enum Recette {
                      if(recette[0].length==3 && recette[1].length==3 && recette[2].length==3) {
                              this.recette = recette;
                      }
-                     else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3"); 
+                     else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3");
              }
              else throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3");
      }
-     
+
      Recette(int id, int metadata, String mid, int quantite, EItem[][] recette, boolean combinable) {
              this(id, metadata, mid, quantite, recette);
              this.combinable = combinable;
@@ -803,12 +804,12 @@ public enum Recette {
              }
              this.forme = ERecetteForme.sansforme;
      }
-     
+
      Recette(int id, int metadata, String mid, int quantite, boolean combinable, EItem... ingredients) {
     	 this(id,metadata,mid,quantite,ingredients);
     	 this.combinable = combinable;
      }
-     
+
      /**
       * Constructeur pour une recette de four
       * @param acuire l'ingrédient à cuire
@@ -818,7 +819,7 @@ public enum Recette {
              this(id, metadata, mod, four, 1);
              this.ingredients.add(acuire);
      }
-     
+
      /**
       * Constructeur pour une recette de potion
       * @param ingredient L'ingrédient nécessaire à l'obtention de la potion
@@ -826,7 +827,7 @@ public enum Recette {
       * @see Recette#Recette(int, int, String, ERecetteType, int
       */
      Recette(int metadata, EItem ingredient, EItem potion_base) {
-             this(373, metadata, "potion", ERecetteType.alambic, 1);
+             this(373, metadata, "potion", ERecetteType.alambic, 3);
              this.ingredients.add(ingredient);
              this.ingredients.add(potion_base);
      }
@@ -866,7 +867,7 @@ public enum Recette {
      public boolean isCombinable() {
              return combinable;
      }
-     
+
      public String toString() {
     	 String sRecette = "\n\t";
     	 switch (type) {
@@ -901,18 +902,40 @@ public enum Recette {
 		}
     	 return mid+" : "+type.name()+" "+sRecette;
      }
-     
+
      public static ArrayList<Recette> getRecettes(EItem item) {
-    	 ArrayList<Recette> recettes = new ArrayList<>();
+    	 LinkedHashSet<Recette> lhsRecettes = new LinkedHashSet<>();
     	 Recette[] values = values();
     	 for(int i=0;i<values.length;i++) {
-    		 if(item.getId()==values[i].id && item.getMeta()==values[i].metadata) {
-    			 recettes.add(values[i]);
+    		 Recette r = values[i];
+    		 if(item.getId()==r.id && item.getMeta()==r.metadata) {
+    			 lhsRecettes.add(r);
+    		 }
+    		 for(int j=0;j<3;j++) {
+    			 for(int k=0;k<3;k++) {
+    				 switch (r.forme) {
+					case forme:
+						if(item==r.recette[j][k]) lhsRecettes.add(r);
+						break;
+					case sansforme:
+						int result = j * 3 + k;
+						if (result<r.ingredients.size()) {
+							if (item == r.ingredients.get(result))
+								lhsRecettes.add(r);
+						}
+						break;
+					default:
+						break;
+					}
+    			 }
     		 }
     	 }
+
+    	 ArrayList<Recette> recettes = new ArrayList<>(lhsRecettes);
+
     	 return recettes;
      }
-     
+
      public static int getFirst(ERecetteType type, ArrayList<Recette> recettes) {
     	 int i = 0;
     	 while(i<recettes.size() && recettes.get(i).getType()!=type) {
