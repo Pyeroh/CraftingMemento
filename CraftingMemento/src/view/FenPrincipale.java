@@ -89,6 +89,7 @@ public class FenPrincipale extends JFrame {
 
 
 		labelRecherche.setBounds(10, 9, 257, 22);
+		labelRecherche.setToolTipText("Test");
 		getContentPane().add(labelRecherche);
 
 
