@@ -11,14 +11,13 @@ public class Launch {
 
 	public static void main(String[] args) throws Exception {
 
-		GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(Font.createFont(Font.TRUETYPE_FONT, Launch.class.getResourceAsStream("/gui/MinecraftFont.ttf")));
+		Font mcFont = Font.createFont(Font.TYPE1_FONT, Launch.class.getResourceAsStream("/gui/MinecraftFont.pfa"));
+		GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(mcFont);
 
+		UIManager.put("info", new Color(29,14,29));
+		UIManager.put("ToolTip.font", mcFont.deriveFont(Font.PLAIN).deriveFont(15f));
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		UIManager.getDefaults().put("info", Color.cyan);
-		UIManager.getDefaults().put("ToolTip.font", new Font("MinecraftFont.ttf", Font.PLAIN, 12));
 
-
-		//(javax.swing.plaf.nimbus.ToolTipPainter)UIManager.getDefaults().get("ToolTip[Enabled].backgroundPainter")
 
 		new FenPrincipale();
 		//new FenetreTest_XSwing();

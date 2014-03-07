@@ -27,6 +27,7 @@ import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
 import view.components.JComboSearchField;
+import view.components.JImage;
 
 public class FenPrincipale extends JFrame {
 
@@ -45,9 +46,9 @@ public class FenPrincipale extends JFrame {
 
 
 	//initialisation des éléments dans l'onglet "Craft"
-	private JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
+	private JImage labelRecherche = new JImage("Veuillez saisir le nom de l'objet recherché.");
 	private JLabel lblFondGrille = new JLabel();
-	private JLabel caseCraft1 = new JLabel();
+	private JImage caseCraft1 = new JImage();
 	private JLabel caseCraft2 = new JLabel();
 	private JLabel caseCraft3 = new JLabel();
 	private JLabel caseCraft4 = new JLabel();
@@ -137,10 +138,11 @@ public class FenPrincipale extends JFrame {
 
 
 		lblFondGrille.setBounds(24, 20, 593, 261);
+
 		caseCraft1.setBorder(null);
 		caseCraft1.setBounds(130, 84, 42, 42);
-		caseCraft2.setBorder(null);
 
+		caseCraft2.setBorder(null);
 		caseCraft2.setBounds(191, 84, 42, 42);
 
 		caseCraft3.setBounds(251, 84, 42, 42);
