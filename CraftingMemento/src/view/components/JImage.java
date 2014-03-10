@@ -1,7 +1,6 @@
 package view.components;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
@@ -56,8 +55,6 @@ public class JImage extends JLabel {
 	public void setItem(EItem item) {
 		setToolTipText(item.getGuiName());
 
-
-
 		this.item = item;
 	}
 
@@ -68,9 +65,8 @@ class MCToolTip extends JToolTip {
 	private static final long serialVersionUID = 4320351221644676925L;
 
 	public MCToolTip() {
-		//setFont(Font.decode("MinecraftFont").deriveFont(12f));
 		setBorder(new LineBorder(new Color(44, 9, 98), 2, true));
-		setBackground(new Color(29,14,29));
+		setBackground(new Color(29, 14, 29));
 		setForeground(Color.white);
 	}
 

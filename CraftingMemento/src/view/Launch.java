@@ -16,7 +16,12 @@ public class Launch {
 
 		UIManager.put("info", new Color(29,14,29));
 		UIManager.put("ToolTip.font", mcFont.deriveFont(Font.PLAIN).deriveFont(15f));
+
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+
+
+
+
 
 
 		new FenPrincipale();
