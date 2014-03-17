@@ -1,8 +1,7 @@
 package view.components;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.LayoutManager;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -73,8 +72,25 @@ public class MCLabel extends JLabel {
 	}
 
 	private void init() {
-		// TODO Auto-generated method stub
 
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				pan.setLabelText(text);
+				pan.setVisible(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				pan.setVisible(false);
+			}
+		});
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				pan.setLocation(new Point(e.getPoint().x + 20, e.getPoint().y + 25));
+			}
+		});
+		
 	}
 
 }
@@ -86,18 +102,22 @@ class MCPanel extends JPanel {
 	private JLabel lib = new JLabel();
 
 	public MCPanel() {
+		init();
 	}
 
 	public MCPanel(LayoutManager layout) {
 		super(layout);
+		init();
 	}
 
 	public MCPanel(boolean isDoubleBuffered) {
 		super(isDoubleBuffered);
+		init();
 	}
 
 	public MCPanel(LayoutManager layout, boolean isDoubleBuffered) {
 		super(layout, isDoubleBuffered);
+		init();
 	}
 
 	private void init() {
@@ -106,6 +126,14 @@ class MCPanel extends JPanel {
 		lib.setFont(MCLabel.MINECRAFTIA_FONT);
 		lib.setForeground(Color.WHITE);
 		setVisible(false);
+	}
+	
+	public void setLabelText(String text) {
+		lib.setText(text);
+	}
+	
+	public String getLabelText() {
+		return lib.getText();
 	}
 
 }
