@@ -27,7 +27,6 @@ import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
 import view.components.JComboSearchField;
-import view.components.JImage;
 
 public class FenPrincipale extends JFrame {
 
@@ -46,9 +45,9 @@ public class FenPrincipale extends JFrame {
 
 
 	//initialisation des éléments dans l'onglet "Craft"
-	private JImage labelRecherche = new JImage("Veuillez saisir le nom de l'objet recherché.");
+	private JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
 	private JLabel lblFondGrille = new JLabel();
-	private JImage caseCraft1 = new JImage();
+	private JLabel caseCraft1 = new JLabel();
 	private JLabel caseCraft2 = new JLabel();
 	private JLabel caseCraft3 = new JLabel();
 	private JLabel caseCraft4 = new JLabel();
@@ -61,15 +60,15 @@ public class FenPrincipale extends JFrame {
 
 	//initialisation des éléments dans l'onglet "Four"
 	private JLabel lblFondFour = new JLabel();
-	private JLabel caseFour1 = new JLabel("");
-	private JLabel caseFourResultat = new JLabel("");
+	private JLabel caseFour1 = new JLabel();
+	private JLabel caseFourResultat = new JLabel();
 
 	//initialisation des éléments dans l'onglet "Potion"
 	private JLabel labelFondAlambic = new JLabel();
-	private JLabel caseAlambic1 = new JLabel("");
-	private JLabel caseAlambic2 = new JLabel("");
-	private JLabel caseAlambic3 = new JLabel("");
-	private JLabel caseIngredientAlambic = new JLabel("");
+	private JLabel caseAlambic1 = new JLabel();
+	private JLabel caseAlambic2 = new JLabel();
+	private JLabel caseAlambic3 = new JLabel();
+	private JLabel caseIngredientAlambic = new JLabel();
 	private JTextField  txtQuantite = new JTextField();
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
@@ -90,7 +89,6 @@ public class FenPrincipale extends JFrame {
 
 
 		labelRecherche.setBounds(10, 9, 257, 22);
-		labelRecherche.setToolTipText("Test");
 		getContentPane().add(labelRecherche);
 
 
@@ -172,7 +170,7 @@ public class FenPrincipale extends JFrame {
 
 		ongletCraft.setLayout(null);
 
-		lblCraftNbItems = new JLabel("");
+		lblCraftNbItems = new JLabel();
 		lblCraftNbItems.setBounds(483, 172, 20, 28);
 		ongletCraft.add(lblCraftNbItems);
 
