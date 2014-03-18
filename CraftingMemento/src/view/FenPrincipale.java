@@ -27,13 +27,15 @@ import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
 import view.components.JComboSearchField;
+import view.components.MCImage;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class FenPrincipale extends JFrame {
 
 	private static final long serialVersionUID = 2540259731678095668L;
 
 	private ArrayList<Recette> recettes;
-
 
 	//initialisation onglets
 	private JTabbedPane onglet = new JTabbedPane();
@@ -47,28 +49,28 @@ public class FenPrincipale extends JFrame {
 	//initialisation des éléments dans l'onglet "Craft"
 	private JLabel labelRecherche = new JLabel("Veuillez saisir le nom de l'objet recherché.");
 	private JLabel lblFondGrille = new JLabel();
-	private JLabel caseCraft1 = new JLabel();
-	private JLabel caseCraft2 = new JLabel();
-	private JLabel caseCraft3 = new JLabel();
-	private JLabel caseCraft4 = new JLabel();
-	private JLabel caseCraft5 = new JLabel();
-	private JLabel caseCraft6 = new JLabel();
-	private JLabel caseCraft7 = new JLabel();
-	private JLabel caseCraft8 = new JLabel();
-	private JLabel caseCraft9 = new JLabel();
-	private JLabel caseCraftResultat = new JLabel();
+	private MCImage caseCraft1 = new MCImage(ongletCraft);
+	private MCImage caseCraft2 = new MCImage(ongletCraft);
+	private MCImage caseCraft3 = new MCImage(ongletCraft);
+	private MCImage caseCraft4 = new MCImage(ongletCraft);
+	private MCImage caseCraft5 = new MCImage(ongletCraft);
+	private MCImage caseCraft6 = new MCImage(ongletCraft);
+	private MCImage caseCraft7 = new MCImage(ongletCraft);
+	private MCImage caseCraft8 = new MCImage(ongletCraft);
+	private MCImage caseCraft9 = new MCImage(ongletCraft);
+	private MCImage caseCraftResultat = new MCImage(ongletCraft);
 
 	//initialisation des éléments dans l'onglet "Four"
 	private JLabel lblFondFour = new JLabel();
-	private JLabel caseFour1 = new JLabel();
-	private JLabel caseFourResultat = new JLabel();
+	private MCImage caseFour1 = new MCImage(ongletFour);
+	private MCImage caseFourResultat = new MCImage(ongletFour);
 
 	//initialisation des éléments dans l'onglet "Potion"
 	private JLabel labelFondAlambic = new JLabel();
-	private JLabel caseAlambic1 = new JLabel();
-	private JLabel caseAlambic2 = new JLabel();
-	private JLabel caseAlambic3 = new JLabel();
-	private JLabel caseIngredientAlambic = new JLabel();
+	private MCImage caseAlambic1 = new MCImage(ongletPotion);
+	private MCImage caseAlambic2 = new MCImage(ongletPotion);
+	private MCImage caseAlambic3 = new MCImage(ongletPotion);
+	private MCImage caseIngredientAlambic = new MCImage(ongletPotion);
 	private JTextField  txtQuantite = new JTextField();
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
@@ -84,6 +86,13 @@ public class FenPrincipale extends JFrame {
 		setSize(665,682);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		onglet.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (isVisible()) {
+					afficheOnglet();
+				}
+			}
+		});
 		getContentPane().add(onglet);
 		onglet.setBounds(10, 32, 626, 345);
 
@@ -323,15 +332,19 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void afficheOnglet() {
+		int index;
 		switch (onglet.getSelectedIndex()) {
 		case 0:
-			craft(Recette.getFirst(ERecetteType.craft, recettes));
+			index = Recette.getFirst(ERecetteType.craft, recettes);
+			if (index != -1) craft(index);
 			break;
 		case 1:
-			four(Recette.getFirst(ERecetteType.four, recettes));
+			index = Recette.getFirst(ERecetteType.four, recettes);
+			if (index != -1) four(index);
 			break;
 		case 2:
-			potion(Recette.getFirst(ERecetteType.alambic, recettes));
+			index = Recette.getFirst(ERecetteType.alambic, recettes);
+			if (index != -1) potion(index);
 			break;
 		default:
 			break;
@@ -352,9 +365,9 @@ public class FenPrincipale extends JFrame {
 						Field f = this.getClass().getDeclaredField("caseCraft"+result);
 						boolean access = f.isAccessible();
 						f.setAccessible(true);
-						JLabel l = (JLabel) f.get(this);
+						MCImage l = (MCImage) f.get(this);
 						f.setAccessible(access);
-						if (r.getRecette()[i][j]!=EItem.air) l.setIcon(scaleImage(l, r.getRecette()[i][j]));
+						if (r.getRecette()[i][j]!=EItem.air) l.setItem(r.getRecette()[i][j]);
 
 					}
 				}
@@ -372,9 +385,9 @@ public class FenPrincipale extends JFrame {
 					Field f = this.getClass().getDeclaredField("caseCraft"+(i+1));
 					boolean access = f.isAccessible();
 					f.setAccessible(true);
-					JLabel l = (JLabel) f.get(this);
+					MCImage l = (MCImage) f.get(this);
 					f.setAccessible(access);
-					l.setIcon(scaleImage(l, ingredients.get(i)));
+					l.setItem(ingredients.get(i));
 
 					i++;
 				}
@@ -386,7 +399,7 @@ public class FenPrincipale extends JFrame {
 			break;
 		}
 
-		caseCraftResultat.setIcon(scaleImage(caseCraftResultat, r.getItem().getItem()));
+		caseCraftResultat.setItem(r.getItem().getItem());
 		if(r.getItem().getQuantite()>1) {
 			lblCraftNbItems.setIcon(scaleImage(lblCraftNbItems, r.getItem().getQuantite()));
 		}
@@ -403,8 +416,8 @@ public class FenPrincipale extends JFrame {
 	public void four(int index){
 		Recette r = recettes.get(index);
 
-		caseFour1.setIcon(scaleImage(caseFour1, r.getIngredients().get(0)));
-		caseFourResultat.setIcon(scaleImage(caseFourResultat, r.getItem().getItem()));
+		caseFour1.setItem(r.getIngredients().get(0));
+		caseFourResultat.setItem(r.getItem().getItem());
 	}
 
 	public void potion(int index){
@@ -412,18 +425,13 @@ public class FenPrincipale extends JFrame {
 
 		EItem result = r.getItem().getItem();
 
-		caseIngredientAlambic.setIcon(scaleImage(caseIngredientAlambic, r.getIngredients().get(0)));
+		caseIngredientAlambic.setItem(r.getIngredients().get(0));
 
-		caseAlambic1.setIcon(scaleImage(caseAlambic1, result));
-		caseAlambic2.setIcon(scaleImage(caseAlambic2, result));
-		caseAlambic3.setIcon(scaleImage(caseAlambic3, result));
+		caseAlambic1.setItem(result);
+		caseAlambic2.setItem(result);
+		caseAlambic3.setItem(result);
 
 	}
 
 	public void calculateur(){}
-
-	private Icon scaleImage(JComponent component, EItem eItem){
-		Image img = eItem.getImage().getScaledInstance(component.getWidth(), component.getHeight(), Image.SCALE_AREA_AVERAGING);
-		return new ImageIcon(img);
-	}
 }
