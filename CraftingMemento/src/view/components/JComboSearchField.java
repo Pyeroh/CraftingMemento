@@ -1,11 +1,19 @@
 package view.components;
 
 import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
 
 import model.enums.EItem;
 
@@ -16,8 +24,11 @@ import sun.font.FontDesignMetrics;
 public class JComboSearchField extends JXSearchField {
 
 	private static final long serialVersionUID = 5987013368749228268L;
+
 	@SuppressWarnings("unused")
 	private JDropDownList list;
+
+	private EItem item;
 
 	public JComboSearchField() {
 
@@ -30,18 +41,30 @@ public class JComboSearchField extends JXSearchField {
 
 					ArrayList<EItem> searches = EItem.searchBy(e
 							.getActionCommand());
-					if (searches.size() > 1) {
-						if (!(searches.get(0).getGuiName().equals(e.getActionCommand()))) {
+					EItem item = EItem.strictSearchBy(e.getActionCommand());
 
-							list = new JDropDownList(JComboSearchField.this, searches);
-
+					if (item == null && searches.size() > 1) {
+						list = new JDropDownList(JComboSearchField.this,
+								searches);
+					} else {
+						EItem finalItem = null;
+						if (item != null) {
+							finalItem = item;
 						}
-					} else if (searches.size() == 1 && !e.getActionCommand().equals(searches.get(0).getGuiName())) {
-						JComboSearchField.this.setText(searches.get(0).getGuiName());
+						if (searches.size() == 1) {
+							finalItem = searches.get(0);
+						}
+						JComboSearchField.this.item = finalItem;
+						JComboSearchField.this.setText(finalItem.getGuiName());
 					}
+
 				}
 			}
 		});
+	}
+
+	public EItem getItem() {
+		return item;
 	}
 
 }
@@ -49,11 +72,15 @@ public class JComboSearchField extends JXSearchField {
 class JDropDownList extends JDialog {
 
 	private static final long serialVersionUID = 4346096598210553609L;
-	private JTextComponent parent;
+	private JComboSearchField parent;
 	private JScrollPane scroll;
 	private JHoverList<EItem> list;
 
-	public JDropDownList(JTextComponent parent, ArrayList<EItem> results) {
+	public int getSelectedIndex() {
+		return list.getSelectedIndex();
+	}
+
+	public JDropDownList(JComboSearchField parent, ArrayList<EItem> results) {
 		addWindowFocusListener(new WindowFocusListener() {
 
 			@Override
@@ -83,16 +110,20 @@ class JDropDownList extends JDialog {
 		int max = this.parent.getWidth() + 70;
 		for (EItem result : results) {
 			model.addElement(result);
-			int length = FontDesignMetrics.getMetrics(this.parent.getFont()).stringWidth(result.getGuiName());
-			if (length > mlength) mlength = length;
+			int length = FontDesignMetrics.getMetrics(this.parent.getFont())
+					.stringWidth(result.getGuiName());
+			if (length > mlength)
+				mlength = length;
 		}
-		if (mlength > max) mlength = max;
+		if (mlength > max)
+			mlength = max;
 		list.setModel(model);
 
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JDropDownList.this.parent.setText(list.getSelectedValue().getGuiName());
+				JDropDownList.this.parent.setText(list.getSelectedValue()
+						.getGuiName());
 				dispose();
 			}
 		});
@@ -101,14 +132,17 @@ class JDropDownList extends JDialog {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					JDropDownList.this.parent.setText(list.getSelectedValue().getGuiName());
+					JDropDownList.this.parent.setText(list.getSelectedValue()
+							.getGuiName());
 					dispose();
 				}
 			}
 		});
 
 		setSize(mlength + 70, 150);
-		setLocation(this.parent.getLocationOnScreen().x, this.parent.getLocationOnScreen().y + this.parent.getHeight() + 5);
+		setLocation(this.parent.getLocationOnScreen().x,
+				this.parent.getLocationOnScreen().y + this.parent.getHeight()
+						+ 5);
 		setVisible(true);
 	}
 

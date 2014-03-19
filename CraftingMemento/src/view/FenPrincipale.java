@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -22,14 +21,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
 import view.components.JComboSearchField;
 import view.components.MCImage;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 public class FenPrincipale extends JFrame {
 
@@ -104,17 +103,11 @@ public class FenPrincipale extends JFrame {
 		txtObjetRecherch = new JComboSearchField();
 		txtObjetRecherch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String search = e.getActionCommand();
-				ArrayList<EItem> results = EItem.searchBy(search);
-				if(results.size()>0) {
-					if(results.get(0).getGuiName().equals(search)) {
+				if (txtObjetRecherch.getItem() != null) {
+					recettes = Recette.getRecettes(txtObjetRecherch.getItem());
 
-						recettes = Recette.getRecettes(results.get(0));
-
-						reset();
-						afficheOnglet();
-
-					}
+					reset();
+					afficheOnglet();
 				}
 			}
 		});
@@ -133,6 +126,7 @@ public class FenPrincipale extends JFrame {
 		scrollPane.setBounds(10, 384, 626, 254);
 		getContentPane().add(scrollPane);
 
+		@SuppressWarnings("rawtypes")
 		JList listeSuggestion = new JList();
 		scrollPane.setViewportView(listeSuggestion);
 
@@ -277,6 +271,7 @@ public class FenPrincipale extends JFrame {
 		txtQuantite.setColumns(10);
 		txtQuantite.setBackground(new Color(139,139,139));
 
+		@SuppressWarnings("rawtypes")
 		JList listIngredient = new JList();
 		listIngredient.setBorder(null);
 		listIngredient.setBackground(new Color(139, 139, 139));
