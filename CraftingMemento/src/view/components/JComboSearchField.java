@@ -54,8 +54,11 @@ public class JComboSearchField extends JXSearchField {
 						if (searches.size() == 1) {
 							finalItem = searches.get(0);
 						}
-						JComboSearchField.this.item = finalItem;
-						JComboSearchField.this.setText(finalItem.getGuiName());
+						if (finalItem != null) {
+							JComboSearchField.this.item = finalItem;
+							JComboSearchField.this.setText(finalItem
+									.getGuiName());
+						}
 					}
 
 				}

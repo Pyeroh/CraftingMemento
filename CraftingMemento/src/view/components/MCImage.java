@@ -128,7 +128,8 @@ class MCPanel extends RoundedPanel {
 
 	private static final long serialVersionUID = -3879589255803613800L;
 
-	private static JLabel lib = new JLabel();
+	private static ShadowLabel lib = new ShadowLabel();
+	//private static JLabel lib = new JLabel();
 
 	private static MCPanel pan;
 
@@ -159,13 +160,14 @@ class MCPanel extends RoundedPanel {
 		lib.setHorizontalAlignment(SwingConstants.CENTER);
 		lib.setVerticalAlignment(SwingConstants.CENTER);
 		lib.setFont(MINECRAFTIA_FONT);
+		lib.setBackground(new Color(63, 63, 63));
 		lib.setForeground(Color.WHITE);
 
 	}
 
 	public void setLabelText(String text) {
 		FontMetrics fm = FontDesignMetrics.getMetrics(MINECRAFTIA_FONT);
-		pan.setSize(fm.stringWidth(text) + 15, (fm.getMaxAscent() + fm.getMaxDescent()) + 15);
+		pan.setSize(fm.stringWidth(text) + 17, (fm.getMaxAscent() + fm.getMaxDescent()) + 17);
 		lib.setText(text);
 	}
 
