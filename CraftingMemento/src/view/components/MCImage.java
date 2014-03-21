@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -167,7 +168,8 @@ class MCPanel extends RoundedPanel {
 
 	public void setLabelText(String text) {
 		FontMetrics fm = FontDesignMetrics.getMetrics(MINECRAFTIA_FONT);
-		pan.setSize(fm.stringWidth(text) + 17, (fm.getMaxAscent() + fm.getMaxDescent()) + 17);
+		Rectangle2D limit = fm.getStringBounds(text, pan.getGraphics());
+		pan.setSize((int)limit.getWidth() + 17, (int)limit.getHeight() + 17);
 		lib.setText(text);
 	}
 

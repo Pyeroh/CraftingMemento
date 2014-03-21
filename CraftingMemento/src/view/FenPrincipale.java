@@ -165,9 +165,10 @@ public class FenPrincipale extends JFrame {
 		ongletCraft.setLayout(null);
 
 		lblCraftNbItems = new ShadowLabel();
+		lblCraftNbItems.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblCraftNbItems.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCraftNbItems.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblCraftNbItems.setFont(new Font("Minecraftia", Font.PLAIN, 15));
+		lblCraftNbItems.setFont(new Font("Minecraftia", Font.PLAIN, 16));
 		lblCraftNbItems.setBackground(new Color(63, 63, 63));
 		lblCraftNbItems.setForeground(Color.white);
 		lblCraftNbItems.setBounds(461, 164, 42, 36);

@@ -2,16 +2,21 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import sun.font.FontDesignMetrics;
 import view.components.ShadowLabel;
 
 public class FenetreTest_XSwing extends JFrame {
@@ -58,6 +63,22 @@ public class FenetreTest_XSwing extends JFrame {
 		sliderY.setBounds(10, 179, 200, 23);
 		getContentPane().add(sliderY);
 
+		JPanel panel = new JPanel() {
+			private static final long serialVersionUID = -6383977616335383963L;
+
+			@Override
+			public void paint(Graphics g) {
+				super.paint(g);
+				g.setColor(Color.black);
+				FontMetrics fm = FontDesignMetrics.getMetrics(this.getFont());
+				Rectangle limit = fm.getStringBounds("String", g).getBounds();
+				g.drawString("String", 0, (int) limit.getHeight());
+			}
+		};
+		panel.setBounds(10, 11, 200, 123);
+		panel.setBorder(new LineBorder(Color.black, 1));
+		getContentPane().add(panel);
+
 		ShadowLabel lblTest = new ShadowLabel("Test");
 		lblTest.setBackground(new Color(63, 63, 63));
 		lblTest.setForeground(Color.white);
@@ -65,7 +86,6 @@ public class FenetreTest_XSwing extends JFrame {
 				20));
 		lblTest.setBounds(61, 42, 78, 49);
 		// getContentPane().add(lblTest);
-
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -77,9 +97,11 @@ public class FenetreTest_XSwing extends JFrame {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setPaint(Color.black);
-		Point p = new Point(getWidth() - getContentPane().getWidth(),
-				getHeight() - getContentPane().getHeight());
+		int largeur = (getWidth() - getContentPane().getWidth()) / 2;
+		int hauteur = getHeight() - getContentPane().getHeight() - largeur;
+		Point p = new Point(largeur, hauteur);
 		g2.drawString("String", sliderX.getValue() + p.x, sliderY.getValue()
 				+ p.y);
+		g2.fillRect(sliderX.getValue() + p.x, sliderY.getValue() + p.y, 3, 3);
 	}
 }

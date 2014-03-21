@@ -15,8 +15,8 @@ public class Launch {
 
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 
-		new FenPrincipale();
-		//new FenetreTest_XSwing();
+		//new FenPrincipale();
+		new FenetreTest_XSwing();
 
 	}
 
