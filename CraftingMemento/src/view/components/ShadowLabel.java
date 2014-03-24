@@ -95,6 +95,7 @@ public class ShadowLabel extends JLabel {
 				textLayout.draw(g1, x, y);
 			}
 		}
+		else super.paint(g);
 
 	}
 

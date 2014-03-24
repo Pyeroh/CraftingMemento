@@ -1,16 +1,32 @@
 package view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Insets;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import model.enums.*;
-import view.components.*;
+import model.enums.EItem;
+import model.enums.ERecetteType;
+import model.enums.Recette;
+import view.components.JComboSearchField;
+import view.components.MCImage;
+import view.components.ShadowLabel;
 import view.event.SearchedItemChangeListener;
 
 public class FenPrincipale extends JFrame {
@@ -56,8 +72,12 @@ public class FenPrincipale extends JFrame {
 	private JFormattedTextField txtQuantite = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
-	private MCImage lblImageObjet = new MCImage((JPanel) null);
+	private MCImage caseCalcul = new MCImage(ongletCalcul);
 	private ShadowLabel lblCraftNbItems;
+	private JLabel lblFourneau;
+	private JLabel lblAlambic;
+	private JLabel lblCalculateur;
+	private final JLabel lblQte = new JLabel("qt\u00E9");
 
 	public FenPrincipale() {
 
@@ -148,6 +168,13 @@ public class FenPrincipale extends JFrame {
 
 		ongletCraft.setLayout(null);
 
+		JLabel lblFabrication = new JLabel("Fabrication");
+		lblFabrication.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFabrication.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+		lblFabrication.setForeground(new Color(86, 86, 86));
+		lblFabrication.setBounds(118, 38, 189, 27);
+		ongletCraft.add(lblFabrication);
+
 		lblCraftNbItems = new ShadowLabel();
 		lblCraftNbItems.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCraftNbItems.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -189,6 +216,13 @@ public class FenPrincipale extends JFrame {
 
 		ongletFour.setLayout(null);
 
+		lblFourneau = new JLabel("Fourneau");
+		lblFourneau.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFourneau.setForeground(new Color(86, 86, 86));
+		lblFourneau.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+		lblFourneau.setBounds(237, 37, 162, 27);
+		ongletFour.add(lblFourneau);
+
 		ongletFour.add(caseFour1);
 		ongletFour.add(caseFourResultat);
 		ongletFour.add(lblFondFour);
@@ -225,6 +259,14 @@ public class FenPrincipale extends JFrame {
 		caseAlambic3.setBounds(365, 177, 56, 56);
 		caseAlambic3.setBorder(null);
 
+		lblAlambic = new JLabel("Alambic");
+		lblAlambic.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlambic.setForeground(new Color(86, 86, 86));
+		lblAlambic.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+		lblAlambic.setBounds(262, 36, 117, 27);
+
+		ongletPotion.add(lblAlambic);
+
 		ongletPotion.add(caseIngredientAlambic);
 		ongletPotion.add(caseAlambic1);
 		ongletPotion.add(caseAlambic2);
@@ -241,12 +283,25 @@ public class FenPrincipale extends JFrame {
 		// onglet Calcul
 
 		onglet.addTab("Calcul", ongletCalcul);
+
+		lblCalculateur = new JLabel("Calculateur");
+		lblCalculateur.setBounds(119, 38, 194, 27);
+		ongletCalcul.add(lblCalculateur);
+		lblCalculateur.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCalculateur.setForeground(new Color(86, 86, 86));
+		lblCalculateur.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+		lblQte.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQte.setForeground(new Color(86, 86, 86));
+		lblQte.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+		lblQte.setBounds(85, 97, 54, 36);
+
+		ongletCalcul.add(lblQte);
 		txtQuantite.setBorder(null);
 		ongletCalcul.add(txtQuantite);
 		ongletCalcul.setLayout(null);
 		scrollPane_NbIngredient.setBorder(null);
 		ongletCalcul.add(scrollPane_NbIngredient);
-		ongletCalcul.add(lblImageObjet);
+		ongletCalcul.add(caseCalcul);
 
 		txtQuantite.setBounds(165, 111, 75, 18);
 		txtQuantite.setColumns(10);
@@ -260,8 +315,8 @@ public class FenPrincipale extends JFrame {
 		scrollPane_NbIngredient.setBounds(325, 85, 260, 170);
 		scrollPane_NbIngredient.setViewportView(listIngredient);
 
-		lblImageObjet.setVerticalAlignment(SwingConstants.TOP);
-		lblImageObjet.setBounds(98, 177, 70, 70);
+		caseCalcul.setVerticalAlignment(SwingConstants.TOP);
+		caseCalcul.setBounds(98, 177, 70, 70);
 		ongletCalcul.add(lblFondCalcul);
 
 		lblFondCalcul.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -290,7 +345,7 @@ public class FenPrincipale extends JFrame {
 		caseCraft8.setIcon(null);
 		caseCraft9.setIcon(null);
 		caseCraftResultat.setIcon(null);
-		lblCraftNbItems.setIcon(null);
+		lblCraftNbItems.setText(null);
 
 		caseFour1.setIcon(null);
 		caseFourResultat.setIcon(null);
@@ -320,7 +375,11 @@ public class FenPrincipale extends JFrame {
 			if (index != -1)
 				potion(index);
 			break;
+		case 3:
+			calculateur();
+			break;
 		default:
+			System.out.println("Onglet rajouté et non-géré !");
 			break;
 		}
 	}
@@ -404,5 +463,6 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void calculateur() {
+		caseCalcul.setItem(txtObjetRecherch.getItem());
 	}
 }
