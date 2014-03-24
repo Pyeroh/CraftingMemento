@@ -2,8 +2,12 @@ package view.components;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.font.TextLayout;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import sun.font.FontDesignMetrics;
 
@@ -40,24 +44,57 @@ public class ShadowLabel extends JLabel {
 	}
 
 	public void paint(Graphics g) {
-		super.paint(g);
-		FontMetrics fm = FontDesignMetrics.getMetrics(getFont());
+		if (getBorder() != null) {
+			getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
+		}
 
-		/*int x = 2;
-		int y = fm.getMaxAscent() + fm.getMaxDescent() + 2;
+		FontMetrics fm = FontDesignMetrics.getMetrics(getFont());
 
 		if (getText() != null) {
 			if (!getText().isEmpty()) {
+
+				Rectangle r = fm.getStringBounds(getText(), g).getBounds();
+				int x = 0;
+				int y = 0;
+
+				switch (getHorizontalAlignment()) {
+				case SwingConstants.LEADING:
+				case SwingConstants.LEFT:
+					x = 0;
+					break;
+				case SwingConstants.CENTER:
+					x = (getWidth() - r.width - decalage) / 2;
+					break;
+				case SwingConstants.RIGHT:
+				case SwingConstants.TRAILING:
+					x = getWidth() - r.width - decalage;
+				default:
+					break;
+				}
+
+				y = getFont().getSize();
+				switch (getVerticalAlignment()) {
+				case SwingConstants.TOP:
+					break;
+				case SwingConstants.CENTER:
+					y = ((getHeight() - y - decalage) / 2) + y;
+					break;
+				case SwingConstants.BOTTOM:
+					y = getHeight() - decalage;
+					break;
+				default:
+					break;
+				}
 
 				Graphics2D g1 = (Graphics2D) g;
 				TextLayout textLayout = new TextLayout(getText(), getFont(),
 						g1.getFontRenderContext());
 				g1.setPaint(getBackground());
-				textLayout.draw(g1, x + 2, y + 2);
+				textLayout.draw(g1, x + decalage, y + decalage);
 				g1.setPaint(getForeground());
 				textLayout.draw(g1, x, y);
 			}
-		}*/
+		}
 
 	}
 

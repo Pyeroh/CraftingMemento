@@ -20,6 +20,7 @@ import model.enums.EItem;
 import org.jdesktop.swingx.JXSearchField;
 
 import sun.font.FontDesignMetrics;
+import view.event.SearchedItemChangeListener;
 
 public class JComboSearchField extends JXSearchField {
 
@@ -39,26 +40,31 @@ public class JComboSearchField extends JXSearchField {
 			public void actionPerformed(ActionEvent e) {
 				if (!e.getActionCommand().equals("")) {
 
-					ArrayList<EItem> searches = EItem.searchBy(e
-							.getActionCommand());
-					EItem item = EItem.strictSearchBy(e.getActionCommand());
-
-					if (item == null && searches.size() > 1) {
-						list = new JDropDownList(JComboSearchField.this,
-								searches);
+					EItem finalItem = EItem.strictSearchBy(
+							e.getActionCommand(), true);
+					if (finalItem == null) {
+						ArrayList<EItem> searches = EItem.searchBy(e
+								.getActionCommand());
+						EItem item = EItem.strictSearchBy(e.getActionCommand(),
+								false);
+						if (item == null && searches.size() > 1) {
+							list = new JDropDownList(JComboSearchField.this,
+									searches);
+						} else {
+							if (item != null) {
+								finalItem = item;
+							}
+							if (searches.size() == 1) {
+								finalItem = searches.get(0);
+							}
+							if (finalItem != null) {
+								JComboSearchField.this.setItem(finalItem);
+								JComboSearchField.this.setText(finalItem
+										.getGuiName());
+							}
+						}
 					} else {
-						EItem finalItem = null;
-						if (item != null) {
-							finalItem = item;
-						}
-						if (searches.size() == 1) {
-							finalItem = searches.get(0);
-						}
-						if (finalItem != null) {
-							JComboSearchField.this.item = finalItem;
-							JComboSearchField.this.setText(finalItem
-									.getGuiName());
-						}
+						JComboSearchField.this.setItem(finalItem);
 					}
 
 				}
@@ -68,6 +74,29 @@ public class JComboSearchField extends JXSearchField {
 
 	public EItem getItem() {
 		return item;
+	}
+
+	private void setItem(EItem item) {
+		this.item = item;
+		fireSearchedItemChanged(item);
+	}
+
+	public void addSearchedItemChangeListener(SearchedItemChangeListener listener) {
+		listenerList.add(SearchedItemChangeListener.class, listener);
+	}
+
+	public void removeSearchedItemChangeListener(SearchedItemChangeListener listener) {
+		listenerList.remove(SearchedItemChangeListener.class, listener);
+	}
+
+	public SearchedItemChangeListener[] getSearchedItemChangeListeners() {
+		return listenerList.getListeners(SearchedItemChangeListener.class);
+	}
+
+	protected void fireSearchedItemChanged(EItem item) {
+		for (SearchedItemChangeListener listener : getSearchedItemChangeListeners()) {
+			listener.searchedItemChanged(item);
+		}
 	}
 
 }

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
@@ -29,6 +27,7 @@ import model.enums.Recette;
 import view.components.JComboSearchField;
 import view.components.MCImage;
 import view.components.ShadowLabel;
+import view.event.SearchedItemChangeListener;
 
 public class FenPrincipale extends JFrame {
 
@@ -97,14 +96,15 @@ public class FenPrincipale extends JFrame {
 		getContentPane().add(labelRecherche);
 
 		txtObjetRecherch = new JComboSearchField();
-		txtObjetRecherch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (txtObjetRecherch.getItem() != null) {
-					recettes = Recette.getRecettes(txtObjetRecherch.getItem());
+		txtObjetRecherch.addSearchedItemChangeListener(new SearchedItemChangeListener() {
 
-					reset();
-					afficheOnglet();
-				}
+			@Override
+			public void searchedItemChanged(EItem item) {
+				recettes = Recette.getRecettes(item);
+
+				reset();
+				afficheOnglet();
+
 			}
 		});
 		txtObjetRecherch.setPrompt("Objet recherché...");
@@ -165,7 +165,6 @@ public class FenPrincipale extends JFrame {
 		ongletCraft.setLayout(null);
 
 		lblCraftNbItems = new ShadowLabel();
-		lblCraftNbItems.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblCraftNbItems.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCraftNbItems.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblCraftNbItems.setFont(new Font("Minecraftia", Font.PLAIN, 16));
@@ -308,6 +307,7 @@ public class FenPrincipale extends JFrame {
 		caseCraft8.setIcon(null);
 		caseCraft9.setIcon(null);
 		caseCraftResultat.setIcon(null);
+		lblCraftNbItems.setIcon(null);
 
 		caseFour1.setIcon(null);
 		caseFourResultat.setIcon(null);

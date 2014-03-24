@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,7 +16,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import sun.font.FontDesignMetrics;
-import view.components.ShadowLabel;
 
 public class FenetreTest_XSwing extends JFrame {
 
@@ -79,14 +77,6 @@ public class FenetreTest_XSwing extends JFrame {
 		panel.setBorder(new LineBorder(Color.black, 1));
 		getContentPane().add(panel);
 
-		ShadowLabel lblTest = new ShadowLabel("Test");
-		lblTest.setBackground(new Color(63, 63, 63));
-		lblTest.setForeground(Color.white);
-		lblTest.setFont(new Font("Minecraftia", lblTest.getFont().getStyle(),
-				20));
-		lblTest.setBounds(61, 42, 78, 49);
-		// getContentPane().add(lblTest);
-
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		setLocationRelativeTo(null);
@@ -95,13 +85,16 @@ public class FenetreTest_XSwing extends JFrame {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setPaint(Color.black);
-		int largeur = (getWidth() - getContentPane().getWidth()) / 2;
-		int hauteur = getHeight() - getContentPane().getHeight() - largeur;
-		Point p = new Point(largeur, hauteur);
-		g2.drawString("String", sliderX.getValue() + p.x, sliderY.getValue()
-				+ p.y);
-		g2.fillRect(sliderX.getValue() + p.x, sliderY.getValue() + p.y, 3, 3);
+		if (sliderX != null && sliderY != null) {
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setPaint(Color.black);
+			int largeur = (getWidth() - getContentPane().getWidth()) / 2;
+			int hauteur = getHeight() - getContentPane().getHeight() - largeur;
+			Point p = new Point(largeur, hauteur);
+			g2.drawString("String", sliderX.getValue() + p.x,
+					sliderY.getValue() + p.y);
+			g2.fillRect(sliderX.getValue() + p.x, sliderY.getValue() + p.y, 3,
+					3);
+		}
 	}
 }
