@@ -1,32 +1,16 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
+import java.awt.*;
 import java.lang.reflect.Field;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import model.enums.EItem;
-import model.enums.ERecetteType;
-import model.enums.Recette;
-import view.components.JComboSearchField;
-import view.components.MCImage;
-import view.components.ShadowLabel;
+import model.enums.*;
+import view.components.*;
 import view.event.SearchedItemChangeListener;
 
 public class FenPrincipale extends JFrame {
@@ -69,10 +53,10 @@ public class FenPrincipale extends JFrame {
 	private MCImage caseAlambic2 = new MCImage(ongletPotion);
 	private MCImage caseAlambic3 = new MCImage(ongletPotion);
 	private MCImage caseIngredientAlambic = new MCImage(ongletPotion);
-	private JTextField txtQuantite = new JTextField();
+	private JFormattedTextField txtQuantite = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
-	private JLabel lblImageObjet = new JLabel("image");
+	private MCImage lblImageObjet = new MCImage((JPanel) null);
 	private ShadowLabel lblCraftNbItems;
 
 	public FenPrincipale() {
@@ -90,7 +74,7 @@ public class FenPrincipale extends JFrame {
 			}
 		});
 		getContentPane().add(onglet);
-		onglet.setBounds(10, 32, 626, 345);
+		onglet.setBounds(0, 32, 649, 345);
 
 		labelRecherche.setBounds(10, 9, 257, 22);
 		getContentPane().add(labelRecherche);
@@ -264,7 +248,7 @@ public class FenPrincipale extends JFrame {
 		ongletCalcul.add(scrollPane_NbIngredient);
 		ongletCalcul.add(lblImageObjet);
 
-		txtQuantite.setBounds(162, 107, 80, 25);
+		txtQuantite.setBounds(165, 111, 75, 18);
 		txtQuantite.setColumns(10);
 		txtQuantite.setBackground(new Color(139, 139, 139));
 
@@ -278,7 +262,6 @@ public class FenPrincipale extends JFrame {
 
 		lblImageObjet.setVerticalAlignment(SwingConstants.TOP);
 		lblImageObjet.setBounds(98, 177, 70, 70);
-		lblImageObjet.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ongletCalcul.add(lblFondCalcul);
 
 		lblFondCalcul.setVerticalAlignment(SwingConstants.BOTTOM);
