@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -78,6 +81,7 @@ public class FenPrincipale extends JFrame {
 	private JLabel lblAlambic;
 	private JLabel lblCalculateur;
 	private final JLabel lblQte = new JLabel("qt\u00E9");
+	private JButton btnCraftAvant;
 
 	public FenPrincipale() {
 
@@ -168,6 +172,11 @@ public class FenPrincipale extends JFrame {
 
 		ongletCraft.setLayout(null);
 
+		btnCraftAvant = new JButton("<");
+		btnCraftAvant.setFont(new Font("Minecraftia", Font.PLAIN, 12));
+		btnCraftAvant.setBounds(83, 36, 32, 32);
+		ongletCraft.add(btnCraftAvant);
+
 		JLabel lblFabrication = new JLabel("Fabrication");
 		lblFabrication.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFabrication.setFont(new Font("Minecraftia", Font.PLAIN, 27));
@@ -196,11 +205,7 @@ public class FenPrincipale extends JFrame {
 		ongletCraft.add(caseCraftResultat);
 		ongletCraft.add(lblFondGrille);
 
-		Image imgCraft = new ImageIcon(
-				FenPrincipale.class
-						.getResource("/gui/tablecraft-minecraft.png"))
-				.getImage().getScaledInstance(lblFondGrille.getWidth(),
-						lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
+		Image imgCraft = new ImageIcon(FenPrincipale.class.getResource("/gui/tablecraft-minecraft.png")).getImage().getScaledInstance(lblFondGrille.getWidth(),lblFondGrille.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondGrille.setIcon(new ImageIcon(imgCraft));
 
 		// onglet Four
@@ -294,6 +299,18 @@ public class FenPrincipale extends JFrame {
 		lblQte.setForeground(new Color(86, 86, 86));
 		lblQte.setFont(new Font("Minecraftia", Font.PLAIN, 27));
 		lblQte.setBounds(85, 97, 54, 36);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				System.out.println("Activée");
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				System.out.println("Désactivée");
+			}
+		});
 
 		ongletCalcul.add(lblQte);
 		txtQuantite.setBorder(null);
