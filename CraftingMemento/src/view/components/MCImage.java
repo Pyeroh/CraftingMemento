@@ -31,9 +31,6 @@ public class MCImage extends JLabel {
 	private EItem item = EItem.air;
 	private JPanel container;
 
-	/**
-	 * @see JLabel#JLabel()
-	 */
 	public MCImage(JPanel container) {
 		super();
 		this.container = container;		init();
@@ -130,7 +127,6 @@ class MCPanel extends RoundedPanel {
 	private static final long serialVersionUID = -3879589255803613800L;
 
 	private static ShadowLabel lib = new ShadowLabel();
-	//private static JLabel lib = new JLabel();
 
 	private static MCPanel pan;
 

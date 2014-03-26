@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -47,6 +47,7 @@ public class FenPrincipale extends JFrame {
 	private JComboSearchField txtObjetRecherch;
 
 	// initialisation des éléments dans l'onglet "Craft"
+	private JLabel lblFabrication;
 	private JLabel labelRecherche = new JLabel(
 			"Veuillez saisir le nom de l'objet recherché.");
 	private JLabel lblFondGrille = new JLabel();
@@ -60,28 +61,33 @@ public class FenPrincipale extends JFrame {
 	private MCImage caseCraft8 = new MCImage(ongletCraft);
 	private MCImage caseCraft9 = new MCImage(ongletCraft);
 	private MCImage caseCraftResultat = new MCImage(ongletCraft);
+	private ShadowLabel lblCraftNbItems;
+	private JButton btnCraftAvant;
+	private JButton btnCraftApres;
 
 	// initialisation des éléments dans l'onglet "Four"
+	private JLabel lblFourneau;
 	private JLabel lblFondFour = new JLabel();
 	private MCImage caseFour1 = new MCImage(ongletFour);
 	private MCImage caseFourResultat = new MCImage(ongletFour);
 
 	// initialisation des éléments dans l'onglet "Potion"
+	private JLabel lblAlambic;
 	private JLabel labelFondAlambic = new JLabel();
 	private MCImage caseAlambic1 = new MCImage(ongletPotion);
 	private MCImage caseAlambic2 = new MCImage(ongletPotion);
 	private MCImage caseAlambic3 = new MCImage(ongletPotion);
 	private MCImage caseIngredientAlambic = new MCImage(ongletPotion);
+
+	// initialisation des éléments dans l'onglet "Calcul"
+	private JLabel lblCalculateur;
+	private JLabel lblQte = new JLabel("qt\u00E9");
 	private JFormattedTextField txtQuantite = new JFormattedTextField(NumberFormat.getIntegerInstance());
 	private JScrollPane scrollPane_NbIngredient = new JScrollPane();
 	private JLabel lblFondCalcul = new JLabel();
 	private MCImage caseCalcul = new MCImage(ongletCalcul);
-	private ShadowLabel lblCraftNbItems;
-	private JLabel lblFourneau;
-	private JLabel lblAlambic;
-	private JLabel lblCalculateur;
-	private final JLabel lblQte = new JLabel("qt\u00E9");
-	private JButton btnCraftAvant;
+
+	private int[] indices = new int[3];
 
 	public FenPrincipale() {
 
@@ -90,6 +96,20 @@ public class FenPrincipale extends JFrame {
 		setSize(665, 682);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+
+		MouseAdapter switchListener = new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				JButton btn = (JButton) e.getSource();
+				if (btn == btnCraftAvant || btn == btnCraftApres) {
+					//ArrayList<Recette> crafts = Recette.getFromListByType(ERecetteType.craft, recettes);
+					if (btn == btnCraftAvant) {
+
+					}
+				}
+			}
+		};
+
 		onglet.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (isVisible()) {
@@ -130,7 +150,6 @@ public class FenPrincipale extends JFrame {
 		scrollPane.setBounds(10, 384, 626, 254);
 		getContentPane().add(scrollPane);
 
-		@SuppressWarnings("rawtypes")
 		JList listeSuggestion = new JList();
 		scrollPane.setViewportView(listeSuggestion);
 
@@ -172,12 +191,23 @@ public class FenPrincipale extends JFrame {
 
 		ongletCraft.setLayout(null);
 
-		btnCraftAvant = new JButton("<");
+		btnCraftAvant = new JButton();
+		btnCraftAvant.setBorder(null);
+		btnCraftAvant.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant.png")));
+		btnCraftAvant.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant_push.png")));
 		btnCraftAvant.setFont(new Font("Minecraftia", Font.PLAIN, 12));
-		btnCraftAvant.setBounds(83, 36, 32, 32);
+		btnCraftAvant.setBounds(74, 38, 32, 32);
 		ongletCraft.add(btnCraftAvant);
 
-		JLabel lblFabrication = new JLabel("Fabrication");
+		btnCraftApres = new JButton();
+		btnCraftApres.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres.png")));
+		btnCraftApres.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres_push.png")));
+		btnCraftApres.setFont(new Font("Minecraftia", Font.PLAIN, 12));
+		btnCraftApres.setBorder(null);
+		btnCraftApres.setBounds(319, 38, 32, 32);
+		ongletCraft.add(btnCraftApres);
+
+		lblFabrication = new JLabel("Fabrication");
 		lblFabrication.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFabrication.setFont(new Font("Minecraftia", Font.PLAIN, 27));
 		lblFabrication.setForeground(new Color(86, 86, 86));
@@ -237,8 +267,8 @@ public class FenPrincipale extends JFrame {
 
 		Image imgFour = new ImageIcon(
 				FenPrincipale.class.getResource("/gui/four-minecraft.png"))
-				.getImage().getScaledInstance(lblFondFour.getWidth(),
-						lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
+		.getImage().getScaledInstance(lblFondFour.getWidth(),
+				lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondFour.setIcon(new ImageIcon(imgFour));
 
 		// onglet Potion
@@ -280,9 +310,9 @@ public class FenPrincipale extends JFrame {
 
 		Image imgAlambic = new ImageIcon(
 				FenPrincipale.class.getResource("/gui/alambic-minecraft.png"))
-				.getImage().getScaledInstance(labelFondAlambic.getWidth(),
-						labelFondAlambic.getHeight(),
-						Image.SCALE_AREA_AVERAGING);
+		.getImage().getScaledInstance(labelFondAlambic.getWidth(),
+				labelFondAlambic.getHeight(),
+				Image.SCALE_AREA_AVERAGING);
 		labelFondAlambic.setIcon(new ImageIcon(imgAlambic));
 
 		// onglet Calcul
@@ -300,18 +330,6 @@ public class FenPrincipale extends JFrame {
 		lblQte.setFont(new Font("Minecraftia", Font.PLAIN, 27));
 		lblQte.setBounds(85, 97, 54, 36);
 
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowActivated(WindowEvent e) {
-				System.out.println("Activée");
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				System.out.println("Désactivée");
-			}
-		});
-
 		ongletCalcul.add(lblQte);
 		txtQuantite.setBorder(null);
 		ongletCalcul.add(txtQuantite);
@@ -324,7 +342,6 @@ public class FenPrincipale extends JFrame {
 		txtQuantite.setColumns(10);
 		txtQuantite.setBackground(new Color(139, 139, 139));
 
-		@SuppressWarnings("rawtypes")
 		JList listIngredient = new JList();
 		listIngredient.setBorder(null);
 		listIngredient.setBackground(new Color(139, 139, 139));
@@ -341,9 +358,9 @@ public class FenPrincipale extends JFrame {
 
 		Image imgCalcul = new ImageIcon(
 				FenPrincipale.class
-						.getResource("/gui/calculateur-minecraft.png"))
-				.getImage().getScaledInstance(lblFondCalcul.getWidth(),
-						lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
+				.getResource("/gui/calculateur-minecraft.png"))
+		.getImage().getScaledInstance(lblFondCalcul.getWidth(),
+				lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
 
 		listeSuggestion.requestFocus();
@@ -372,6 +389,8 @@ public class FenPrincipale extends JFrame {
 		caseAlambic3.setIcon(null);
 
 		caseIngredientAlambic.setIcon(null);
+
+		indices = new int[3];
 	}
 
 	public void afficheOnglet() {
@@ -379,18 +398,15 @@ public class FenPrincipale extends JFrame {
 		switch (onglet.getSelectedIndex()) {
 		case 0:
 			index = Recette.getFirst(ERecetteType.craft, recettes);
-			if (index != -1)
-				craft(index);
+			craft(index);
 			break;
 		case 1:
 			index = Recette.getFirst(ERecetteType.four, recettes);
-			if (index != -1)
-				four(index);
+			four(index);
 			break;
 		case 2:
 			index = Recette.getFirst(ERecetteType.alambic, recettes);
-			if (index != -1)
-				potion(index);
+			potion(index);
 			break;
 		case 3:
 			calculateur();
@@ -402,6 +418,10 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void craft(int index) {
+
+		if (index == -1) return;
+		indices[0] = index;
+
 		Recette r = recettes.get(index);
 
 		switch (r.getForme()) {
@@ -460,6 +480,10 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void four(int index) {
+
+		if (index == -1) return;
+		indices[1] = index;
+
 		Recette r = recettes.get(index);
 
 		caseFour1.setItem(r.getIngredients().get(0));
@@ -467,6 +491,10 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void potion(int index) {
+
+		if (index == -1) return;
+		indices[2] = index;
+
 		Recette r = recettes.get(index);
 
 		EItem result = r.getItem().getItem();
