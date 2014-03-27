@@ -79,6 +79,7 @@ public class MCImage extends JLabel {
 			Image img = this.item.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_AREA_AVERAGING);
 			setIcon(new ImageIcon(img));
 		}
+		else setIcon(null);
 	}
 
 	private void init() {

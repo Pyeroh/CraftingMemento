@@ -87,7 +87,11 @@ public class FenPrincipale extends JFrame {
 	private JLabel lblFondCalcul = new JLabel();
 	private MCImage caseCalcul = new MCImage(ongletCalcul);
 
-	private int[] indices = new int[3];
+	private int[] indices = {-1, -1, -1};
+	private JButton btnFourAvant;
+	private JButton btnFourApres;
+	private JButton btnPotionAvant;
+	private JButton btnPotionApres;
 
 	public FenPrincipale() {
 
@@ -101,11 +105,23 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				JButton btn = (JButton) e.getSource();
-				if (btn == btnCraftAvant || btn == btnCraftApres) {
-					//ArrayList<Recette> crafts = Recette.getFromListByType(ERecetteType.craft, recettes);
-					if (btn == btnCraftAvant) {
-
-					}
+				if (btn == btnCraftAvant) {
+					craft(Recette.getPrevious(indices[0], recettes));
+				}
+				if (btn == btnCraftApres) {
+					craft(Recette.getNext(indices[0], recettes));
+				}
+				if (btn == btnFourAvant) {
+					four(Recette.getPrevious(indices[1], recettes));
+				}
+				if (btn == btnFourApres) {
+					four(Recette.getNext(indices[1], recettes));
+				}
+				if (btn == btnPotionAvant) {
+					potion(Recette.getPrevious(indices[2], recettes));
+				}
+				if (btn == btnPotionApres) {
+					potion(Recette.getNext(indices[2], recettes));
 				}
 			}
 		};
@@ -192,19 +208,21 @@ public class FenPrincipale extends JFrame {
 		ongletCraft.setLayout(null);
 
 		btnCraftAvant = new JButton();
+		btnCraftAvant.setVisible(false);
 		btnCraftAvant.setBorder(null);
 		btnCraftAvant.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant.png")));
 		btnCraftAvant.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant_push.png")));
-		btnCraftAvant.setFont(new Font("Minecraftia", Font.PLAIN, 12));
 		btnCraftAvant.setBounds(74, 38, 32, 32);
+		btnCraftAvant.addMouseListener(switchListener);
 		ongletCraft.add(btnCraftAvant);
 
 		btnCraftApres = new JButton();
+		btnCraftApres.setVisible(false);
 		btnCraftApres.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres.png")));
 		btnCraftApres.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres_push.png")));
-		btnCraftApres.setFont(new Font("Minecraftia", Font.PLAIN, 12));
 		btnCraftApres.setBorder(null);
 		btnCraftApres.setBounds(319, 38, 32, 32);
+		btnCraftApres.addMouseListener(switchListener);
 		ongletCraft.add(btnCraftApres);
 
 		lblFabrication = new JLabel("Fabrication");
@@ -251,6 +269,24 @@ public class FenPrincipale extends JFrame {
 
 		ongletFour.setLayout(null);
 
+		btnFourAvant = new JButton();
+		btnFourAvant.setVisible(false);
+		btnFourAvant.setBorder(null);
+		btnFourAvant.setBounds(177, 37, 32, 32);
+		btnFourAvant.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant.png")));
+		btnFourAvant.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant_push.png")));
+		btnFourAvant.addMouseListener(switchListener);
+		ongletFour.add(btnFourAvant);
+
+		btnFourApres = new JButton();
+		btnFourApres.setVisible(false);
+		btnFourApres.setBorder(null);
+		btnFourApres.setBounds(422, 37, 32, 32);
+		btnFourApres.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres.png")));
+		btnFourApres.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres_push.png")));
+		btnFourApres.addMouseListener(switchListener);
+		ongletFour.add(btnFourApres);
+
 		lblFourneau = new JLabel("Fourneau");
 		lblFourneau.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFourneau.setForeground(new Color(86, 86, 86));
@@ -293,6 +329,24 @@ public class FenPrincipale extends JFrame {
 		caseAlambic3.setVerticalAlignment(SwingConstants.TOP);
 		caseAlambic3.setBounds(365, 177, 56, 56);
 		caseAlambic3.setBorder(null);
+
+		btnPotionAvant = new JButton();
+		btnPotionAvant.setVisible(false);
+		btnPotionAvant.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant.png")));
+		btnPotionAvant.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant_push.png")));
+		btnPotionAvant.setBorder(null);
+		btnPotionAvant.setBounds(197, 36, 32, 32);
+		btnPotionAvant.addMouseListener(switchListener);
+		ongletPotion.add(btnPotionAvant);
+
+		btnPotionApres = new JButton();
+		btnPotionApres.setVisible(false);
+		btnPotionApres.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres.png")));
+		btnPotionApres.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres_push.png")));
+		btnPotionApres.setBorder(null);
+		btnPotionApres.setBounds(405, 36, 32, 32);
+		btnPotionApres.addMouseListener(switchListener);
+		ongletPotion.add(btnPotionApres);
 
 		lblAlambic = new JLabel("Alambic");
 		lblAlambic.setHorizontalAlignment(SwingConstants.CENTER);
@@ -369,43 +423,67 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void reset() {
-		caseCraft1.setIcon(null);
-		caseCraft2.setIcon(null);
-		caseCraft3.setIcon(null);
-		caseCraft4.setIcon(null);
-		caseCraft5.setIcon(null);
-		caseCraft6.setIcon(null);
-		caseCraft7.setIcon(null);
-		caseCraft8.setIcon(null);
-		caseCraft9.setIcon(null);
-		caseCraftResultat.setIcon(null);
+		resetCraft();
+
+		resetFour();
+
+		resetPotion();
+
+		indices[0] = -1;
+		indices[1] = -1;
+		indices[2] = -1;
+	}
+
+	private void resetCraft() {
+		caseCraft1.setItem(EItem.air);
+		caseCraft2.setItem(EItem.air);
+		caseCraft3.setItem(EItem.air);
+		caseCraft4.setItem(EItem.air);
+		caseCraft5.setItem(EItem.air);
+		caseCraft6.setItem(EItem.air);
+		caseCraft7.setItem(EItem.air);
+		caseCraft8.setItem(EItem.air);
+		caseCraft9.setItem(EItem.air);
+		caseCraftResultat.setItem(EItem.air);
 		lblCraftNbItems.setText(null);
+	}
 
-		caseFour1.setIcon(null);
-		caseFourResultat.setIcon(null);
+	private void resetFour() {
+		caseFour1.setItem(EItem.air);
+		caseFourResultat.setItem(EItem.air);
+	}
 
-		caseAlambic1.setIcon(null);
-		caseAlambic2.setIcon(null);
-		caseAlambic3.setIcon(null);
-
-		caseIngredientAlambic.setIcon(null);
-
-		indices = new int[3];
+	private void resetPotion() {
+		caseAlambic1.setItem(EItem.air);
+		caseAlambic2.setItem(EItem.air);
+		caseAlambic3.setItem(EItem.air);
+		caseIngredientAlambic.setItem(EItem.air);
 	}
 
 	public void afficheOnglet() {
+		if (recettes == null) return;
+
 		int index;
 		switch (onglet.getSelectedIndex()) {
 		case 0:
 			index = Recette.getFirst(ERecetteType.craft, recettes);
+			boolean autre = Recette.getNext(index, recettes) != index;
+			btnCraftAvant.setVisible(autre);
+			btnCraftApres.setVisible(autre);
 			craft(index);
 			break;
 		case 1:
 			index = Recette.getFirst(ERecetteType.four, recettes);
+			autre = Recette.getNext(index, recettes) != index;
+			btnFourAvant.setVisible(autre);
+			btnFourApres.setVisible(autre);
 			four(index);
 			break;
 		case 2:
 			index = Recette.getFirst(ERecetteType.alambic, recettes);
+			autre = Recette.getNext(index, recettes) != index;
+			btnPotionAvant.setVisible(autre);
+			btnPotionApres.setVisible(autre);
 			potion(index);
 			break;
 		case 3:
@@ -418,6 +496,8 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void craft(int index) {
+
+		resetCraft();
 
 		if (index == -1) return;
 		indices[0] = index;
@@ -438,8 +518,7 @@ public class FenPrincipale extends JFrame {
 						f.setAccessible(true);
 						MCImage l = (MCImage) f.get(this);
 						f.setAccessible(access);
-						if (r.getRecette()[i][j] != EItem.air)
-							l.setItem(r.getRecette()[i][j]);
+						l.setItem(r.getRecette()[i][j]);
 
 					}
 				}
@@ -481,6 +560,8 @@ public class FenPrincipale extends JFrame {
 
 	public void four(int index) {
 
+		resetFour();
+
 		if (index == -1) return;
 		indices[1] = index;
 
@@ -491,6 +572,8 @@ public class FenPrincipale extends JFrame {
 	}
 
 	public void potion(int index) {
+
+		resetPotion();
 
 		if (index == -1) return;
 		indices[2] = index;
