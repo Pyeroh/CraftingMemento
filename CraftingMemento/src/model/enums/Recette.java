@@ -21,20 +21,20 @@ public enum Recette {
 	 * LES RECETTES AU FOUR
 	 */
 
-	roche(1, 0, "stone", cobblestone),
-	verre(20, 0, "glass", sand),
-	verre2(20, 0, "glass", redsand),
-	terre_cuite(172, 0, "hardened_clay",clay),
-	charbon_cuit(263, 0, "coal", coal_ore),
-	charbon_bois(263, 1, "coal", oak_log),
-	charbon_bois2(263, 1, "coal",spruce_log),
-	charbon_bois3(263, 1, "coal", birch_log),
-	charbon_bois4(263, 1, "coal", jungle_log),
-	charbon_bois5(263, 1, "coal",acacia_log),
-	charbon_bois6(263, 1, "coal", darkoak_log),
-	diamant(264, 0, "diamond", diamond_ore),
-	fer(265, 0, "iron_ingot",iron_ore),
-	or(266, 0, "gold_ingot", gold_ore),
+	roche(stone, cobblestone),
+	verre(glass, sand),
+	verre2(glass, redsand),
+	terre_cuite(hardened_clay,clay),
+	charbon_cuit(coal, coal_ore),
+	charbon_bois(coal, oak_log),
+	charbon_bois2(coal,spruce_log),
+	charbon_bois3(coal, birch_log),
+	charbon_bois4(coal, jungle_log),
+	charbon_bois5(coal,acacia_log),
+	charbon_bois6(coal, darkoak_log),
+	diamant(diamond, diamond_ore),
+	fer(iron_ingot,iron_ore),
+	or(gold_ingot, gold_ore),
 	redstone(331, 0,"redstone", redstone_ore),
 	lapis_lazuli(351, 4, "dye",lapis_ore),
 	emeraude_cuite(388, 0, "emerald", emerald_ore),
@@ -54,28 +54,15 @@ public enum Recette {
 	 *
 	 *
 	 *
-	 * granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite,
-	 * air},{air, quartz, air},{air, air, air}}),
-	 * diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz,
-	 * air},{quartz, cobblestone, air},{air, air, air}}),
-	 * andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite,
-	 * air},{air, cobblestone, air},{air, air, air}}),
-	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air,
-	 * air, air},{air, smooth_brick, air},{air, vine, air}}),
-	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air,
-	 * air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}),
-	 * granite_poli(1,1,"stone",craft,4,new
-	 * EItem[][]{{granite,diorite,air},{
-	 * granite,granite,air},{air,air,air}}),
-	 * diorite_poli(1,4,"stone",craft,4,new
-	 * EItem[][]{{diorite,diorite,air},{
-	 * diorite,diorite,air},{air,air,air}}),
-	 * andesite_poli(1,6,"stone",craft,4,new
-	 * EItem[][]{{andesite,andesite,air},{andesite
-	 * ,andesite,air},{air,air,air}}),
-	 * bloc_slime(165,0,"slime",craft, 1,
-	 * new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball,
-	 * slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
+	 * granite(1,01,"stone",craft, 1, new EItem[][]{{air, diorite, air},{air, quartz, air},{air, air, air}}),
+	 * diorite(1,03,"stone",craft, 2, new EItem[][]{{cobblestone, quartz, air},{quartz, cobblestone, air},{air, air, air}}),
+	 * andesite(1,05,"stone",craft,2 , new EItem[][]{{air, diorite, air},{air, cobblestone, air},{air, air, air}}),
+	 * pierre_taillee_moussue(98,01,"stonebrick",craft,new EItem[][]{{air, air, air},{air, smooth_brick, air},{air, vine, air}}),
+	 * pierre_taillee_sculptee(98,03,"stonebrick",craft,new EItem[][]{{air, air, air},{air, stonebrick_slab, air},{air, stonebrick_slab, air}}),
+	 * granite_poli(1,1,"stone",craft,4,new EItem[][]{{granite,diorite,air},{granite,granite,air},{air,air,air}}),
+	 * diorite_poli(1,4,"stone",craft,4,new EItem[][]{{diorite,diorite,air},{diorite,diorite,air},{air,air,air}}),
+	 * andesite_poli(1,6,"stone",craft,4,new EItem[][]{{andesite,andesite,air},{andesite,andesite,air},{air,air,air}}),
+	 * bloc_slime(165,0,"slime",craft, 1, new EItem[][]{{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball},{slime_ball, slime_ball, slime_ball}}),
 	 */
 
 	/*
@@ -697,9 +684,7 @@ public enum Recette {
 
 	;
 
-	private int id;
-	private int metadata;
-	private String mid;
+	private EItem item;
 	private ERecetteForme forme = ERecetteForme.sansforme;
 	private ERecetteType type;
 	private EItem[][] recette = new EItem[3][3];
@@ -724,11 +709,7 @@ public enum Recette {
 	 * @param quantite
 	 *            Quantité obtenue
 	 */
-	Recette(int id, int metadata, String mid, ERecetteType type,
-			int quantite) {
-		this.id = id;
-		this.metadata = metadata;
-		this.mid = mid;
+	Recette(EItem item, ERecetteType type, int quantite) {
 		this.type = type;
 		this.quantite = quantite;
 	}
@@ -741,9 +722,8 @@ public enum Recette {
 	 *            par de l'{@linkplain EItem#air air})
 	 * @see Recette#Recette(int, int, String, ERecetteType, int)
 	 */
-	Recette(int id, int metadata, String mid, int quantite,
-			EItem[][] recette) {
-		this(id, metadata, mid, craft, quantite);
+	Recette(EItem item, int quantite, EItem[][] recette) {
+		this(item, craft, quantite);
 		this.forme = ERecetteForme.forme;
 		if (recette.length == 3) {
 			if (recette[0].length == 3 && recette[1].length == 3
@@ -757,9 +737,8 @@ public enum Recette {
 					"Le tableau d'ingrédients n'est pas de dimension 3x3");
 	}
 
-	Recette(int id, int metadata, String mid, int quantite,
-			EItem[][] recette, boolean combinable) {
-		this(id, metadata, mid, quantite, recette);
+	Recette(EItem item, int quantite, EItem[][] recette, boolean combinable) {
+		this(item, quantite, recette);
 		this.combinable = combinable;
 	}
 
@@ -770,18 +749,18 @@ public enum Recette {
 	 *            Liste des ingrédients
 	 * @see Recette#Recette(int, int, String, ERecetteType, int
 	 */
-	Recette(int id, int metadata, String mid, int quantite,
+	Recette(EItem item, int quantite,
 			EItem... ingredients) {
-		this(id, metadata, mid, craft, quantite);
+		this(item, craft, quantite);
 		for (int i = 0; i < ingredients.length; i++) {
 			this.ingredients.add(ingredients[i]);
 		}
 		this.forme = ERecetteForme.sansforme;
 	}
 
-	Recette(int id, int metadata, String mid, int quantite,
+	Recette(EItem item, int quantite,
 			boolean combinable, EItem... ingredients) {
-		this(id, metadata, mid, quantite, ingredients);
+		this(item, quantite, ingredients);
 		this.combinable = combinable;
 	}
 
@@ -790,10 +769,9 @@ public enum Recette {
 	 *
 	 * @param acuire
 	 *            l'ingrédient à cuire
-	 * @see Recette#Recette(int, int, String, ERecetteType, int
 	 */
-	Recette(int id, int metadata, String mod, EItem acuire) {
-		this(id, metadata, mod, four, 1);
+	Recette(EItem item, EItem acuire) {
+		this(item, four, 1);
 		this.ingredients.add(acuire);
 	}
 
@@ -804,24 +782,11 @@ public enum Recette {
 	 *            L'ingrédient nécessaire à l'obtention de la potion
 	 * @param potion_base
 	 *            La potion utilisée pour devenir la nouvelle potion
-	 * @see Recette#Recette(int, int, String, ERecetteType, int
 	 */
-	Recette(int metadata, EItem ingredient, EItem potion_base) {
-		this(373, metadata, "potion", ERecetteType.alambic, 3);
+	Recette(EItem item, EItem ingredient, EItem potion_base) {
+		this(item, ERecetteType.alambic, 3);
 		this.ingredients.add(ingredient);
 		this.ingredients.add(potion_base);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public int getMetadata() {
-		return metadata;
-	}
-
-	public String getMid() {
-		return mid;
 	}
 
 	public ERecetteForme getForme() {
@@ -841,7 +806,7 @@ public enum Recette {
 	}
 
 	public Item getItem() {
-		return new Item(EItem.searchBy(id, metadata), quantite);
+		return new Item(item, quantite);
 	}
 
 	public boolean isCombinable() {
@@ -881,7 +846,7 @@ public enum Recette {
 		default:
 			break;
 		}
-		return mid + " : " + type.name() + " " + sRecette;
+		return item.getRealName() + " : " + type.name() + " " + sRecette;
 	}
 
 	public static ArrayList<Recette> getRecettes(EItem item) {
@@ -890,7 +855,7 @@ public enum Recette {
 		Recette[] values = values();
 		for (int i = 0; i < values.length; i++) {
 			Recette r = values[i];
-			if (item.getId() == r.id && item.getMeta() == r.metadata) {
+			if (item == r.item) {
 				lhsRecettes.add(r);
 			}
 		}

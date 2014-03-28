@@ -96,6 +96,7 @@ public class FenPrincipale extends JFrame {
 	public FenPrincipale() {
 
 		// Objets de la fenêtre principale
+		setTitle("CraftingMemento - V1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(665, 682);
 		setLocationRelativeTo(null);
