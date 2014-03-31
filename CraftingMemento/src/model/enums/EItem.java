@@ -400,7 +400,7 @@ public enum EItem
 	l_blue_dye(351, 12, "dye",EItemCat.materials),
 	magenta_dye(351, 13, "dye",EItemCat.materials),
 	orange_dye(351, 14, "dye",EItemCat.materials),
-	white_dye(351, 15, "dye",EItemCat.materials),
+	bone_meal(351, 15, "dye",EItemCat.materials),
 	bone(352, 0, "bone", EItemCat.misc),
 	sugar(353, 0, "sugar", EItemCat.materials),
 	cake(354, 0, "cake",EItemCat.food),

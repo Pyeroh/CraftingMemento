@@ -92,6 +92,9 @@ public class FenPrincipale extends JFrame {
 	private JButton btnFourApres;
 	private JButton btnPotionAvant;
 	private JButton btnPotionApres;
+	private JList listeSuggestion;
+	private JScrollPane scrollPane;
+	private JSeparator separator;
 
 	public FenPrincipale() {
 
@@ -127,6 +130,14 @@ public class FenPrincipale extends JFrame {
 			}
 		};
 
+		MouseAdapter displayedItemsListener = new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				MCImage image = (MCImage) e.getSource();
+				txtObjetRecherch.setText(image.getItem().getGuiName());
+			}
+		};
+
 		onglet.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (isVisible()) {
@@ -159,15 +170,15 @@ public class FenPrincipale extends JFrame {
 		getContentPane().add(txtObjetRecherch);
 		txtObjetRecherch.setColumns(10);
 
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		separator.setBounds(0, 376, 649, 14);
 		getContentPane().add(separator);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 384, 626, 254);
 		getContentPane().add(scrollPane);
 
-		JList listeSuggestion = new JList();
+		listeSuggestion = new JList();
 		scrollPane.setViewportView(listeSuggestion);
 
 		// onglet Craft
@@ -177,33 +188,43 @@ public class FenPrincipale extends JFrame {
 		lblFondGrille.setBounds(24, 20, 593, 261);
 
 		caseCraft1.setBorder(null);
+		caseCraft1.addMouseListener(displayedItemsListener);
 		caseCraft1.setBounds(130, 84, 42, 42);
 
 		caseCraft2.setBorder(null);
+		caseCraft2.addMouseListener(displayedItemsListener);
 		caseCraft2.setBounds(191, 84, 42, 42);
 
 		caseCraft3.setBounds(251, 84, 42, 42);
+		caseCraft3.addMouseListener(displayedItemsListener);
 		caseCraft3.setBorder(null);
 
 		caseCraft4.setBounds(130, 145, 42, 42);
+		caseCraft4.addMouseListener(displayedItemsListener);
 		caseCraft4.setBorder(null);
 
 		caseCraft5.setBounds(191, 145, 42, 42);
+		caseCraft5.addMouseListener(displayedItemsListener);
 		caseCraft5.setBorder(null);
 
 		caseCraft6.setBounds(251, 145, 42, 42);
+		caseCraft6.addMouseListener(displayedItemsListener);
 		caseCraft6.setBorder(null);
 
 		caseCraft7.setBounds(130, 206, 42, 42);
+		caseCraft7.addMouseListener(displayedItemsListener);
 		caseCraft7.setBorder(null);
 
 		caseCraft8.setBounds(191, 206, 42, 42);
+		caseCraft8.addMouseListener(displayedItemsListener);
 		caseCraft8.setBorder(null);
 
 		caseCraft9.setBounds(251, 206, 42, 42);
+		caseCraft9.addMouseListener(displayedItemsListener);
 		caseCraft9.setBorder(null);
 
 		caseCraftResultat.setBounds(433, 130, 70, 70);
+		caseCraftResultat.addMouseListener(displayedItemsListener);
 		caseCraftResultat.setBorder(null);
 
 		ongletCraft.setLayout(null);
@@ -262,9 +283,10 @@ public class FenPrincipale extends JFrame {
 		onglet.addTab("Four", ongletFour);
 
 		caseFour1.setBounds(216, 84, 42, 42);
+		caseFour1.addMouseListener(displayedItemsListener);
 		caseFour1.setBorder(null);
 
-		caseFourResultat.setVerticalAlignment(SwingConstants.TOP);
+		caseFourResultat.addMouseListener(displayedItemsListener);
 		caseFourResultat.setBounds(404, 132, 70, 70);
 		caseFourResultat.setBorder(null);
 
@@ -302,10 +324,7 @@ public class FenPrincipale extends JFrame {
 		lblFondFour.setBounds(24, 20, 590, 261);
 		lblFondFour.setVerticalAlignment(SwingConstants.BOTTOM);
 
-		Image imgFour = new ImageIcon(
-				FenPrincipale.class.getResource("/gui/four-minecraft.png"))
-		.getImage().getScaledInstance(lblFondFour.getWidth(),
-				lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
+		Image imgFour = new ImageIcon(FenPrincipale.class.getResource("/gui/four-minecraft.png")).getImage().getScaledInstance(lblFondFour.getWidth(), lblFondFour.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondFour.setIcon(new ImageIcon(imgFour));
 
 		// onglet Potion
@@ -315,19 +334,19 @@ public class FenPrincipale extends JFrame {
 
 		labelFondAlambic.setBounds(24, 20, 590, 261);
 
-		caseIngredientAlambic.setVerticalAlignment(SwingConstants.TOP);
+		caseIngredientAlambic.addMouseListener(displayedItemsListener);
 		caseIngredientAlambic.setBounds(294, 84, 42, 42);
 		caseIngredientAlambic.setBorder(null);
 
-		caseAlambic1.setVerticalAlignment(SwingConstants.TOP);
+		caseAlambic1.addMouseListener(displayedItemsListener);
 		caseAlambic1.setBounds(211, 177, 56, 56);
 		caseAlambic1.setBorder(null);
 
-		caseAlambic2.setVerticalAlignment(SwingConstants.TOP);
+		caseAlambic2.addMouseListener(displayedItemsListener);
 		caseAlambic2.setBounds(287, 201, 56, 56);
 		caseAlambic2.setBorder(null);
 
-		caseAlambic3.setVerticalAlignment(SwingConstants.TOP);
+		caseAlambic3.addMouseListener(displayedItemsListener);
 		caseAlambic3.setBounds(365, 177, 56, 56);
 		caseAlambic3.setBorder(null);
 
