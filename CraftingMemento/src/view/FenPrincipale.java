@@ -9,13 +9,14 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -28,9 +29,14 @@ import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
 import view.components.JComboSearchField;
+import view.components.JHoverList;
 import view.components.MCImage;
 import view.components.ShadowLabel;
+import view.components.cells.CellListEItem;
+import view.components.cells.CellListItem;
 import view.event.SearchedItemChangeListener;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class FenPrincipale extends JFrame {
 
@@ -92,9 +98,10 @@ public class FenPrincipale extends JFrame {
 	private JButton btnFourApres;
 	private JButton btnPotionAvant;
 	private JButton btnPotionApres;
-	private JList listeSuggestion;
-	private JScrollPane scrollPane;
+	private JHoverList<CellListEItem> listeSuggestion;
+	private JScrollPane scrollPane_suggestion;
 	private JSeparator separator;
+	private JHoverList<CellListItem> listIngredient;
 
 	public FenPrincipale() {
 
@@ -161,6 +168,8 @@ public class FenPrincipale extends JFrame {
 				reset();
 				afficheOnglet();
 
+				actualiseLinkedRecettes();
+
 			}
 		});
 		txtObjetRecherch.setPrompt("Objet recherché...");
@@ -174,12 +183,20 @@ public class FenPrincipale extends JFrame {
 		separator.setBounds(0, 376, 649, 14);
 		getContentPane().add(separator);
 
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 384, 626, 254);
-		getContentPane().add(scrollPane);
+		scrollPane_suggestion = new JScrollPane();
+		scrollPane_suggestion.setBounds(10, 384, 314, 254);
+		getContentPane().add(scrollPane_suggestion);
 
-		listeSuggestion = new JList();
-		scrollPane.setViewportView(listeSuggestion);
+		listeSuggestion = new JHoverList<>();
+		listeSuggestion.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting() && listeSuggestion.isFocusOwner() && listeSuggestion.getSelectedIndex() != -1) {
+					txtObjetRecherch.setText(listeSuggestion.getSelectedValue().getEItem().getGuiName());
+				}
+			}
+		});
+		scrollPane_suggestion.setViewportView(listeSuggestion);
 
 		// onglet Craft
 
@@ -416,7 +433,7 @@ public class FenPrincipale extends JFrame {
 		txtQuantite.setColumns(10);
 		txtQuantite.setBackground(new Color(139, 139, 139));
 
-		JList listIngredient = new JList();
+		listIngredient = new JHoverList<>();
 		listIngredient.setBorder(null);
 		listIngredient.setBackground(new Color(139, 139, 139));
 
@@ -437,8 +454,26 @@ public class FenPrincipale extends JFrame {
 				lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
 
-		listeSuggestion.requestFocus();
 		setVisible(true);
+
+	}
+
+	public void actualiseLinkedRecettes() {
+
+		DefaultListModel<CellListEItem> model = new DefaultListModel<>();
+		LinkedHashSet<EItem> lhsModel = new LinkedHashSet<>();
+
+		for (Recette recette : recettes) {
+
+			lhsModel.add(recette.getItem().getItem());
+
+		}
+
+		for (EItem item : lhsModel) {
+			model.addElement(new CellListEItem(item));
+		}
+
+		listeSuggestion.setModel(model);
 
 	}
 
@@ -449,9 +484,7 @@ public class FenPrincipale extends JFrame {
 
 		resetPotion();
 
-		indices[0] = -1;
-		indices[1] = -1;
-		indices[2] = -1;
+		indices = new int[]{-1, -1, -1};
 	}
 
 	private void resetCraft() {
