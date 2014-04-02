@@ -14,8 +14,7 @@ import model.EnumName;
  * @author Pyeroh
  * @see EItemCat
  */
-public enum EItem
-{
+public enum EItem {
 
 	air(0, 0, "", null),
 
@@ -209,8 +208,6 @@ public enum EItem
 	mossy_cobble_wall(139, 1, "cobblestone_wall",EItemCat.block),
 	wood_button(143, 0, "wooden_button",EItemCat.redstone),
 	anvil(145, 0, "anvil", EItemCat.decoration),
-	medium_damaged_anvil(145, 1, "anvil", EItemCat.decoration),
-	damaged_anvil(145, 2,"anvil", EItemCat.decoration),
 	trapped_chest(146, 0,"trapped_chest", EItemCat.decoration),
 	gold_plate(147, 0,"light_weighted_pressure_plate", EItemCat.redstone),
 	iron_plate(148, 0,"heavy_weighted_pressure_plate", EItemCat.redstone),
