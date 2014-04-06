@@ -647,7 +647,6 @@ public enum Recette {
 	potion_splash_faiblesse6(s_p_weakness, fermented_spider_eye, s_p_strength_II),
 	potion_splash_faiblesse7(s_p_weakness, fermented_spider_eye, s_p_regeneration),
 	potion_splash_faiblesse8(s_p_weakness, fermented_spider_eye, s_p_regeneration_II),
-	// TODO vérifier autres potions de faiblesse...
 
 	potion_splash_force(s_p_strength, gunpowder, p_strength),
 	potion_splash_force_ext(s_p_strength_ext, gunpowder, p_strength_ext),
