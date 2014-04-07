@@ -700,6 +700,12 @@ public enum EItemInfo {
 		return primaire;
 	}
 
+	public static EItemInfo getBy(EItem item) {
+		if (item == null) return null;
+
+		return EItemInfo.valueOf(item.name());
+	}
+
 }
 
 

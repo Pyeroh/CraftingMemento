@@ -20,17 +20,21 @@ public enum EItemCat {
 	weapon(EnumName.getString("EItemCat.8")), //$NON-NLS-1$
 	potion(EnumName.getString("EItemCat.9")), //$NON-NLS-1$
 	materials(EnumName.getString("EItemCat.10")); //$NON-NLS-1$
-	
+
 	private String gui_name;
-	
+
 	EItemCat(String gui_name) {
 		this.gui_name = gui_name;
 	}
 
+	/**
+	 * Renvoie le nom affichable
+	 * @return
+	 */
 	public String getGui_name() {
 		return gui_name;
 	}
-	
+
 	/**
 	 * Renvoie la liste des noms des constantes.
 	 * @return la liste des noms des constantes.
@@ -44,7 +48,7 @@ public enum EItemCat {
 		}
 		return namevalues;
 	}
-	
+
 	/**
 	 * Renvoie la constante associée au nom passé en paramètre.
 	 * @param name ce qui peut être renvoyé par {@link EItemCat#getGui_name()}
@@ -72,13 +76,13 @@ public enum EItemCat {
 		}
 
 	}
-	
+
 	public static void load() {
 		EItemCat[] values = values();
 		for(int i=0;i<values.length;i++) {
 			values[i].gui_name = EnumName.getString("EItemCat."+i);
 		}
 	}
-	
+
 
 }

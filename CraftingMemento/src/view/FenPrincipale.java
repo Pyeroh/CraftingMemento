@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
@@ -15,6 +17,7 @@ import java.util.LinkedHashSet;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,9 +32,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.enums.EItem;
+import model.enums.EItemInfo;
 import model.enums.ERecetteType;
 import model.enums.Recette;
-import view.components.*;
+import view.components.JComboSearchField;
+import view.components.JHoverList;
+import view.components.MCImage;
+import view.components.RoundedPanel;
+import view.components.ShadowLabel;
 import view.components.cells.CellListEItem;
 import view.components.cells.CellListItem;
 import view.event.SearchedItemChangeListener;
@@ -103,11 +111,20 @@ public class FenPrincipale extends JFrame {
 	private RoundedPanel pan_infos;
 	private JLabel lblIDMC;
 	private JLabel lblStack;
-	private final JLabel lblOnglet = new JLabel("Onglet cr\u00E9atif :");
-	private final JLabel lblVersion = new JLabel("Version :");
-	private final JLabel lblTransparence = new JLabel("Transparence :");
-	private final JLabel lblCarburant = new JLabel("Carburant :");
-	private final JLabel lblRenouvelable = new JLabel("Renouvelable :");
+	private JLabel lblOnglet = new JLabel("Onglet cr\u00E9atif :");
+	private JLabel lblVersion = new JLabel("Version :");
+	private JLabel lblTransparent = new JLabel("Transparence :");
+	private JLabel lblCarburant = new JLabel("Carburant :");
+	private JLabel lblRenouvelable = new JLabel("Renouvelable :");
+	private JLabel lblIDMCInfo;
+	private JLabel lblStackInfo;
+	private JLabel lblOngletInfo;
+	private JLabel lblVersionInfo;
+	private JCheckBox chkTransparentInfo;
+	private JCheckBox chkCarburantInfo;
+	private JCheckBox chkRenouvelableInfo;
+	private JLabel lblMetadata = new JLabel("Metadata :");
+	private JLabel lblMetadataInfo = new JLabel("");
 
 	public FenPrincipale() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FenPrincipale.class.getResource("/gui/eitems/blocks/58_0.png")));
@@ -171,6 +188,8 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void searchedItemChanged(EItem item) {
 				recettes = Recette.getRecettes(item);
+
+				afficheInfos(item);
 
 				reset();
 				afficheOnglet();
@@ -469,27 +488,93 @@ public class FenPrincipale extends JFrame {
 		lblIDMC = new JLabel("ID Minecraft :");
 		lblIDMC.setBounds(6, 6, 95, 16);
 		pan_infos.add(lblIDMC);
+		lblMetadata.setBounds(6, 34, 95, 16);
+
+		pan_infos.add(lblMetadata);
 
 		lblStack = new JLabel("Stackable par :");
-		lblStack.setBounds(6, 34, 95, 16);
+		lblStack.setBounds(6, 62, 95, 16);
 		pan_infos.add(lblStack);
-		lblOnglet.setBounds(6, 62, 95, 16);
+		lblOnglet.setBounds(6, 90, 95, 16);
 
 		pan_infos.add(lblOnglet);
-		lblVersion.setBounds(6, 90, 95, 16);
+		lblVersion.setBounds(6, 118, 95, 16);
 
 		pan_infos.add(lblVersion);
-		lblTransparence.setBounds(6, 118, 95, 16);
+		lblTransparent.setBounds(6, 146, 95, 16);
 
-		pan_infos.add(lblTransparence);
-		lblCarburant.setBounds(6, 146, 95, 16);
+		pan_infos.add(lblTransparent);
+		lblCarburant.setBounds(6, 174, 95, 16);
 
 		pan_infos.add(lblCarburant);
-		lblRenouvelable.setBounds(6, 174, 95, 16);
+		lblRenouvelable.setBounds(6, 202, 95, 16);
 
 		pan_infos.add(lblRenouvelable);
 
+		lblIDMCInfo = new JLabel("");
+		lblIDMCInfo.setBounds(113, 6, 160, 16);
+		pan_infos.add(lblIDMCInfo);
+		lblMetadataInfo.setBounds(113, 34, 160, 16);
+
+		pan_infos.add(lblMetadataInfo);
+
+		lblStackInfo = new JLabel("");
+		lblStackInfo.setBounds(113, 62, 160, 16);
+		pan_infos.add(lblStackInfo);
+
+		lblOngletInfo = new JLabel("");
+		lblOngletInfo.setBounds(113, 90, 160, 16);
+		pan_infos.add(lblOngletInfo);
+
+		lblVersionInfo = new JLabel("");
+		lblVersionInfo.setBounds(113, 118, 160, 16);
+		pan_infos.add(lblVersionInfo);
+
+		ItemListener readOnlyListener = new ItemListener() {
+
+			private boolean focus = false;
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				JCheckBox source = (JCheckBox) e.getSource();
+				focus = !focus;
+				if (focus && source.hasFocus()) {
+					source.setSelected(!source.isSelected());
+				}
+			}
+		};
+
+		chkTransparentInfo = new JCheckBox("");
+		chkTransparentInfo.addItemListener(readOnlyListener);
+		chkTransparentInfo.setBounds(113, 146, 18, 16);
+		pan_infos.add(chkTransparentInfo);
+
+		chkCarburantInfo = new JCheckBox("");
+		chkCarburantInfo.addItemListener(readOnlyListener);
+		chkCarburantInfo.setBounds(113, 174, 18, 16);
+		pan_infos.add(chkCarburantInfo);
+
+		chkRenouvelableInfo = new JCheckBox("");
+		chkRenouvelableInfo.addItemListener(readOnlyListener);
+		chkRenouvelableInfo.setBounds(113, 202, 18, 16);
+		pan_infos.add(chkRenouvelableInfo);
+
 		setVisible(true);
+
+	}
+
+	public void afficheInfos(EItem item) {
+
+		EItemInfo info = EItemInfo.getBy(item);
+
+		lblIDMCInfo.setText(item.getRealName());
+		lblMetadataInfo.setText(item.getMeta() + "");
+		lblStackInfo.setText(info.getSize() + "");
+		lblOngletInfo.setText(item.getCategory().getGui_name());
+		lblVersionInfo.setText(info.getVersion());
+		chkTransparentInfo.setSelected(info.isTransparent());
+		chkCarburantInfo.setSelected(info.isCarburant());
+		chkRenouvelableInfo.setSelected(info.isRenouvelable());
 
 	}
 
@@ -520,6 +605,8 @@ public class FenPrincipale extends JFrame {
 		resetPotion();
 
 		indices = new int[]{-1, -1, -1};
+
+
 	}
 
 	private void resetCraft() {
