@@ -321,7 +321,7 @@ public enum EItem {
 	iron_hoe(292, 0, "iron_hoe", EItemCat.tool),
 	diamond_hoe(293, 0,"diamond_hoe", EItemCat.tool),
 	gold_hoe(294, 0, "gold_hoe",EItemCat.tool),
-	seeds(295, 0, "seeds", EItemCat.materials),
+	seeds(295, 0, "wheat_seeds", EItemCat.materials),
 	wheat(296, 0, "wheat", EItemCat.materials),
 	bread(297, 0, "bread",EItemCat.food),
 	leather_helmet(298, 0, "leather_helmet",EItemCat.weapon),
