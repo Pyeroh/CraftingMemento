@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
@@ -24,19 +25,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import model.enums.EItem;
 import model.enums.ERecetteType;
 import model.enums.Recette;
-import view.components.JComboSearchField;
-import view.components.JHoverList;
-import view.components.MCImage;
-import view.components.ShadowLabel;
+import view.components.*;
 import view.components.cells.CellListEItem;
 import view.components.cells.CellListItem;
 import view.event.SearchedItemChangeListener;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
 
 public class FenPrincipale extends JFrame {
 
@@ -102,8 +100,17 @@ public class FenPrincipale extends JFrame {
 	private JScrollPane scrollPane_suggestion;
 	private JSeparator separator;
 	private JHoverList<CellListItem> listIngredient;
+	private RoundedPanel pan_infos;
+	private JLabel lblIDMC;
+	private JLabel lblStack;
+	private final JLabel lblOnglet = new JLabel("Onglet cr\u00E9atif :");
+	private final JLabel lblVersion = new JLabel("Version :");
+	private final JLabel lblTransparence = new JLabel("Transparence :");
+	private final JLabel lblCarburant = new JLabel("Carburant :");
+	private final JLabel lblRenouvelable = new JLabel("Renouvelable :");
 
 	public FenPrincipale() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FenPrincipale.class.getResource("/gui/eitems/blocks/58_0.png")));
 
 		// Objets de la fenêtre principale
 		setTitle("CraftingMemento - V1");
@@ -453,6 +460,34 @@ public class FenPrincipale extends JFrame {
 		.getImage().getScaledInstance(lblFondCalcul.getWidth(),
 				lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
+
+		pan_infos = new RoundedPanel();
+		pan_infos.setBounds(336, 389, 307, 249);
+		getContentPane().add(pan_infos);
+		pan_infos.setLayout(null);
+
+		lblIDMC = new JLabel("ID Minecraft :");
+		lblIDMC.setBounds(6, 6, 95, 16);
+		pan_infos.add(lblIDMC);
+
+		lblStack = new JLabel("Stackable par :");
+		lblStack.setBounds(6, 34, 95, 16);
+		pan_infos.add(lblStack);
+		lblOnglet.setBounds(6, 62, 95, 16);
+
+		pan_infos.add(lblOnglet);
+		lblVersion.setBounds(6, 90, 95, 16);
+
+		pan_infos.add(lblVersion);
+		lblTransparence.setBounds(6, 118, 95, 16);
+
+		pan_infos.add(lblTransparence);
+		lblCarburant.setBounds(6, 146, 95, 16);
+
+		pan_infos.add(lblCarburant);
+		lblRenouvelable.setBounds(6, 174, 95, 16);
+
+		pan_infos.add(lblRenouvelable);
 
 		setVisible(true);
 

@@ -28,7 +28,7 @@ import javax.swing.JPanel;
 /**
  * This class represents a Rounded Border JPanel.
  */
-class RoundedPanel extends JPanel {
+public class RoundedPanel extends JPanel {
 
 	private static final long serialVersionUID = -8701658910227881670L;
 
