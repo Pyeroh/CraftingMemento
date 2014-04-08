@@ -980,6 +980,19 @@ public enum Recette {
 			
 			if (primaire) {
 				
+				Ingredients items2 = items.clone();
+				
+				for(Item item : items) {
+					
+					EItemInfo info = EItemInfo.getBy(item.getItem());
+					if (!info.isPrimaire()) {
+						// TODO
+					} else {
+						
+					}
+					
+				}
+				
 			}
 
 			return items;

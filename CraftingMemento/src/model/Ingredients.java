@@ -29,4 +29,15 @@ public class Ingredients extends ArrayList<Item> {
 		else return -1;
 	}
 
+	@Override
+	public Ingredients clone() {
+		Ingredients i = (Ingredients) super.clone();
+		
+		for (Item item : this) {
+			i.add(item);
+		}
+		
+		return i;
+	}
+	
 }
