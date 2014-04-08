@@ -10,7 +10,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
@@ -84,7 +83,7 @@ public class MCImage extends JLabel {
 
 	private void init() {
 
-		addMouseListener(new MouseAdapter() {
+		MouseAdapter adapter = new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				if (item != EItem.air) {
@@ -96,13 +95,12 @@ public class MCImage extends JLabel {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (item != EItem.air) {
+				//if (item != EItem.air) {
 					pan.setVisible(false);
 					container.remove(pan);
-				}
+				//}
 			}
-		});
-		addMouseMotionListener(new MouseMotionAdapter() {
+
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				Point p = new Point(getX() + e.getX() + 12, getY() + e.getY() + 19);
@@ -114,10 +112,15 @@ public class MCImage extends JLabel {
 						p.setLocation(p.x, p.y - pan.getHeight() - 21);
 					}
 					pan.setLocation(p);
+				} else {
+					mouseExited(e);
 				}
 			}
-		});
 
+		};
+
+		addMouseListener(adapter);
+		addMouseMotionListener(adapter);
 
 	}
 
