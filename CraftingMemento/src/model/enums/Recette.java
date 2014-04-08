@@ -7,6 +7,7 @@ import static model.enums.ERecetteType.four;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
+import model.Ingredients;
 import model.Item;
 
 public enum Recette {
@@ -26,12 +27,12 @@ public enum Recette {
 	verre2(glass, redsand),
 	terre_cuite(hardened_clay,clay),
 	charbon_cuit(coal, coal_ore),
-	charbon_bois(coal, oak_log),
-	charbon_bois2(coal,spruce_log),
-	charbon_bois3(coal, birch_log),
-	charbon_bois4(coal, jungle_log),
-	charbon_bois5(coal,acacia_log),
-	charbon_bois6(coal, darkoak_log),
+	charbon_bois(charcoal, oak_log),
+	charbon_bois2(charcoal,spruce_log),
+	charbon_bois3(charcoal, birch_log),
+	charbon_bois4(charcoal, jungle_log),
+	charbon_bois5(charcoal,acacia_log),
+	charbon_bois6(charcoal, darkoak_log),
 	diamant(diamond, diamond_ore),
 	fer(iron_ingot,iron_ore),
 	or(gold_ingot, gold_ore),
@@ -948,5 +949,49 @@ public enum Recette {
 		return typeList;
 	}
 
+	public static Ingredients calcule(Recette recette, int nb, boolean primaire) {
+		Ingredients items = new Ingredients();
+
+
+			switch (recette.forme) {
+			case forme:
+
+				for (EItem[] tab_eitem : recette.recette) {
+					for (EItem item : tab_eitem) {
+						evalueRecette(items, item);
+					}
+				}
+
+				break;
+			case sansforme:
+
+				for (EItem item : recette.ingredients) {
+					evalueRecette(items, item);
+				}
+
+				break;
+			default:
+				break;
+			}
+
+			for (Item item : items) {
+				item.setQuantite(item.getQuantite() * nb);
+			}
+			
+			if (primaire) {
+				
+			}
+
+			return items;
+	}
+
+	private static void evalueRecette(Ingredients items, EItem item) {
+		if (!items.containsEItem(item)) {
+			items.add(new Item(item, 1));
+		} else {
+			Item i = items.get(items.indexOf(item));
+			i.setQuantite(i.getQuantite() + 1);
+		}
+	}
 
 }

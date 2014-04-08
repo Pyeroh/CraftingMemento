@@ -7,10 +7,13 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
@@ -31,6 +34,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.Ingredients;
 import model.enums.EItem;
 import model.enums.EItemInfo;
 import model.enums.ERecetteType;
@@ -49,6 +53,7 @@ public class FenPrincipale extends JFrame {
 	private static final long serialVersionUID = 2540259731678095668L;
 
 	private ArrayList<Recette> recettes;
+	private ArrayList<Recette> directRecettes;
 
 	// initialisation onglets
 	private JTabbedPane onglet = new JTabbedPane();
@@ -99,7 +104,7 @@ public class FenPrincipale extends JFrame {
 	private JLabel lblFondCalcul = new JLabel();
 	private MCImage caseCalcul = new MCImage(ongletCalcul);
 
-	private int[] indices = {-1, -1, -1};
+	private int[] indices = {-1, -1, -1, -1};
 	private JButton btnFourAvant;
 	private JButton btnFourApres;
 	private JButton btnPotionAvant;
@@ -125,6 +130,8 @@ public class FenPrincipale extends JFrame {
 	private JCheckBox chkRenouvelableInfo;
 	private JLabel lblMetadata = new JLabel("Metadata :");
 	private JLabel lblMetadataInfo = new JLabel("");
+	private JCheckBox chkIngredientsPrimaires;
+	private JLabel lblShapeless;
 
 	public FenPrincipale() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FenPrincipale.class.getResource("/gui/eitems/blocks/58_0.png")));
@@ -165,7 +172,9 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				MCImage image = (MCImage) e.getSource();
-				txtObjetRecherch.setText(image.getItem().getGuiName());
+				if (image.getItem() != EItem.air) {
+					txtObjetRecherch.setText(image.getItem().getGuiName());
+				}
 			}
 		};
 
@@ -188,6 +197,12 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void searchedItemChanged(EItem item) {
 				recettes = Recette.getRecettes(item);
+				directRecettes = new ArrayList<>();
+				for (Recette recette : recettes) {
+					if (recette.getItem().getItem() == item) {
+						directRecettes.add(recette);
+					}
+				}
 
 				afficheInfos(item);
 
@@ -305,6 +320,13 @@ public class FenPrincipale extends JFrame {
 		lblCraftNbItems.setForeground(Color.white);
 		lblCraftNbItems.setBounds(461, 164, 42, 36);
 		ongletCraft.add(lblCraftNbItems);
+
+		lblShapeless = new JLabel("");
+		lblShapeless.setToolTipText("Les ingr\u00E9dients peuvent \u00EAtre pla\u00E7\u00E9s n'importe o\u00F9 sur la grille");
+		lblShapeless.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/shapeless.png")));
+		lblShapeless.setBounds(361, 206, 19, 15);
+		lblShapeless.setVisible(false);
+		ongletCraft.add(lblShapeless);
 
 		ongletCraft.add(caseCraft1);
 		ongletCraft.add(caseCraft2);
@@ -439,22 +461,45 @@ public class FenPrincipale extends JFrame {
 		lblCalculateur = new JLabel("Calculateur");
 		lblCalculateur.setBounds(119, 38, 194, 27);
 		ongletCalcul.add(lblCalculateur);
+
 		lblCalculateur.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCalculateur.setForeground(new Color(86, 86, 86));
 		lblCalculateur.setFont(new Font("Minecraftia", Font.PLAIN, 27));
+
 		lblQte.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQte.setForeground(new Color(86, 86, 86));
 		lblQte.setFont(new Font("Minecraftia", Font.PLAIN, 27));
 		lblQte.setBounds(85, 97, 54, 36);
 
 		ongletCalcul.add(lblQte);
-		txtQuantite.setBorder(null);
 		ongletCalcul.add(txtQuantite);
 		ongletCalcul.setLayout(null);
-		scrollPane_NbIngredient.setBorder(null);
 		ongletCalcul.add(scrollPane_NbIngredient);
+
+		chkIngredientsPrimaires = new JCheckBox("Ingr\u00E9dients primaires");
+		chkIngredientsPrimaires.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				afficheOnglet();
+			}
+		});
+		chkIngredientsPrimaires.setBounds(437, 51, 148, 18);
+		ongletCalcul.add(chkIngredientsPrimaires);
 		ongletCalcul.add(caseCalcul);
 
+		txtQuantite.setBorder(null);
+		txtQuantite.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {
+					txtQuantite.commitEdit();
+					if (caseCalcul.getItem() != EItem.air) {
+
+					}
+				} catch (ParseException e1) {}
+
+				afficheOnglet();
+			}
+		});
 		txtQuantite.setBounds(165, 111, 75, 18);
 		txtQuantite.setColumns(10);
 		txtQuantite.setBackground(new Color(139, 139, 139));
@@ -465,6 +510,7 @@ public class FenPrincipale extends JFrame {
 
 		scrollPane_NbIngredient.setBounds(325, 85, 260, 170);
 		scrollPane_NbIngredient.setViewportView(listIngredient);
+		scrollPane_NbIngredient.setBorder(null);
 
 		caseCalcul.setVerticalAlignment(SwingConstants.TOP);
 		caseCalcul.setBounds(98, 177, 70, 70);
@@ -473,11 +519,7 @@ public class FenPrincipale extends JFrame {
 		lblFondCalcul.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblFondCalcul.setBounds(24, 20, 590, 261);
 
-		Image imgCalcul = new ImageIcon(
-				FenPrincipale.class
-				.getResource("/gui/calculateur-minecraft.png"))
-		.getImage().getScaledInstance(lblFondCalcul.getWidth(),
-				lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
+		Image imgCalcul = new ImageIcon(FenPrincipale.class.getResource("/gui/calculateur-minecraft.png")).getImage().getScaledInstance(lblFondCalcul.getWidth(), lblFondCalcul.getHeight(), Image.SCALE_AREA_AVERAGING);
 		lblFondCalcul.setIcon(new ImageIcon(imgCalcul));
 
 		pan_infos = new RoundedPanel();
@@ -586,8 +628,28 @@ public class FenPrincipale extends JFrame {
 		for (Recette recette : recettes) {
 
 			lhsModel.add(recette.getItem().getItem());
+			for (int j = 0; j < 3; j++) {
+				for (int k = 0; k < 3; k++) {
+					switch (recette.getForme()) {
+					case forme:
+						lhsModel.add(recette.getRecette()[j][k]);
+						break;
+					case sansforme:
+						int result = j * 3 + k;
+						if (result < recette.getIngredients().size()) {
+							lhsModel.add(recette.getIngredients().get(result));
+						}
+						break;
+					default:
+						break;
+					}
+				}
+			}
 
 		}
+
+		lhsModel.remove(EItem.air);
+		lhsModel.remove(txtObjetRecherch.getItem());
 
 		for (EItem item : lhsModel) {
 			model.addElement(new CellListEItem(item));
@@ -604,7 +666,7 @@ public class FenPrincipale extends JFrame {
 
 		resetPotion();
 
-		indices = new int[]{-1, -1, -1};
+		indices = new int[]{-1, -1, -1, -1};
 
 
 	}
@@ -621,6 +683,7 @@ public class FenPrincipale extends JFrame {
 		caseCraft9.setItem(EItem.air);
 		caseCraftResultat.setItem(EItem.air);
 		lblCraftNbItems.setText(null);
+		lblShapeless.setVisible(false);
 	}
 
 	private void resetFour() {
@@ -633,6 +696,10 @@ public class FenPrincipale extends JFrame {
 		caseAlambic2.setItem(EItem.air);
 		caseAlambic3.setItem(EItem.air);
 		caseIngredientAlambic.setItem(EItem.air);
+	}
+
+	private void resetCalc() {
+
 	}
 
 	public void afficheOnglet() {
@@ -662,7 +729,14 @@ public class FenPrincipale extends JFrame {
 			potion(index);
 			break;
 		case 3:
-			calculateur();
+			if (directRecettes.size() == 0) {
+				index = -1;
+			} else {
+				index = 0;
+			}
+
+			calculateur(index);
+
 			break;
 		default:
 			System.out.println("Onglet rajouté et non-géré !");
@@ -697,8 +771,7 @@ public class FenPrincipale extends JFrame {
 
 					}
 				}
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
 
 			break;
 		case sansforme:
@@ -718,8 +791,8 @@ public class FenPrincipale extends JFrame {
 
 					i++;
 				}
-			} catch (Exception e) {
-			}
+			} catch (Exception e) {}
+			lblShapeless.setVisible(true);
 
 			break;
 		default:
@@ -765,7 +838,17 @@ public class FenPrincipale extends JFrame {
 
 	}
 
-	public void calculateur() {
+	public void calculateur(int index) {
 		caseCalcul.setItem(txtObjetRecherch.getItem());
+
+		resetCalc();
+		if (index == -1) return;
+		indices[3] = index;
+
+		if (txtQuantite.getValue() != null) {
+			Ingredients items = Recette.calcule(recettes.get(index), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+			System.out.println(items);
+		}
+
 	}
 }
