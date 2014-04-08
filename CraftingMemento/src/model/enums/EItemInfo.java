@@ -492,7 +492,7 @@ public enum EItemInfo {
 	wait_disc(StackSize.S1, Version.Release146, false, true, false),
 
 	// Potions
-	p_waterB,
+	p_waterB(StackSize.S1, Version.Beta19PR3, false, true, true),
 	p_mundane,
 	p_mundane_ext,
 	p_awkward,
@@ -508,15 +508,15 @@ public enum EItemInfo {
 	p_fire_resistance_ext,
 	p_healing,
 	p_healing_II,
-	p_night_vision,
-	p_night_vision_ext,
+	p_night_vision(Version.Release14),
+	p_night_vision_ext(Version.Release14),
 	p_strength,
 	p_strength_ext,
 	p_strength_II,
-	p_invisibility,
-	p_invisibility_ext,
-	p_water_breathing,
-	p_water_breathing_ext,
+	p_invisibility(Version.Release14),
+	p_invisibility_ext(Version.Release14),
+	p_water_breathing(Version.Release17),
+	p_water_breathing_ext(Version.Release17),
 	p_poison,
 	p_poison_ext,
 	p_poison_II,
@@ -542,15 +542,15 @@ public enum EItemInfo {
 	s_p_fire_resistance_ext,
 	s_p_healing,
 	s_p_healing_II,
-	s_p_night_vision,
-	s_p_night_vision_ext,
+	s_p_night_vision(Version.Release14),
+	s_p_night_vision_ext(Version.Release14),
 	s_p_strength,
 	s_p_strength_ext,
 	s_p_strength_II,
-	s_p_invisibility,
-	s_p_invisibility_ext,
-	s_p_water_breathing,
-	s_p_water_breathing_ext,
+	s_p_invisibility(Version.Release14),
+	s_p_invisibility_ext(Version.Release14),
+	s_p_water_breathing(Version.Release17),
+	s_p_water_breathing_ext(Version.Release17),
 	s_p_poison,
 	s_p_poison_ext,
 	s_p_poison_II,
@@ -666,6 +666,10 @@ public enum EItemInfo {
 
 	private EItemInfo(StackSize size, Version version, boolean carburant, boolean renouvelable, boolean primaire) {
 		this(size, version, true, carburant, renouvelable, primaire);
+	}
+
+	private EItemInfo(Version version) {
+		this(StackSize.S1, version, false, true, false);
 	}
 
 	private EItemInfo() {
