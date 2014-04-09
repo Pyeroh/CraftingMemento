@@ -327,9 +327,6 @@ public enum EItemInfo {
 	gold_chestplate(StackSize.S1, Version.Alpha108, false, true, false),
 	gold_leggings(StackSize.S1, Version.Alpha108, false, true, false),
 	gold_boots(StackSize.S1, Version.Alpha108, false, true, false),
-
-	// TODO StackSize, Version, carburant, renouvelable, primaire
-
 	flint(StackSize.S64, Version.Indev, false, false, true),
 	raw_pork(StackSize.S64, Version.Indev, false, true, false),
 	cooked_pork(StackSize.S64, Version.Indev, false, true, true),

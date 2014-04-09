@@ -5,6 +5,7 @@ import static model.enums.ERecetteType.craft;
 import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 
 import model.Ingredients;
@@ -949,7 +950,7 @@ public enum Recette {
 		return typeList;
 	}
 
-	public static Ingredients calcule(Recette recette, int nb, boolean primaire) {
+	private static Ingredients calcule(Recette recette, int nb) {
 		Ingredients items = new Ingredients();
 
 
@@ -977,25 +978,44 @@ public enum Recette {
 			for (Item item : items) {
 				item.setQuantite(item.getQuantite() * nb);
 			}
-			
-			if (primaire) {
-				
-				Ingredients items2 = items.clone();
-				
-				for(Item item : items) {
-					
-					EItemInfo info = EItemInfo.getBy(item.getItem());
-					if (!info.isPrimaire()) {
-						// TODO
-					} else {
-						
-					}
-					
-				}
-				
-			}
 
 			return items;
+	}
+
+	public static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire) {
+
+		Ingredients items = calcule(recette, nb);
+
+		LinkedHashSet<Ingredients> listCalculs = new LinkedHashSet<>();
+
+		if (primaire) {
+
+			Ingredients items2 = items.clone();
+			HashMap<EItem, Integer> restant = new HashMap<>();
+
+			for(Item item : items) {
+
+				EItemInfo info = EItemInfo.getBy(item.getItem());
+				if (!info.isPrimaire()) {
+
+					//Recette r =
+
+					// TODO il faut passer par la récursion pour avoir une liste exhaustive des ingrédients pour chaque "chemin" de recette possible
+
+				} else {
+
+				}
+
+			}
+
+		} else {
+			listCalculs.add(items);
+		}
+
+
+		ArrayList<Ingredients> result = new ArrayList<>(listCalculs);
+
+		return result;
 	}
 
 	private static void evalueRecette(Ingredients items, EItem item) {
@@ -1005,6 +1025,24 @@ public enum Recette {
 			Item i = items.get(items.indexOf(item));
 			i.setQuantite(i.getQuantite() + 1);
 		}
+	}
+
+		/**
+		 * Renvoie un tableau contenant en case 0 l'item primaire, et en case 1
+		 * le reste
+		 * @param item
+		 * @return
+		 */
+	private static Object[] getIngredientPrimaire(Item item) {
+		if (item == null) return null;
+
+		EItemInfo info = EItemInfo.getBy(item.getItem());
+		if (!info.isPrimaire()) {
+
+		}
+
+
+		return null;
 	}
 
 }

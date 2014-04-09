@@ -846,7 +846,7 @@ public class FenPrincipale extends JFrame {
 		indices[3] = index;
 
 		if (txtQuantite.getValue() != null) {
-			Ingredients items = Recette.calcule(recettes.get(index), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+			ArrayList<Ingredients> items = Recette.calcule(recettes.get(index), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
 			System.out.println(items);
 		}
 
