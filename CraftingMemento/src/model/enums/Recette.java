@@ -5,7 +5,7 @@ import static model.enums.ERecetteType.craft;
 import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 import model.Ingredients;
@@ -250,7 +250,7 @@ public enum Recette {
 	vitre_blanche(white_glass_pane, 16, new EItem[][] {{ air, air, air }, { white_glass, white_glass, white_glass },{ white_glass, white_glass, white_glass } }),
 	vitre_orange(orange_glass_pane, 16, new EItem[][] { { air, air, air },{ orange_glass, orange_glass, orange_glass },{ orange_glass, orange_glass, orange_glass } }),
 	vitre_magenta(magenta_glass_pane, 16, new EItem[][] {{ air, air, air },{ magenta_glass, magenta_glass, magenta_glass },{ magenta_glass, magenta_glass, magenta_glass } }),
-	vitre_bleu_clair(blue_glass_pane, 16, new EItem[][] {{ air, air, air },{ l_blue_glass, l_blue_glass, l_blue_glass },{ l_blue_glass, l_blue_glass, l_blue_glass } }),
+	vitre_bleu_clair(l_blue_glass_pane, 16, new EItem[][] {{ air, air, air },{ l_blue_glass, l_blue_glass, l_blue_glass },{ l_blue_glass, l_blue_glass, l_blue_glass } }),
 	vitre_jaune(yellow_glass_pane, 16, new EItem[][] {{ air, air, air },{ yellow_glass, yellow_glass, yellow_glass },{ yellow_glass, yellow_glass, yellow_glass } }),
 	vitre_vert_clair(l_green_glass_pane, 16, new EItem[][] {{ air, air, air },{ l_green_glass, l_green_glass, l_green_glass },{ l_green_glass, l_green_glass, l_green_glass } }),
 	vitre_rose(pink_glass_pane, 16, new EItem[][] {{ air, air, air },{ pink_glass, pink_glass, pink_glass },{ pink_glass, pink_glass, pink_glass } }),
@@ -849,7 +849,7 @@ public enum Recette {
 		default:
 			break;
 		}
-		return item.getRealName() + " : " + type.name() + " " + sRecette;
+		return item.getRealName() + (item.getMeta() != 0 ? "." + item.getMeta() : "") + " : " + type.name() + " " + sRecette;
 	}
 
 	public static ArrayList<Recette> getRecettes(EItem item) {
@@ -954,56 +954,106 @@ public enum Recette {
 		Ingredients items = new Ingredients();
 
 
-			switch (recette.forme) {
-			case forme:
+		switch (recette.forme) {
+		case forme:
 
-				for (EItem[] tab_eitem : recette.recette) {
-					for (EItem item : tab_eitem) {
-						evalueRecette(items, item);
-					}
-				}
-
-				break;
-			case sansforme:
-
-				for (EItem item : recette.ingredients) {
+			for (EItem[] tab_eitem : recette.recette) {
+				for (EItem item : tab_eitem) {
 					evalueRecette(items, item);
 				}
-
-				break;
-			default:
-				break;
 			}
 
-			for (Item item : items) {
-				item.setQuantite(item.getQuantite() * nb);
+			break;
+		case sansforme:
+
+			for (EItem item : recette.ingredients) {
+				evalueRecette(items, item);
 			}
 
-			return items;
+			break;
+		default:
+			break;
+		}
+
+		for (Item item : items) {
+			if (recette.type == ERecetteType.alambic) {
+				if (!item.getItem().getRealName().equals("potion")) {
+					item.setQuantite((int) Math.ceil((item.getQuantite() * nb) / (recette.quantite + 0d)));
+				}
+				else {
+					item.setQuantite(item.getQuantite() * nb);
+				}
+			}
+			else {
+				item.setQuantite((int) Math.ceil((item.getQuantite() * nb) / (recette.quantite + 0d)));
+			}
+		}
+
+		return items;
 	}
 
 	public static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire) {
+		return calcule(recette, nb, primaire, 0);
+	}
+
+	private static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire, int step) {
+
+		class IngredientsSet extends LinkedHashSet<Ingredients> {
+
+			private static final long serialVersionUID = 2531180248602734165L;
+
+			private LinkedHashSet<Item> lhsItems = new LinkedHashSet<>();
+
+			public void addAll(Item i) {
+				lhsItems.add(i);
+			}
+
+			public void update() {
+				if (isEmpty()) {
+					add(new Ingredients());
+				}
+
+				for (Iterator<Item> it = lhsItems.iterator(); it.hasNext();) {
+					Item i = (Item) it.next();
+					for (Iterator<Ingredients> it2 = this.iterator(); it2.hasNext();) {
+						Ingredients ig = (Ingredients) it2.next();
+						ig.add(i);
+					}
+				}
+			}
+
+		}
+
+		if (step == 8) return null;
 
 		Ingredients items = calcule(recette, nb);
 
-		LinkedHashSet<Ingredients> listCalculs = new LinkedHashSet<>();
+
+
+		IngredientsSet listCalculs = new IngredientsSet();
 
 		if (primaire) {
 
-			Ingredients items2 = items.clone();
-			HashMap<EItem, Integer> restant = new HashMap<>();
-
 			for(Item item : items) {
+
+				//Ingredients items2 = items.clone();
 
 				EItemInfo info = EItemInfo.getBy(item.getItem());
 				if (!info.isPrimaire()) {
 
-					//Recette r =
+					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
+					for (Recette recette2 : recettes) {
+						ArrayList<Ingredients> ing = calcule(recette2, item.getQuantite(), true, step + 1);
+						for (Ingredients ingredients : ing) {
+							listCalculs.add(ingredients);
+						}
+					}
+
 
 					// TODO il faut passer par la récursion pour avoir une liste exhaustive des ingrédients pour chaque "chemin" de recette possible
 
 				} else {
-
+					listCalculs.addAll(item);
 				}
 
 			}
@@ -1012,37 +1062,37 @@ public enum Recette {
 			listCalculs.add(items);
 		}
 
-
+		listCalculs.update();
 		ArrayList<Ingredients> result = new ArrayList<>(listCalculs);
 
 		return result;
 	}
 
 	private static void evalueRecette(Ingredients items, EItem item) {
-		if (!items.containsEItem(item)) {
-			items.add(new Item(item, 1));
-		} else {
-			Item i = items.get(items.indexOf(item));
-			i.setQuantite(i.getQuantite() + 1);
+		if (item != air) {
+			if (!items.containsEItem(item)) {
+				items.add(new Item(item, 1));
+			} else {
+				Item i = items.get(items.indexOf(item));
+				i.setQuantite(i.getQuantite() + 1);
+			}
 		}
 	}
 
-		/**
-		 * Renvoie un tableau contenant en case 0 l'item primaire, et en case 1
-		 * le reste
-		 * @param item
-		 * @return
-		 */
-	private static Object[] getIngredientPrimaire(Item item) {
-		if (item == null) return null;
+	private static ArrayList<Recette> getDirectRecettes(EItem item) {
+		ArrayList<Recette> recettes = getRecettes(item);
 
-		EItemInfo info = EItemInfo.getBy(item.getItem());
-		if (!info.isPrimaire()) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Recette> recettes2 = (ArrayList<Recette>) recettes.clone();
 
+
+		for (Recette recette : recettes) {
+			if (recette.item != item) {
+				recettes2.remove(recette);
+			}
 		}
 
-
-		return null;
+		return recettes2;
 	}
 
 }

@@ -32,6 +32,10 @@ public class Ingredients extends ArrayList<Item> {
 	@Override
 	public Ingredients clone() {
 		Ingredients i = (Ingredients) super.clone();
+		i.clear();
+		for (Item item : this) {
+			i.add(item.clone());
+		}
 
 		return i;
 	}

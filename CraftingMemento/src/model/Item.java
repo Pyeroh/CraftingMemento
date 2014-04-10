@@ -54,4 +54,13 @@ public class Item {
 		return quantite + " " + item.getGuiName();
 	}
 
+	@Override
+	public Item clone() {
+		try {
+			return (Item) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+
 }

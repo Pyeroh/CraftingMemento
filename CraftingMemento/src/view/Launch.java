@@ -3,7 +3,8 @@ package view;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import javax.swing.UIManager;
 
@@ -25,7 +26,7 @@ public class Launch {
 		//new FenetreTest_XSwing();
 
 		EItem[] values = EItem.values();
-		HashMap<EItem, ArrayList<Recette>> associations = new HashMap<>();
+		LinkedHashMap<EItem, ArrayList<Recette>> associations = new LinkedHashMap<>();
 
 		for (EItem eItem : values) {
 			ArrayList<Recette> recettes = Recette.getRecettes(eItem);
@@ -40,7 +41,14 @@ public class Launch {
 			}
 		}
 
-		System.out.println(associations);
+		for (Iterator<EItem> it = associations.keySet().iterator(); it.hasNext();) {
+			EItem type = (EItem) it.next();
+			System.out.println(type);
+			System.out.println(associations.get(type));
+			System.out.println();
+		}
+
+		Recette.calcule(Recette.potion_splash_faiblesse, 10, true);
 
 	}
 
