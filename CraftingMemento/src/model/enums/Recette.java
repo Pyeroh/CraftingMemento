@@ -6,7 +6,10 @@ import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+
+import javax.swing.SwingConstants;
 
 import model.Ingredients;
 import model.Item;
@@ -1027,8 +1030,6 @@ public enum Recette {
 		if (step == 8) return null;
 
 		Ingredients items = calcule(recette, nb);
-
-
 
 		IngredientsSet listCalculs = new IngredientsSet();
 

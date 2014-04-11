@@ -48,7 +48,8 @@ public class Launch {
 			System.out.println();
 		}
 
-		Recette.calcule(Recette.potion_splash_faiblesse, 10, true);
+		//Recette.calcule(Recette.potion_splash_faiblesse, 10, true);
+		System.out.println(Recette.calcule(Recette.faux_bois, 1, true));
 
 	}
 
