@@ -1,15 +1,9 @@
 package model.enums;
 
 import static model.enums.EItem.*;
-import static model.enums.ERecetteType.craft;
-import static model.enums.ERecetteType.four;
+import static model.enums.ERecetteType.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-
-import javax.swing.SwingConstants;
+import java.util.*;
 
 import model.Ingredients;
 import model.Item;
@@ -1032,29 +1026,22 @@ public enum Recette {
 		Ingredients items = calcule(recette, nb);
 
 		IngredientsSet listCalculs = new IngredientsSet();
+		LinkedHashMap<EItem, Integer> restant = new LinkedHashMap<>();
 
 		if (primaire) {
 
 			for(Item item : items) {
 
-				//Ingredients items2 = items.clone();
-
 				EItemInfo info = EItemInfo.getBy(item.getItem());
-				if (!info.isPrimaire()) {
-
-					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
-					for (Recette recette2 : recettes) {
-						ArrayList<Ingredients> ing = calcule(recette2, item.getQuantite(), true, step + 1);
-						for (Ingredients ingredients : ing) {
-							listCalculs.add(ingredients);
-						}
-					}
-
-
-					// TODO il faut passer par la récursion pour avoir une liste exhaustive des ingrédients pour chaque "chemin" de recette possible
-
-				} else {
+				if (info.isPrimaire()) {
 					listCalculs.addAll(item);
+				}
+				else {
+					ArrayList<Recette> directRecettes = getDirectRecettes(item.getItem());
+					for (Recette recette2 : directRecettes) {
+						ArrayList<Ingredients> ing = calcule(recette2, item.getQuantite(), true, step + 1);
+						System.out.println(recette2);
+					}
 				}
 
 			}
