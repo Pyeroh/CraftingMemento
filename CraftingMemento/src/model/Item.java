@@ -29,7 +29,6 @@ public class Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((item == null) ? 0 : item.hashCode());
-		result = prime * result + quantite;
 		return result;
 	}
 
@@ -39,12 +38,10 @@ public class Item {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Item))
+		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
 		if (item != other.item)
-			return false;
-		if (quantite != other.quantite)
 			return false;
 		return true;
 	}

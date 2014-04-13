@@ -50,6 +50,7 @@ public class Launch {
 
 		//Recette.calcule(Recette.potion_splash_faiblesse, 10, true);
 		System.out.println(Recette.calcule(Recette.faux_bois, 1, true));
+		//System.out.println(Recette.calcule(Recette.laine_bleue, 1, true));
 
 	}
 

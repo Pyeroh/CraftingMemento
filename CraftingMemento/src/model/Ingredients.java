@@ -1,33 +1,12 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import model.enums.EItem;
 
-public class Ingredients extends ArrayList<Item> {
+public class Ingredients extends LinkedHashSet<Item> {
 
 	private static final long serialVersionUID = 8982033548147523728L;
-
-	public boolean containsEItem(EItem e) {
-		return indexOf(e) != -1;
-	}
-
-	/**
-	 * @see Ingredients#indexOf(Object)
-	 * @param e
-	 * @return
-	 */
-	public int indexOf(EItem e) {
-		int i = 0;
-		if (size() == 0) return -1;
-		while (get(i).getItem() != e && i < size() - 1) {
-			i++;
-		}
-		if (get(i).getItem() == e) {
-			return i;
-		}
-		else return -1;
-	}
 
 	@Override
 	public Ingredients clone() {
@@ -38,6 +17,43 @@ public class Ingredients extends ArrayList<Item> {
 		}
 
 		return i;
+	}
+
+	public Item get(EItem eitem) {
+
+		Iterator<Item> it = this.iterator();
+
+		if (!it.hasNext())
+			return null;
+
+		Item item = it.next();
+
+		while (it.hasNext() && item.getItem() != eitem) {
+			item = it.next();
+		}
+
+		if (item.getItem() == eitem)
+			return item;
+
+		else
+			return null;
+
+	}
+
+	/**
+	 * Ajoute à la liste l'item spécifié en paramètre, ou ajoute à l'item déjà
+	 * présent la quantité du paramètre
+	 *
+	 * @param item l'item à ajouter
+	 * @param ajout ajouter la quantité ?
+	 */
+	public void add(Item item, boolean ajout) {
+		add(item);
+		if (ajout) {
+			Item current = get(item.getItem());
+			current.setQuantite(current.getQuantite() + item.getQuantite());
+		}
+
 	}
 
 }
