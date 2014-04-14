@@ -48,8 +48,8 @@ public class Ingredients extends LinkedHashSet<Item> {
 	 * @param ajout ajouter la quantité ?
 	 */
 	public void add(Item item, boolean ajout) {
-		add(item);
-		if (ajout) {
+		boolean supAjout = super.add(item);
+		if (ajout && !supAjout) {
 			Item current = get(item.getItem());
 			current.setQuantite(current.getQuantite() + item.getQuantite());
 		}
