@@ -8,13 +8,20 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	private static final long serialVersionUID = 8982033548147523728L;
 
+	 public Ingredients() {
+	 super();
+	 }
+
+	 public Ingredients(Collection<? extends Item> c) {
+	 super(c);
+	 }
+
 	@Override
 	public Ingredients clone() {
 		Ingredients i = (Ingredients) super.clone();
-		i.clear();
-		for (Item item : this) {
-			i.add(item.clone());
-		}
+		/*
+		 * i.clear(); for (Item item : this) { i.add(item.clone()); }
+		 */
 
 		return i;
 	}
@@ -40,12 +47,21 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	}
 
+	public Item get(int index) {
+
+		ArrayList<Item> i = new ArrayList<>(this);
+		return i.get(index);
+
+	}
+
 	/**
 	 * Ajoute à la liste l'item spécifié en paramètre, ou ajoute à l'item déjà
 	 * présent la quantité du paramètre
 	 *
-	 * @param item l'item à ajouter
-	 * @param ajout ajouter la quantité ?
+	 * @param item
+	 *            l'item à ajouter
+	 * @param ajout
+	 *            ajouter la quantité ?
 	 */
 	public void add(Item item, boolean ajout) {
 		boolean supAjout = super.add(item);
@@ -53,7 +69,42 @@ public class Ingredients extends LinkedHashSet<Item> {
 			Item current = get(item.getItem());
 			current.setQuantite(current.getQuantite() + item.getQuantite());
 		}
+	}
 
+	/**
+	 * Soustrait chaque item de la liste des éléments "restants" à la liste
+	 * actuelle
+	 *
+	 * @param restant
+	 */
+	public void substract(Ingredients restant) {
+
+		for (Iterator<Item> it = this.iterator(); it.hasNext();) {
+			Item item = it.next();
+			if (restant.contains(item)) {
+				Item rest = restant.get(item.getItem());
+				int min = Math.min(rest.getQuantite(), item.getQuantite());
+				item.setQuantite(item.getQuantite() - min);
+				rest.setQuantite(rest.getQuantite() - min);
+			}
+		}
+
+	}
+
+	public void addAll(Ingredients i, boolean ajout) {
+		for (Iterator<Item> it = i.iterator(); it.hasNext();) {
+			Item item = it.next();
+			add(item, ajout);
+		}
+	}
+
+	public void nettoyage() {
+		for (Iterator<Item> it = this.clone().iterator(); it.hasNext();) {
+			Item item = it.next();
+			if (item.getQuantite() == 0) {
+				this.remove(item);
+			}
+		}
 	}
 
 }

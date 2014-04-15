@@ -8,7 +8,7 @@ public enum EItemInfo {
 	// TODO attendre 1.8 pour nouveaux blocs
 
 	grass(StackSize.S64, Version.Classic009a, false, false, false, false),
-	dirt(StackSize.S64, Version.Classic009a, false, false, false, false),
+	dirt(StackSize.S64, Version.Classic009a, false, false, false, true),
 	grassless_dirt(StackSize.S64, Version.Classic009a, false, false, false, false),
 	podzol(StackSize.S64, Version.Classic009a, false, false, false, false),
 	cobblestone(StackSize.S64, Version.Classic009a, false, false, true, true),
@@ -26,7 +26,7 @@ public enum EItemInfo {
 	darkoak_sapling(StackSize.S64, Version.Release17, true, true, true, false),
 	sand(StackSize.S64, Version.Classic0014a, false, false, false, true),
 	redsand(StackSize.S64, Version.Release17, false, false, false, true),
-	gravel(StackSize.S64, Version.Classic0014a, false, false, false, false),
+	gravel(StackSize.S64, Version.Classic0014a, false, false, false, true),
 	gold_ore(StackSize.S64, Version.Classic0014a, false, false, false, true),
 	iron_ore(StackSize.S64, Version.Classic0014a, false, false, false, true),
 	coal_ore(StackSize.S64, Version.Classic0014a, false, false, false, true),
@@ -371,8 +371,8 @@ public enum EItemInfo {
 	rose_red(StackSize.S64, Version.Beta12, false, true, false),
 	cactus_green(StackSize.S64, Version.Beta12, false, true, false),
 	cocoa_beans(StackSize.S64, Version.Beta12, false, true, true),
-	// TODO pour 1.8 : lapis_lazuli(StackSize.S64, Version.Beta12, false, true, false),
-	lapis_lazuli(StackSize.S64, Version.Beta12, false, false, false),
+	// TODO pour 1.8 : lapis_lazuli(StackSize.S64, Version.Beta12, false, true, true),
+	lapis_lazuli(StackSize.S64, Version.Beta12, false, false, true),
 	purple_dye(StackSize.S64, Version.Beta12, false, true, false),
 	cyan_dye(StackSize.S64, Version.Beta12, false, true, false),
 	l_gray_dye(StackSize.S64, Version.Beta12, false, true, false),

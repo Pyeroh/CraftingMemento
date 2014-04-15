@@ -245,7 +245,9 @@ public enum Recette
 	 */
 
 	laine_blanche(white_wool, 1, new EItem[][]{{air, air, air}, {air, string, string}, {air, string, string}}),
-	laine_blanche2(white_wool, 1, white_wool, bone_meal),
+
+	// Okay cette recette existe, mais elle ne sert à rien, donc aucune utilité
+	// laine_blanche2(white_wool, 1, white_wool, bone_meal),
 	laine_orange(orange_wool, 1, white_wool, orange_dye),
 	laine_magenta(magenta_wool, 1, white_wool, magenta_dye),
 	laine_bleu_clair(l_blue_wool, 1, white_wool, l_blue_dye),
@@ -1113,11 +1115,11 @@ public enum Recette
 	 * @param nb
 	 * @return
 	 */
-	private static Ingredients calcule(Recette recette, int nb) {
-		Ingredients items = new Ingredients();
+		private static Ingredients calcule(Recette recette, int nb) {
+			Ingredients items = new Ingredients();
 
-		switch (recette.forme) {
-			case forme :
+			switch (recette.forme) {
+			case forme:
 
 				for (EItem[] tab_eitem : recette.recette) {
 					for (EItem item : tab_eitem) {
@@ -1126,34 +1128,87 @@ public enum Recette
 				}
 
 				break;
-			case sansforme :
+			case sansforme:
 
 				for (EItem item : recette.ingredients) {
 					evalueRecette(items, item);
 				}
 
 				break;
-			default :
+			default:
 				break;
-		}
+			}
 
-		for (Item item : items) {
-			if (recette.type == ERecetteType.alambic) {
-				if (!item.getItem().getRealName().equals("potion")) {
-					item.setQuantite((int) Math.ceil((item.getQuantite() * nb) / (recette.quantite + 0d)));
+			int defQuantite = (int) Math.ceil(nb / (recette.quantite + 0d));
+
+			for (Item item : items) {
+				if (recette.type == ERecetteType.alambic) {
+					if (!item.getItem().getRealName().equals("potion")) {
+						item.setQuantite((int) Math.ceil((item.getQuantite() * nb) / (recette.quantite + 0d)));
+					} else {
+						item.setQuantite(item.getQuantite() * nb);
+					}
 				} else {
-					item.setQuantite(item.getQuantite() * nb);
+					item.setQuantite(item.getQuantite() * defQuantite);
 				}
-			} else {
-				item.setQuantite((int) Math.ceil((item.getQuantite() * nb) / (recette.quantite + 0d)));
+			}
+
+			return items;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire) {
+		ArrayList<Ingredients> result = new ArrayList<>(calcule(recette, new Ingredients(), nb, primaire, 0).keySet());
+
+		for (Ingredients ingredients : (ArrayList<Ingredients>)result.clone()) {
+			ingredients.nettoyage();
+			if (ingredients.isEmpty()) {
+				result.remove(ingredients);
 			}
 		}
 
-		return items;
+		return result;
 	}
 
-	public static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire) {
-		return new ArrayList<>(calcule(recette, nb, primaire, 0).keySet());
+	static class MapIngredientsRestant extends LinkedHashMap<Ingredients, Ingredients> {
+
+		private static final long serialVersionUID = -1139151548490289231L;
+
+		public MapIngredientsRestant() {
+			super();
+		}
+
+		@Override
+		public Ingredients put(Ingredients key, Ingredients value) {
+			Ingredients val = super.put(key, value);
+
+			if (val != null) {
+				this.get(key).addAll(value, true);
+				ArrayList<Ingredients> keys = new ArrayList<>(this.keySet());
+				Ingredients trueKey = keys.get(keys.indexOf(key));
+
+				trueKey.addAll(key, true);
+			}
+
+			return val;
+		}
+
+		public void addToAll(Ingredients communs, Ingredients restCommuns) {
+
+			if (this.isEmpty()) {
+				this.put(communs, restCommuns);
+				return;
+			}
+
+			for (Iterator<Ingredients> it = this.keySet().iterator(); it.hasNext();) {
+				Ingredients key = it.next();
+				Ingredients value = this.get(key);
+				key.addAll(communs, true);
+				value.addAll(restCommuns, true);
+			}
+		}
+
+
 	}
 
 	/**
@@ -1171,15 +1226,21 @@ public enum Recette
 	 * @return une map contenant pour chaque liste d'ingrédients, une liste
 	 *         d'éléments restants
 	 */
-	private static LinkedHashMap<Ingredients, Ingredients> calcule(Recette recette, int nb, boolean primaire, int step) {
+	private static MapIngredientsRestant calcule(Recette recette, Ingredients restant, int nb, boolean primaire, int step) {
 
 		// Que faire ?
 		// Il faut qu'à partir de la recette, et du nb, on puisse savoir les
 		// différentes recettes (à partir d'éléments primaire) possibles
 		// et bien sûr de manière unique
 
-		Ingredients ingredients = calcule(recette, nb);
-		LinkedHashMap<Ingredients, Ingredients> result = new LinkedHashMap<>();
+		final Ingredients ingredients = calcule(recette, nb);
+		ingredients.substract(restant);
+		MapIngredientsRestant result = new MapIngredientsRestant();
+
+		MapIngredientsRestant communs = new MapIngredientsRestant();
+		Ingredients ingCommuns = new Ingredients();
+		Ingredients restCommuns = new Ingredients();
+		communs.put(ingCommuns, restCommuns);
 
 		if (step == 8)
 			return null;
@@ -1191,25 +1252,25 @@ public enum Recette
 
 				EItemInfo info = EItemInfo.getBy(item.getItem());
 				Ingredients ing2 = new Ingredients();
-				Ingredients restant = new Ingredients();
+				Ingredients restant2 = new Ingredients();
 
-				if (!info.isPrimaire()) {
+				if (item.getQuantite() != 0 && !info.isPrimaire()) {
 
 					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
 
 					for (Recette recette2 : recettes) {
 
-						LinkedHashMap<Ingredients, Ingredients> calc = calcule(recette2, item.getQuantite(), true,
-								step + 1);
+						MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), true, step + 1);
 
 						if (calc != null) {
 							for (Iterator<Ingredients> it = calc.keySet().iterator(); it.hasNext();) {
 								Ingredients i = it.next();
 								ing2.addAll(i);
-								restant.addAll(calc.get(i));
+								restant.addAll(calc.get(i), true);
+								restant2.addAll(calc.get(i));
 							}
 
-							result.put(ing2, restant);
+							result.put(ing2, restant2);
 
 							//result.putAll(calc);
 							//System.out.println(calc);
@@ -1218,10 +1279,8 @@ public enum Recette
 					}
 
 				} else {
-					restant.add(evalueRestant(item, recette, nb), true);
-					ing2.add(item, true);
-
-					result.put(ing2, restant);
+					restCommuns.add(evalueRestant(item, recette, nb), true);
+					ingCommuns.add(item, true);
 				}
 
 			}
@@ -1230,6 +1289,8 @@ public enum Recette
 			result.put(ingredients, null);
 		}
 
+		result.addToAll(ingCommuns, restCommuns);
+
 		return result;
 	}
 
@@ -1237,7 +1298,7 @@ public enum Recette
 
 		Item yield = recette.getItem();
 
-		int restant = (item.getQuantite() * yield.getQuantite()) - nbItemsProduits;
+		int restant = Math.abs((item.getQuantite() * yield.getQuantite()) - nbItemsProduits);
 
 		return new Item(yield.getItem(), restant);
 	}
