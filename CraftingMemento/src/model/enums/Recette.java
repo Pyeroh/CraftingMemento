@@ -1,9 +1,13 @@
 package model.enums;
 
 import static model.enums.EItem.*;
-import static model.enums.ERecetteType.*;
+import static model.enums.ERecetteType.craft;
+import static model.enums.ERecetteType.four;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 import model.Ingredients;
 import model.Item;
@@ -26,12 +30,7 @@ public enum Recette
 	verre2(glass, redsand),
 	terre_cuite(hardened_clay, clay),
 	charbon_cuit(coal, coal_ore),
-	charbon_bois(charcoal, oak_log),
-	charbon_bois2(charcoal, spruce_log),
-	charbon_bois3(charcoal, birch_log),
-	charbon_bois4(charcoal, jungle_log),
-	charbon_bois5(charcoal, acacia_log),
-	charbon_bois6(charcoal, darkoak_log),
+	charbon_bois(charcoal, oak_log, true),
 	diamant(diamond, diamond_ore),
 	fer(iron_ingot, iron_ore),
 	or(gold_ingot, gold_ore),
@@ -245,9 +244,7 @@ public enum Recette
 	 */
 
 	laine_blanche(white_wool, 1, new EItem[][]{{air, air, air}, {air, string, string}, {air, string, string}}),
-
-	// Okay cette recette existe, mais elle ne sert à rien, donc aucune utilité
-	// laine_blanche2(white_wool, 1, white_wool, bone_meal),
+	laine_blanche2(white_wool, 1, white_wool, bone_meal),
 	laine_orange(orange_wool, 1, white_wool, orange_dye),
 	laine_magenta(magenta_wool, 1, white_wool, magenta_dye),
 	laine_bleu_clair(l_blue_wool, 1, white_wool, l_blue_dye),
@@ -900,6 +897,14 @@ public enum Recette
 			throw new IllegalArgumentException("Le tableau d'ingrédients n'est pas de dimension 3x3");
 	}
 
+	/**
+	 * Constructeur pour une recette en craft de type "avec forme"
+	 * et à combinabilité variable
+	 * @param item
+	 * @param quantite
+	 * @param recette
+	 * @param combinable
+	 */
 	Recette(EItem item, int quantite, EItem[][] recette, boolean combinable) {
 		this(item, quantite, recette);
 		this.combinable = combinable;
@@ -920,6 +925,13 @@ public enum Recette
 		this.forme = ERecetteForme.sansforme;
 	}
 
+	/**
+	 * Constructeur pour une recette de craft sans forme à combinabilité variable
+	 * @param item
+	 * @param quantite
+	 * @param combinable
+	 * @param ingredients
+	 */
 	Recette(EItem item, int quantite, boolean combinable, EItem... ingredients) {
 		this(item, quantite, ingredients);
 		this.combinable = combinable;
@@ -934,6 +946,19 @@ public enum Recette
 	Recette(EItem item, EItem acuire) {
 		this(item, four, 1);
 		this.ingredients.add(acuire);
+	}
+
+	/**
+	 * Constructeur pour une recette de four à combinabilité variable
+	 *
+	 * @param acuire
+	 *            l'ingrédient à cuire
+	 * @param combinable
+	 */
+	Recette(EItem item, EItem acuire, boolean combinable) {
+		this(item, four, 1);
+		this.ingredients.add(acuire);
+		this.combinable = combinable;
 	}
 
 	/**
@@ -1193,7 +1218,7 @@ public enum Recette
 			return val;
 		}
 
-		public void addToAll(Ingredients communs, Ingredients restCommuns) {
+		private void addToAll(Ingredients communs, Ingredients restCommuns) {
 
 			if (this.isEmpty()) {
 				this.put(communs, restCommuns);
@@ -1208,6 +1233,15 @@ public enum Recette
 			}
 		}
 
+		public void addToAll(MapIngredientsRestant mapIngs) {
+			if (mapIngs != null) {
+				ArrayList<Ingredients> keys = new ArrayList<>(mapIngs.keySet());
+				ArrayList<Ingredients> values = new ArrayList<>(mapIngs.values());
+				for (int i = 0; i < keys.size(); i++) {
+					addToAll(keys.get(i), values.get(i));
+				}
+			}
+		}
 
 	}
 
@@ -1233,6 +1267,10 @@ public enum Recette
 		// différentes recettes (à partir d'éléments primaire) possibles
 		// et bien sûr de manière unique
 
+		if (recette == laine_blanche2 || recette == carte2) {
+			primaire = false;
+		}
+
 		final Ingredients ingredients = calcule(recette, nb);
 		ingredients.substract(restant);
 		MapIngredientsRestant result = new MapIngredientsRestant();
@@ -1251,8 +1289,10 @@ public enum Recette
 			for (Item item : ingredients) {
 
 				EItemInfo info = EItemInfo.getBy(item.getItem());
-				Ingredients ing2 = new Ingredients();
-				Ingredients restant2 = new Ingredients();
+
+				MapIngredientsRestant mapIngs = new MapIngredientsRestant();
+				Ingredients ing2;
+				Ingredients restant2;
 
 				if (item.getQuantite() != 0 && !info.isPrimaire()) {
 
@@ -1262,6 +1302,9 @@ public enum Recette
 
 						MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), true, step + 1);
 
+						ing2 = new Ingredients();
+						restant2 = new Ingredients();
+
 						if (calc != null) {
 							for (Iterator<Ingredients> it = calc.keySet().iterator(); it.hasNext();) {
 								Ingredients i = it.next();
@@ -1270,13 +1313,14 @@ public enum Recette
 								restant2.addAll(calc.get(i));
 							}
 
-							result.put(ing2, restant2);
+							mapIngs.put(ing2, restant2);
 
-							//result.putAll(calc);
-							//System.out.println(calc);
+
 						}
 
 					}
+
+					result.addToAll(mapIngs);
 
 				} else {
 					restCommuns.add(evalueRestant(item, recette, nb), true);
@@ -1286,10 +1330,10 @@ public enum Recette
 			}
 
 		} else {
-			result.put(ingredients, null);
+			result.put(ingredients, new Ingredients());
 		}
 
-		result.addToAll(ingCommuns, restCommuns);
+		result.addToAll(communs);
 
 		return result;
 	}

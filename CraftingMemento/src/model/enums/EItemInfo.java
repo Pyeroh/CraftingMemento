@@ -272,7 +272,7 @@ public enum EItemInfo {
 	bow(StackSize.S1, Version.Indev031, false, true, false),
 	arrow(StackSize.S64, Version.Classic024, false, true, false),
 	coal(StackSize.S64, Version.Indev031, true, true, true),
-	charcoal(StackSize.S64, Version.Indev031, true, true, true),
+	charcoal(StackSize.S64, Version.Indev031, true, true, false),
 	diamond(StackSize.S64, Version.Indev031, false, false, true),
 	iron_ingot(StackSize.S64, Version.Indev031, false, true, true),
 	gold_ingot(StackSize.S64, Version.Classic0014a, false, true, true),

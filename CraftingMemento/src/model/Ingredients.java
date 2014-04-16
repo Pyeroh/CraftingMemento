@@ -8,22 +8,40 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	private static final long serialVersionUID = 8982033548147523728L;
 
-	 public Ingredients() {
-	 super();
-	 }
+	public Ingredients() {
+		super();
+	}
 
-	 public Ingredients(Collection<? extends Item> c) {
-	 super(c);
-	 }
+	public Ingredients(Collection<? extends Item> c) {
+		super(c);
+	}
 
 	@Override
 	public Ingredients clone() {
 		Ingredients i = (Ingredients) super.clone();
-		/*
-		 * i.clear(); for (Item item : this) { i.add(item.clone()); }
-		 */
 
 		return i;
+	}
+
+	@Override
+	public int hashCode() {
+		/*final int prime = 31;
+		int result = size();
+
+		result = prime * result;
+
+		for (Iterator<Item> it = this.iterator(); it.hasNext();) {
+			Item type = it.next();
+			result += type.hashCode();
+		}
+
+		return result;*/
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return super.equals(o);
 	}
 
 	public Item get(EItem eitem) {
@@ -89,9 +107,16 @@ public class Ingredients extends LinkedHashSet<Item> {
 			}
 		}
 
+		nettoyage();
+
 	}
 
 	public void addAll(Ingredients i, boolean ajout) {
+		if (this.isEmpty()) {
+			addAll(i);
+			return;
+		}
+
 		for (Iterator<Item> it = i.iterator(); it.hasNext();) {
 			Item item = it.next();
 			add(item, ajout);
