@@ -5,7 +5,6 @@ import static model.enums.ERecetteType.craft;
 import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
@@ -1225,12 +1224,16 @@ public enum Recette
 				return;
 			}
 
-			for (Iterator<Ingredients> it = this.keySet().iterator(); it.hasNext();) {
-				Ingredients key = it.next();
-				Ingredients value = this.get(key);
+			ArrayList<Ingredients> keys = new ArrayList<>(this.keySet());
+			ArrayList<Ingredients> values = new ArrayList<>(this.values());
+
+			for (int i = 0; i < keys.size(); i++) {
+				Ingredients key = keys.get(i);
+				Ingredients value = values.get(i);
 				key.addAll(communs, true);
 				value.addAll(restCommuns, true);
 			}
+
 		}
 
 		public void addToAll(MapIngredientsRestant mapIngs) {
@@ -1260,14 +1263,14 @@ public enum Recette
 	 * @return une map contenant pour chaque liste d'ingrédients, une liste
 	 *         d'éléments restants
 	 */
-	private static MapIngredientsRestant calcule(Recette recette, Ingredients restant, int nb, boolean primaire, int step) {
+	private static MapIngredientsRestant calcule(Recette recette, final Ingredients restant, int nb, boolean primaire, int step) {
 
 		// Que faire ?
 		// Il faut qu'à partir de la recette, et du nb, on puisse savoir les
 		// différentes recettes (à partir d'éléments primaire) possibles
 		// et bien sûr de manière unique
 
-		if (recette == laine_blanche2 || recette == carte2) {
+		if (recette == laine_blanche2 || recette == carte2 || recette == gres_poli3) {
 			primaire = false;
 		}
 
@@ -1300,17 +1303,19 @@ public enum Recette
 
 					for (Recette recette2 : recettes) {
 
-						MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), true, step + 1);
-
 						ing2 = new Ingredients();
 						restant2 = new Ingredients();
 
+						MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), true, step + 1);
+
 						if (calc != null) {
-							for (Iterator<Ingredients> it = calc.keySet().iterator(); it.hasNext();) {
-								Ingredients i = it.next();
-								ing2.addAll(i);
-								restant.addAll(calc.get(i), true);
-								restant2.addAll(calc.get(i));
+							ArrayList<Ingredients> keys = new ArrayList<>(calc.keySet());
+							ArrayList<Ingredients> values = new ArrayList<>(calc.values());
+
+							for (int i = 0; i < keys.size(); i++) {
+								ing2.addAll(keys.get(i));
+								restant.addAll(values.get(i), true);
+								restant2.addAll(values.get(i));
 							}
 
 							mapIngs.put(ing2, restant2);
@@ -1320,7 +1325,8 @@ public enum Recette
 
 					}
 
-					result.addToAll(mapIngs);
+					//System.out.println(mapIngs);
+					result.putAll(mapIngs);
 
 				} else {
 					restCommuns.add(evalueRestant(item, recette, nb), true);

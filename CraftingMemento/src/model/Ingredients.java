@@ -46,6 +46,8 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	public Item get(EItem eitem) {
 
+		nettoyage();
+
 		Iterator<Item> it = this.iterator();
 
 		if (!it.hasNext())
@@ -67,6 +69,8 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	public Item get(int index) {
 
+		nettoyage();
+
 		ArrayList<Item> i = new ArrayList<>(this);
 		return i.get(index);
 
@@ -82,6 +86,9 @@ public class Ingredients extends LinkedHashSet<Item> {
 	 *            ajouter la quantité ?
 	 */
 	public void add(Item item, boolean ajout) {
+
+		nettoyage();
+
 		boolean supAjout = super.add(item);
 		if (ajout && !supAjout) {
 			Item current = get(item.getItem());
