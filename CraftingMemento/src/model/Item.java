@@ -53,11 +53,7 @@ public class Item {
 
 	@Override
 	public Item clone() {
-		try {
-			return (Item) super.clone();
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
+		return new Item(item, quantite);
 	}
 
 }

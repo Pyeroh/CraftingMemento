@@ -19,29 +19,14 @@ public class Ingredients extends LinkedHashSet<Item> {
 	@Override
 	public Ingredients clone() {
 		Ingredients i = (Ingredients) super.clone();
-
-		return i;
-	}
-
-	@Override
-	public int hashCode() {
-		/*final int prime = 31;
-		int result = size();
-
-		result = prime * result;
+		i.clear();
 
 		for (Iterator<Item> it = this.iterator(); it.hasNext();) {
-			Item type = it.next();
-			result += type.hashCode();
+			Item item = it.next();
+			i.add(item.clone());
 		}
 
-		return result;*/
-		return super.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		return super.equals(o);
+		return i;
 	}
 
 	public Item get(EItem eitem) {
@@ -89,25 +74,34 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 		nettoyage();
 
-		boolean supAjout = super.add(item);
-		if (ajout && !supAjout) {
-			Item current = get(item.getItem());
-			current.setQuantite(current.getQuantite() + item.getQuantite());
+		if (this.contains(item)) {
+			if (ajout) {
+				Item current = get(item.getItem());
+				current.setQuantite(current.getQuantite() + item.getQuantite());
+			}
+		}
+		else {
+			add(item);
 		}
 	}
 
 	/**
 	 * Soustrait chaque item de la liste des éléments "restants" à la liste
-	 * actuelle
+	 * actuelle. Note : la liste renvoyée et le paramètre ne sont pas modifiés
 	 *
-	 * @param restant
+	 * @param restant2
+	 * @return une copie de la liste dont les éléments de restant ont été
+	 *         soustraits
 	 */
-	public void substract(Ingredients restant) {
+	public Ingredients substract(Ingredients restant) {
 
-		for (Iterator<Item> it = this.iterator(); it.hasNext();) {
+		Ingredients clone = clone();
+		Ingredients restant2 = restant.clone();
+
+		for (Iterator<Item> it = clone.iterator(); it.hasNext();) {
 			Item item = it.next();
-			if (restant.contains(item)) {
-				Item rest = restant.get(item.getItem());
+			if (restant2.contains(item)) {
+				Item rest = restant2.get(item.getItem());
 				int min = Math.min(rest.getQuantite(), item.getQuantite());
 				item.setQuantite(item.getQuantite() - min);
 				rest.setQuantite(rest.getQuantite() - min);
@@ -115,6 +109,8 @@ public class Ingredients extends LinkedHashSet<Item> {
 		}
 
 		nettoyage();
+
+		return clone;
 
 	}
 
