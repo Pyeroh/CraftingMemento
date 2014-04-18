@@ -53,12 +53,12 @@ public class Launch {
 		//System.out.println(Recette.calcule(Recette.faux_bois, 5, true));
 		//System.out.println(Recette.calcule(Recette.panneau, 10, true));
 		//System.out.println(Recette.calcule(Recette.epee_bois, 8, true));
-		//System.out.println(Recette.calcule(Recette.vitre, 16, true));
+		System.out.println(Recette.calcule(Recette.laine_rose, 16, true));
 
-		for (Recette recette : Recette.values()) {
+		/*for (Recette recette : Recette.values()) {
 			if (recette.getItem().getItem().getRealName().equals("potion")) return;
 			System.out.println(recette.getItem().getItem().getGuiName() + " x5 : " + Recette.calcule(recette, 5, true));
-		}
+		}*/
 
 	}
 

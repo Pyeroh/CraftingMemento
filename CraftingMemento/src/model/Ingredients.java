@@ -72,8 +72,6 @@ public class Ingredients extends LinkedHashSet<Item> {
 	 */
 	public void add(Item item, boolean ajout) {
 
-		nettoyage();
-
 		if (this.contains(item)) {
 			if (ajout) {
 				Item current = get(item.getItem());
@@ -83,6 +81,9 @@ public class Ingredients extends LinkedHashSet<Item> {
 		else {
 			add(item);
 		}
+
+		nettoyage();
+
 	}
 
 	/**
