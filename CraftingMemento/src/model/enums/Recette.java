@@ -1367,16 +1367,10 @@ public enum Recette {
 
 									// Calcul des ingrédients à utiliser et du
 									// restant
-									MapIngredientsRestant calc = calcule(recette2, result.get(ing), item.getQuantite(), primaire, step + 1);
+									MapIngredientsRestant calc = calcule(recette2, result.get(ing), item.getQuantite(), primaire,
+											step + 1);
 
 									listCalcs.putAll(calc);
-
-//									for (Iterator<Ingredients> keys = calc.keySet().iterator(); keys.hasNext();) {
-//										Ingredients key = keys.next().clone();
-//										Ingredients r = calc.get(key);
-//										key.addAll(ing, true);
-//										result.put(key, r);
-//									}
 
 								}
 
@@ -1394,8 +1388,14 @@ public enum Recette {
 
 							result.remove(key);
 
-							for (Ingredients lcKeys : listCalcs.keySet()) {
-								// Composer chaque résultat de calcul avec le résultat existant
+							for (Ingredients lcKey : listCalcs.keySet()) {
+								// Composer chaque résultat de calcul avec le
+								// résultat existant
+								lcKey = lcKey.clone();
+								Ingredients lcValue = listCalcs.get(lcKey);
+								lcKey.sum(key);
+								lcValue.sum(value);
+								result.put(lcKey, lcValue);
 							}
 
 						}
