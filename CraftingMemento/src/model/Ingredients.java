@@ -115,7 +115,7 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 	}
 
-	public void addAll(Ingredients i, boolean ajout) {
+	public void sum(Ingredients i) {
 		if (this.isEmpty()) {
 			addAll(i);
 			return;
@@ -123,7 +123,7 @@ public class Ingredients extends LinkedHashSet<Item> {
 
 		for (Iterator<Item> it = i.iterator(); it.hasNext();) {
 			Item item = it.next();
-			add(item, ajout);
+			add(item, true);
 		}
 	}
 

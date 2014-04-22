@@ -1067,7 +1067,7 @@ public enum Recette {
 	}
 
 	public String toString() {
-		String sRecette = "\n\t";
+		String sRecette = "";
 		switch (type) {
 		case craft:
 			switch (forme) {
@@ -1276,11 +1276,11 @@ public enum Recette {
 
 			if (this.containsKey(key)) {
 				Ingredients val = this.get(key);
-				val.addAll(value, true);
+				val.sum(value);
 				ArrayList<Ingredients> keys = new ArrayList<>(this.keySet());
 				Ingredients trueKey = keys.get(keys.indexOf(key));
 
-				trueKey.addAll(key, true);
+				trueKey.sum(key);
 
 				return super.put(trueKey, val);
 			}
@@ -1297,14 +1297,10 @@ public enum Recette {
 				return;
 			}
 
-			ArrayList<Ingredients> keys = new ArrayList<>(this.keySet());
-			ArrayList<Ingredients> values = new ArrayList<>(this.values());
-
-			for (int i = 0; i < keys.size(); i++) {
-				Ingredients key = keys.get(i);
-				Ingredients value = values.get(i);
-				key.addAll(communs, true);
-				value.addAll(restCommuns, true);
+			for (Ingredients key : this.keySet()) {
+				Ingredients value = this.get(key);
+				key.sum(communs);
+				value.sum(restCommuns);
 				this.put(key, value);
 			}
 
@@ -1312,10 +1308,8 @@ public enum Recette {
 
 		public void addToAll(MapIngredientsRestant mapIngs) {
 			if (mapIngs != null) {
-				ArrayList<Ingredients> keys = new ArrayList<>(mapIngs.keySet());
-				ArrayList<Ingredients> values = new ArrayList<>(mapIngs.values());
-				for (int i = 0; i < keys.size(); i++) {
-					this.addToAll(keys.get(i), values.get(i));
+				for (Ingredients key : mapIngs.keySet()) {
+					this.addToAll(key, mapIngs.get(key));
 				}
 			}
 		}
@@ -1323,8 +1317,6 @@ public enum Recette {
 	}
 
 	private static MapIngredientsRestant calcule(Recette recette, Ingredients restant, int nb, boolean primaire, int step) {
-
-		primaire = primaire && !recettesUseless.contains(recette);
 
 		if (step == 8) {
 			return null;
@@ -1340,47 +1332,81 @@ public enum Recette {
 
 		for (Item item : ingClone) {
 
-			EItemInfo info = EItemInfo.getBy(item.getItem());
-
-			if (info.isPrimaire()) {
-				ingCommuns.add(item, true);
-				restCommuns.add(evalueRestant(item, recette, nb), true);
-			}
-			else {
-
-				ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
-
-				if (result.isEmpty()) {
-					for (Recette recette2 : recettes) {
-						result.putAll(calcule(recette2, restant, item.getQuantite(), primaire, step + 1));
-					}
+			if (primaire) {
+				EItemInfo info = EItemInfo.getBy(item.getItem());
+				if (info.isPrimaire()) {
+					alimentationListesCommunes(recette, nb, ingCommuns, restCommuns, item);
 				}
 				else {
 
-					for (Recette recette2 : recettes) {
+					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
+
+					if (result.isEmpty()) {
+						for (Recette recette2 : recettes) {
+							if (!recettesUseless.contains(recette2)) {
+								result.putAll(calcule(recette2, restant, item.getQuantite(), primaire, step + 1));
+							}
+							else {
+								Ingredients r = new Ingredients();
+								r.add(evalueRestant(item, recette2, nb));
+								r.nettoyage();
+								result.put(calcule(recette2, item.getQuantite()), r);
+							}
+						}
+					}
+					else {
+
+						MapIngredientsRestant listCalcs = new MapIngredientsRestant();
+
+						for (Recette recette2 : recettes) {
+
+							if (!recettesUseless.contains(recette)) {
+
+								for (Iterator<Ingredients> it = result.keySet().iterator(); it.hasNext();) {
+									Ingredients ing = it.next();
+
+									// Calcul des ingrédients à utiliser et du
+									// restant
+									MapIngredientsRestant calc = calcule(recette2, result.get(ing), item.getQuantite(), primaire, step + 1);
+
+									listCalcs.putAll(calc);
+
+//									for (Iterator<Ingredients> keys = calc.keySet().iterator(); keys.hasNext();) {
+//										Ingredients key = keys.next().clone();
+//										Ingredients r = calc.get(key);
+//										key.addAll(ing, true);
+//										result.put(key, r);
+//									}
+
+								}
+
+							}
+							else {
+								alimentationListesCommunes(recette2, nb, ingCommuns, restCommuns, item);
+							}
+
+						}
 
 						MapIngredientsRestant resultClone = (MapIngredientsRestant) result.clone();
+						for (Ingredients key : resultClone.keySet()) {
+							key = key.clone();
+							Ingredients value = resultClone.get(key);
 
-						for (Iterator<Ingredients> it = resultClone.keySet().iterator(); it.hasNext();) {
-							Ingredients ing = it.next();
+							result.remove(key);
 
-							// Calcul des ingrédients à utiliser et du
-							// restant
-							MapIngredientsRestant calc = calcule(recette2, resultClone.get(ing), nb, primaire, step + 1);
-
-							result.remove(ing);
-
-							for (Iterator<Ingredients> keys = calc.keySet().iterator(); keys.hasNext();) {
-								Ingredients key = keys.next().clone();
-								key.addAll(ing, true);
-								result.put(key, calc.get(key));
+							for (Ingredients lcKeys : listCalcs.keySet()) {
+								// Composer chaque résultat de calcul avec le résultat existant
 							}
 
 						}
 
 					}
+
 				}
 
+			}
+			else {
+				alimentationListesCommunes(recette, nb, ingCommuns, restCommuns, item);
 			}
 
 		}
@@ -1388,6 +1414,12 @@ public enum Recette {
 		result.addToAll(ingCommuns, restCommuns);
 
 		return result;
+	}
+
+	private static void alimentationListesCommunes(final Recette recette, final int nb, Ingredients ingCommuns,
+			Ingredients restCommuns, final Item item) {
+		ingCommuns.add(item, true);
+		restCommuns.add(evalueRestant(item, recette, nb), true);
 	}
 
 	/**
@@ -1456,7 +1488,7 @@ public enum Recette {
 
 							for (int i = 0; i < keys.size(); i++) {
 								ing2.addAll(keys.get(i));
-								restant.addAll(values.get(i), true);
+								restant.sum(values.get(i));
 								restant2.addAll(values.get(i));
 							}
 
