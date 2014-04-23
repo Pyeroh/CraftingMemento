@@ -49,11 +49,8 @@ public class Launch {
 //			System.out.println(eItemInfo.getItem().getGuiName() + " est primaire ? " + eItemInfo.isPrimaire());
 //		}
 
-		//System.out.println(Recette.calcule(Recette.potion_splash_faiblesse, 10, true));
-		//System.out.println(Recette.calcule(Recette.faux_bois, 5, true));
-		//System.out.println(Recette.calcule(Recette.panneau, 10, true));
-		//System.out.println(Recette.calcule(Recette.epee_bois, 8, true));
-		System.out.println(Recette.calcule(Recette.laine_rose, 16, true));
+		System.out.println(Recette.calcule(Recette.potion_splash_faiblesse, 3, true));
+//		System.out.println(Recette.calcule(Recette.potion_splash_banale, 6, true));
 
 		/*for (Recette recette : Recette.values()) {
 			if (recette.getItem().getItem().getRealName().equals("potion")) return;

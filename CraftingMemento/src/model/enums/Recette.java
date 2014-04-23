@@ -5,7 +5,6 @@ import static model.enums.ERecetteType.craft;
 import static model.enums.ERecetteType.four;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
@@ -906,6 +905,14 @@ public enum Recette {
 		recettesUseless.add(laine_blanche2);
 		recettesUseless.add(carte);
 		recettesUseless.add(carte2);
+		recettesUseless.add(livre_manuscrit);
+		recettesUseless.add(livre_manuscrit2);
+		recettesUseless.add(livre_manuscrit3);
+		recettesUseless.add(livre_manuscrit4);
+		recettesUseless.add(livre_manuscrit5);
+		recettesUseless.add(livre_manuscrit6);
+		recettesUseless.add(livre_manuscrit7);
+		recettesUseless.add(livre_manuscrit8);
 	}
 
 	private EItem item;
@@ -1271,8 +1278,7 @@ public enum Recette {
 			super();
 		}
 
-		@Override
-		public Ingredients put(Ingredients key, Ingredients value) {
+		public Ingredients customPut(Ingredients key, Ingredients value) {
 
 			if (this.containsKey(key)) {
 				Ingredients val = this.get(key);
@@ -1293,12 +1299,16 @@ public enum Recette {
 		private void addToAll(Ingredients communs, Ingredients restCommuns) {
 
 			if (this.isEmpty()) {
-				this.put(communs, restCommuns);
+				this.customPut(communs, restCommuns);
 				return;
 			}
 
-			for (Ingredients key : this.keySet()) {
+			MapIngredientsRestant thisClone = (MapIngredientsRestant) this.clone();
+			for (Ingredients key : thisClone.keySet()) {
+
 				Ingredients value = this.get(key);
+				this.remove(key);
+
 				key.sum(communs);
 				value.sum(restCommuns);
 				this.put(key, value);
@@ -1316,6 +1326,21 @@ public enum Recette {
 
 	}
 
+	/**
+	 * Renvoie le résultat du calcul d'une recette pour nb éléments, avec les
+	 * différentes possibilités et pour chacune le nombre d'ingrédients restants
+	 *
+	 * @param recette
+	 *            la recette à calculer
+	 * @param nb
+	 *            le nombre d'éléments à récupérer
+	 * @param primaire
+	 *            recherche par éléments primaires ?
+	 * @param step
+	 *            la profondeur de la récursion
+	 * @return une map contenant pour chaque liste d'ingrédients, une liste
+	 *         d'éléments restants
+	 */
 	private static MapIngredientsRestant calcule(Recette recette, Ingredients restant, int nb, boolean primaire, int step) {
 
 		if (step == 8) {
@@ -1350,7 +1375,7 @@ public enum Recette {
 								Ingredients r = new Ingredients();
 								r.add(evalueRestant(item, recette2, nb));
 								r.nettoyage();
-								result.put(calcule(recette2, item.getQuantite()), r);
+								result.customPut(calcule(recette2, item.getQuantite()), r);
 							}
 						}
 					}
@@ -1360,10 +1385,9 @@ public enum Recette {
 
 						for (Recette recette2 : recettes) {
 
-							if (!recettesUseless.contains(recette)) {
+							if (!recettesUseless.contains(recette2)) {
 
-								for (Iterator<Ingredients> it = result.keySet().iterator(); it.hasNext();) {
-									Ingredients ing = it.next();
+								for (Ingredients ing : result.keySet()) {
 
 									// Calcul des ingrédients à utiliser et du
 									// restant
@@ -1392,7 +1416,7 @@ public enum Recette {
 								// Composer chaque résultat de calcul avec le
 								// résultat existant
 								lcKey = lcKey.clone();
-								Ingredients lcValue = listCalcs.get(lcKey);
+								Ingredients lcValue = listCalcs.get(lcKey).clone();
 								lcKey.sum(key);
 								lcValue.sum(value);
 								result.put(lcKey, lcValue);
@@ -1416,6 +1440,21 @@ public enum Recette {
 		return result;
 	}
 
+	/**
+	 * Alimente les listes d'ingrédients communs, et évalue le restant par
+	 * rapport au nombre d'éléments à produire
+	 *
+	 * @param recette
+	 *            la recette de fabricationb
+	 * @param nb
+	 *            le nombre d'objets à fabriquer
+	 * @param ingCommuns
+	 *            la liste des ingrédients communs
+	 * @param restCommuns
+	 *            la liste des ingrédients restants communs
+	 * @param item
+	 *            l'objet utilisé pour le calcul
+	 */
 	private static void alimentationListesCommunes(final Recette recette, final int nb, Ingredients ingCommuns,
 			Ingredients restCommuns, final Item item) {
 		ingCommuns.add(item, true);
@@ -1423,102 +1462,17 @@ public enum Recette {
 	}
 
 	/**
-	 * Renvoie le résultat du calcul d'une recette pour nb éléments, avec les
-	 * différentes possibilités et pour chacune le nombre d'ingrédients restants
+	 * Evalue l'item restant par rapport à l'item dans une recette, et au nombre
+	 * d'items attendus
 	 *
-	 * @param recette
-	 *            la recette à calculer
-	 * @param nb
-	 *            le nombre d'éléments à récupérer
-	 * @param primaire
-	 *            recherche par éléments primaires ?
-	 * @param step
-	 *            la profondeur de la récursion
-	 * @return une map contenant pour chaque liste d'ingrédients, une liste
-	 *         d'éléments restants
+	 * @param itemInRecette
+	 *            l'item utilisé dans la recette
+	 * @param recetteAProduire
+	 *            la recette de production
+	 * @param nbItemsProduits
+	 *            le nombre d'items attendus
+	 * @return l'item (et sa quantité) restant
 	 */
-	private static MapIngredientsRestant calcule2(Recette recette, final Ingredients restant, int nb, boolean primaire, int step) {
-
-		// Que faire ?
-		// Il faut qu'à partir de la recette, et du nb, on puisse savoir les
-		// différentes recettes (à partir d'éléments primaire) possibles
-		// et bien sûr de manière unique
-
-		if (recette == laine_blanche2 || recette == carte2 || recette == gres_poli3) {
-			primaire = false;
-		}
-
-		final Ingredients ingredients = calcule(recette, nb);
-		ingredients.substract(restant);
-		MapIngredientsRestant result = new MapIngredientsRestant();
-
-		MapIngredientsRestant communs = new MapIngredientsRestant();
-		Ingredients ingCommuns = new Ingredients();
-		Ingredients restCommuns = new Ingredients();
-		communs.put(ingCommuns, restCommuns);
-
-		if (step == 8)
-			return null;
-
-		if (primaire) {
-			// recursion
-
-			for (Item item : ingredients) {
-
-				EItemInfo info = EItemInfo.getBy(item.getItem());
-
-				MapIngredientsRestant mapIngs = new MapIngredientsRestant();
-				Ingredients ing2;
-				Ingredients restant2;
-
-				if (item.getQuantite() != 0 && !info.isPrimaire()) {
-
-					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
-
-					for (Recette recette2 : recettes) {
-
-						ing2 = new Ingredients();
-						restant2 = new Ingredients();
-
-						MapIngredientsRestant calc = calcule2(recette2, restant, item.getQuantite(), true, step + 1);
-
-						if (calc != null) {
-							ArrayList<Ingredients> keys = new ArrayList<>(calc.keySet());
-							ArrayList<Ingredients> values = new ArrayList<>(calc.values());
-
-							for (int i = 0; i < keys.size(); i++) {
-								ing2.addAll(keys.get(i));
-								restant.sum(values.get(i));
-								restant2.addAll(values.get(i));
-							}
-
-							mapIngs.put(ing2, restant2);
-
-						}
-
-					}
-
-					// System.out.println(mapIngs);
-					result.putAll(mapIngs);
-
-				}
-				else {
-					restCommuns.add(evalueRestant(item, recette, nb), true);
-					ingCommuns.add(item, true);
-				}
-
-			}
-
-		}
-		else {
-			result.put(ingredients, new Ingredients());
-		}
-
-		result.addToAll(communs);
-
-		return result;
-	}
-
 	private static Item evalueRestant(final Item itemInRecette, final Recette recetteAProduire, int nbItemsProduits) {
 
 		Item yield = recetteAProduire.getItem();
