@@ -1347,7 +1347,10 @@ public enum Recette {
 			return null;
 		}
 
+		// Calcule les ingrédients nécessaires à l'élaboration de l'objet
 		Ingredients ingBase = calcule(recette, nb);
+
+		// Retire à cette liste les ingrédients restants
 		Ingredients ingClone = ingBase.substract(restant);
 
 		MapIngredientsRestant result = new MapIngredientsRestant();
@@ -1355,26 +1358,39 @@ public enum Recette {
 		Ingredients ingCommuns = new Ingredients();
 		Ingredients restCommuns = new Ingredients();
 
+		// Pour chaque item de la liste...
 		for (Item item : ingClone) {
 
+			// En cas de recherche par ingrédients primaires
 			if (primaire) {
+
+				// Récupération des infos de l'item
 				EItemInfo info = EItemInfo.getBy(item.getItem());
+
+				// Si l'item est primaire, on alimente les listes d'ingrédients
+				// et de restant communs
 				if (info.isPrimaire()) {
 					alimentationListesCommunes(recette, nb, ingCommuns, restCommuns, item);
 				}
 				else {
 
+					// Récupération des recettes qui donnent l'item
 					ArrayList<Recette> recettes = getDirectRecettes(item.getItem());
 
+					// Si on a pas encore d'ingrédients qui ont été calculés
 					if (result.isEmpty()) {
 						for (Recette recette2 : recettes) {
 							if (!recettesUseless.contains(recette2)) {
+								// Calcul des ingrédients nécessaires pour cette
+								// recette et cet item
 								MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), primaire, step + 1);
 
 								if (calc != null) {
 									result.putAll(calc);
 								}
 							}
+							// Ajout des items à recette inutile (parce que
+							// récursive et... un peu nulle quoi)
 							else {
 								Ingredients r = new Ingredients();
 								r.add(evalueRestant(item, recette2, nb));
@@ -1383,6 +1399,8 @@ public enum Recette {
 							}
 						}
 					}
+
+					// Si des ingrédients ont déjà été calculés...
 					else {
 
 						MapIngredientsRestant listCalcs = new MapIngredientsRestant();
@@ -1391,6 +1409,9 @@ public enum Recette {
 
 							if (!recettesUseless.contains(recette2)) {
 
+								// Pour chaque résultat déjà calculé, on calcule
+								// les ingrédients nécessaires en fonction du
+								// restant associé
 								for (Ingredients ing : result.keySet()) {
 
 									// Calcul des ingrédients à utiliser et du
@@ -1405,12 +1426,17 @@ public enum Recette {
 								}
 
 							}
+
+							// Idem, recette inutiles
 							else {
 								alimentationListesCommunes(recette2, nb, ingCommuns, restCommuns, item);
 							}
 
 						}
 
+						// Boucle de combinaison entre les résultats préalables
+						// et les résultats évalués après (combinaison entre le
+						// premier ingrédient et les autres)
 						MapIngredientsRestant resultClone = (MapIngredientsRestant) result.clone();
 						for (Ingredients key : resultClone.keySet()) {
 							key = key.clone();
@@ -1441,6 +1467,8 @@ public enum Recette {
 
 		}
 
+		// Pour finir, ajout de tous les ingrédients communs et de tout le
+		// restant commun au résultat
 		result.addToAll(ingCommuns, restCommuns);
 
 		return result;

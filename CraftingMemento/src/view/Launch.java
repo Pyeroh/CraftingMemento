@@ -49,7 +49,7 @@ public class Launch {
 //			System.out.println(eItemInfo.getItem().getGuiName() + " est primaire ? " + eItemInfo.isPrimaire());
 //		}
 
-		System.out.println(Recette.calcule(Recette.potion_splash_faiblesse, 3, true));
+		System.out.println(Recette.calcule(Recette.livre, 1, true));
 //		System.out.println(Recette.calcule(Recette.potion_splash_banale, 6, true));
 
 		/*for (Recette recette : Recette.values()) {
