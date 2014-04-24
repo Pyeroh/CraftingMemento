@@ -1369,7 +1369,11 @@ public enum Recette {
 					if (result.isEmpty()) {
 						for (Recette recette2 : recettes) {
 							if (!recettesUseless.contains(recette2)) {
-								result.putAll(calcule(recette2, restant, item.getQuantite(), primaire, step + 1));
+								MapIngredientsRestant calc = calcule(recette2, restant, item.getQuantite(), primaire, step + 1);
+
+								if (calc != null) {
+									result.putAll(calc);
+								}
 							}
 							else {
 								Ingredients r = new Ingredients();
@@ -1394,7 +1398,9 @@ public enum Recette {
 									MapIngredientsRestant calc = calcule(recette2, result.get(ing), item.getQuantite(), primaire,
 											step + 1);
 
-									listCalcs.putAll(calc);
+									if (calc != null) {
+										listCalcs.putAll(calc);
+									}
 
 								}
 
