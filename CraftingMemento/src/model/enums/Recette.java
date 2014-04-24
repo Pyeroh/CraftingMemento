@@ -1524,6 +1524,13 @@ public enum Recette {
 		}
 	}
 
+	/**
+	 * Permet d'obtenir les recettes dont le résultat aboutit à l'item passé en
+	 * paramètre
+	 *
+	 * @param item
+	 * @return
+	 */
 	public static ArrayList<Recette> getDirectRecettes(EItem item) {
 		ArrayList<Recette> recettes = getRecettes(item);
 
