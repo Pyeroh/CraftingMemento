@@ -49,13 +49,9 @@ public class Launch {
 //			System.out.println(eItemInfo.getItem().getGuiName() + " est primaire ? " + eItemInfo.isPrimaire());
 //		}
 
-		System.out.println(Recette.calcule(Recette.livre, 1, true));
-//		System.out.println(Recette.calcule(Recette.potion_splash_banale, 6, true));
-
-		/*for (Recette recette : Recette.values()) {
-			if (recette.getItem().getItem().getRealName().equals("potion")) return;
+		for (Recette recette : Recette.values()) {
 			System.out.println(recette.getItem().getItem().getGuiName() + " x5 : " + Recette.calcule(recette, 5, true));
-		}*/
+		}
 
 	}
 

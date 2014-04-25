@@ -1270,7 +1270,7 @@ public enum Recette {
 		return result;
 	}
 
-	static class MapIngredientsRestant extends LinkedHashMap<Ingredients, Ingredients> {
+	private static class MapIngredientsRestant extends LinkedHashMap<Ingredients, Ingredients> {
 
 		private static final long serialVersionUID = -1139151548490289231L;
 
@@ -1314,14 +1314,6 @@ public enum Recette {
 				this.put(key, value);
 			}
 
-		}
-
-		public void addToAll(MapIngredientsRestant mapIngs) {
-			if (mapIngs != null) {
-				for (Ingredients key : mapIngs.keySet()) {
-					this.addToAll(key, mapIngs.get(key));
-				}
-			}
 		}
 
 	}
