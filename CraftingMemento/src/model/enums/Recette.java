@@ -1257,8 +1257,16 @@ public enum Recette {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Ingredients> calcule(Recette recette, int nb, boolean primaire) {
-		ArrayList<Ingredients> result = new ArrayList<>(calcule(recette, new Ingredients(), nb, primaire, 0).keySet());
+	public static ArrayList<Ingredients> calcule(EItem item, int nb, boolean primaire) {
+
+		ArrayList<Recette> directRecettes = getDirectRecettes(item);
+		LinkedHashSet<Ingredients> lhsResult = new LinkedHashSet<>();
+
+		for (Recette recette : directRecettes) {
+			lhsResult.addAll(calcule(recette, new Ingredients(), nb, primaire, 0).keySet());
+		}
+
+		ArrayList<Ingredients> result = new ArrayList<>(lhsResult);
 
 		for (Ingredients ingredients : (ArrayList<Ingredients>) result.clone()) {
 			ingredients.nettoyage();

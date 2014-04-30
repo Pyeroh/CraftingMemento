@@ -110,11 +110,10 @@ public class FenPrincipale extends JFrame {
 	 * <li>0 : craft</li>
 	 * <li>1 : four</li>
 	 * <li>2 : potion</li>
-	 * <li>3 : calcul</li>
-	 * <li>4 : position dans ingrédients calculés</li>
+	 * <li>3 : position dans ingrédients calculés</li>
 	 * </ul>
 	 */
-	private int[] indices = {-1, -1, -1, -1, -1};
+	private int[] indices = {-1, -1, -1, -1};
 	private JButton btnFourAvant;
 	private JButton btnFourApres;
 	private JButton btnPotionAvant;
@@ -495,13 +494,13 @@ public class FenPrincipale extends JFrame {
 		txtQuantite.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				int keyCode = e.getKeyCode();
-				if ((keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9) || (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9)) {
-					try {
-						txtQuantite.commitEdit();
-					}
-					catch (ParseException e1) {
-					}
+				Object oldValue = txtQuantite.getValue();
+				try {
+					txtQuantite.commitEdit();
+				}
+				catch (ParseException e1) {
+				}
+				if (txtQuantite.getValue() != null && !txtQuantite.getValue().equals(oldValue)) {
 					afficheOnglet();
 				}
 			}
@@ -672,8 +671,7 @@ public class FenPrincipale extends JFrame {
 
 		resetPotion();
 
-		indices = new int[]{-1, -1, -1, -1, -1};
-
+		indices = new int[]{-1, -1, -1, -1};
 
 	}
 
@@ -743,7 +741,7 @@ public class FenPrincipale extends JFrame {
 				index = 0;
 			}
 
-			calculateur(index, -1);
+			calculateur(index);
 
 			break;
 		default:
@@ -846,29 +844,17 @@ public class FenPrincipale extends JFrame {
 
 	}
 
-	public void calculateur(int indexInRecettes, int indexInIngredients) {
-
-		// TODO Wrapper le calculateur pour qu'il renvoie les ingrédients calculés pour toutes les recettes associées
+	public void calculateur(int index) {
 
 		caseCalcul.setItem(txtObjetRecherch.getItem());
 
 		resetCalc();
-		if (indexInRecettes == -1) return;
-		indices[3] = indexInRecettes;
+		if (index == -1) return;
+		indices[3] = index;
 
 		if (txtQuantite.getValue() != null) {
-			calc = Recette.calcule(directRecettes.get(indexInRecettes), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
-			if (!calc.isEmpty()) {
-				if (indexInIngredients == -1) {
-					indices[4] = 0;
-				}
-				else {
-					indices[4] = indexInIngredients;
-				}
-			}
-			else {
-				indices[4] = -1;
-			}
+			calc = Recette.calcule(txtObjetRecherch.getItem(), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+
 			System.out.println(calc);
 		}
 
