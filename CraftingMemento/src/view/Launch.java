@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
-import java.util.Locale;
 
 import javax.swing.UIManager;
 
@@ -15,9 +14,7 @@ public class Launch {
 
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 
-		System.out.println(Locale.FRENCH.getLanguage());
-
-		// new FenPrincipale();
+		 new FenPrincipale();
 		// new FenetreTest_XSwing();
 
 	}

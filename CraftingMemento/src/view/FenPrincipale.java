@@ -54,6 +54,7 @@ public class FenPrincipale extends JFrame {
 
 	private ArrayList<Recette> recettes;
 	private ArrayList<Recette> directRecettes;
+	private ArrayList<Ingredients> calc;
 
 	// initialisation onglets
 	private JTabbedPane onglet = new JTabbedPane();
@@ -104,7 +105,16 @@ public class FenPrincipale extends JFrame {
 	private JLabel lblFondCalcul = new JLabel();
 	private MCImage caseCalcul = new MCImage(ongletCalcul);
 
-	private int[] indices = {-1, -1, -1, -1};
+	/**
+	 * <ul>
+	 * <li>0 : craft</li>
+	 * <li>1 : four</li>
+	 * <li>2 : potion</li>
+	 * <li>3 : calcul</li>
+	 * <li>4 : position dans ingrédients calculés</li>
+	 * </ul>
+	 */
+	private int[] indices = {-1, -1, -1, -1, -1};
 	private JButton btnFourAvant;
 	private JButton btnFourApres;
 	private JButton btnPotionAvant;
@@ -197,12 +207,7 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void searchedItemChanged(EItem item) {
 				recettes = Recette.getRecettes(item);
-				directRecettes = new ArrayList<>();
-				for (Recette recette : recettes) {
-					if (recette.getItem().getItem() == item) {
-						directRecettes.add(recette);
-					}
-				}
+				directRecettes = Recette.getDirectRecettes(item);
 
 				afficheInfos(item);
 
@@ -490,14 +495,15 @@ public class FenPrincipale extends JFrame {
 		txtQuantite.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				try {
-					txtQuantite.commitEdit();
-					if (caseCalcul.getItem() != EItem.air) {
-
+				int keyCode = e.getKeyCode();
+				if ((keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9) || (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9)) {
+					try {
+						txtQuantite.commitEdit();
 					}
-				} catch (ParseException e1) {}
-
-				afficheOnglet();
+					catch (ParseException e1) {
+					}
+					afficheOnglet();
+				}
 			}
 		});
 		txtQuantite.setBounds(165, 111, 75, 18);
@@ -666,7 +672,7 @@ public class FenPrincipale extends JFrame {
 
 		resetPotion();
 
-		indices = new int[]{-1, -1, -1, -1};
+		indices = new int[]{-1, -1, -1, -1, -1};
 
 
 	}
@@ -699,6 +705,8 @@ public class FenPrincipale extends JFrame {
 	}
 
 	private void resetCalc() {
+
+		listIngredient.setModel(new DefaultListModel<CellListItem>());
 
 	}
 
@@ -735,7 +743,7 @@ public class FenPrincipale extends JFrame {
 				index = 0;
 			}
 
-			calculateur(index);
+			calculateur(index, -1);
 
 			break;
 		default:
@@ -838,16 +846,30 @@ public class FenPrincipale extends JFrame {
 
 	}
 
-	public void calculateur(int index) {
+	public void calculateur(int indexInRecettes, int indexInIngredients) {
+
+		// TODO Wrapper le calculateur pour qu'il renvoie les ingrédients calculés pour toutes les recettes associées
+
 		caseCalcul.setItem(txtObjetRecherch.getItem());
 
 		resetCalc();
-		if (index == -1) return;
-		indices[3] = index;
+		if (indexInRecettes == -1) return;
+		indices[3] = indexInRecettes;
 
 		if (txtQuantite.getValue() != null) {
-			ArrayList<Ingredients> items = Recette.calcule(recettes.get(index), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
-			System.out.println(items);
+			calc = Recette.calcule(directRecettes.get(indexInRecettes), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+			if (!calc.isEmpty()) {
+				if (indexInIngredients == -1) {
+					indices[4] = 0;
+				}
+				else {
+					indices[4] = indexInIngredients;
+				}
+			}
+			else {
+				indices[4] = -1;
+			}
+			System.out.println(calc);
 		}
 
 	}
