@@ -17,6 +17,7 @@ public class HoverListCellRenderer extends DefaultListCellRenderer {
 
 	private static final long serialVersionUID = 9037091771053473873L;
 	private static final Color HOVER_COLOR = new Color(208,233,253);
+	private static final Color SELECTED_COLOR = new Color(247,212,170);
 	private int hoverIndex = -1;
 	private MouseAdapter handler;
 	private JList<?> list;
@@ -42,10 +43,10 @@ public class HoverListCellRenderer extends DefaultListCellRenderer {
 				setText(item.getGuiName());
 
 				if (!isSelected) {
-					setBackground(index == hoverIndex ? HOVER_COLOR : Color.white);
+					setBackground(index == hoverIndex ? HOVER_COLOR : (list.getBackground().getClass().equals(Color.class) ? list.getBackground() : Color.white));
 				}
 				else {
-					setBackground(new Color(247,212,170));
+					setBackground(SELECTED_COLOR);
 				}
 				setForeground(Color.black);
 
@@ -58,10 +59,10 @@ public class HoverListCellRenderer extends DefaultListCellRenderer {
 				cell.setMaximumSize(cell.getPreferredSize());
 
 				if (!isSelected) {
-					cell.setBackground(index == hoverIndex ? HOVER_COLOR : Color.white);
+					cell.setBackground(index == hoverIndex ? HOVER_COLOR : (list.getBackground().getClass().equals(Color.class) ? list.getBackground() : Color.white));
 				}
 				else {
-					cell.setBackground(new Color(247,212,170));
+					cell.setBackground(SELECTED_COLOR);
 				}
 				cell.setForeground(Color.black);
 

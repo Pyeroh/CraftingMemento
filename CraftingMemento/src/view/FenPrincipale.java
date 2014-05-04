@@ -1,49 +1,20 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
 import model.Ingredients;
-import model.enums.EItem;
-import model.enums.EItemInfo;
-import model.enums.ERecetteType;
-import model.enums.Recette;
-import view.components.JComboSearchField;
-import view.components.JHoverList;
-import view.components.MCImage;
-import view.components.RoundedPanel;
-import view.components.ShadowLabel;
+import model.Item;
+import model.enums.*;
+import view.components.*;
 import view.components.cells.CellListEItem;
 import view.components.cells.CellListItem;
 import view.event.SearchedItemChangeListener;
@@ -738,7 +709,7 @@ public class FenPrincipale extends JFrame {
 			if (directRecettes.size() == 0) {
 				index = -1;
 			} else {
-				index = 0;
+				index = indices[2];
 			}
 
 			calculateur(index);
@@ -855,7 +826,15 @@ public class FenPrincipale extends JFrame {
 		if (txtQuantite.getValue() != null) {
 			calc = Recette.calcule(txtObjetRecherch.getItem(), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
 
-			System.out.println(calc);
+			DefaultListModel<CellListItem> model = new DefaultListModel<>();
+			if (!calc.isEmpty()) {
+				for (Item item : calc.get(0)) {
+					model.addElement(new CellListItem(item));
+				}
+			}
+
+			listIngredient.setModel(model);
+
 		}
 
 	}
