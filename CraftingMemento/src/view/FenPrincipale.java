@@ -24,8 +24,7 @@ public class FenPrincipale extends JFrame {
 	private static final long serialVersionUID = 2540259731678095668L;
 
 	private ArrayList<Recette> recettes;
-	private ArrayList<Recette> directRecettes;
-	private ArrayList<Ingredients> calc;
+	private ArrayList<Ingredients> calc = new ArrayList<>();
 
 	// initialisation onglets
 	private JTabbedPane onglet = new JTabbedPane();
@@ -112,6 +111,8 @@ public class FenPrincipale extends JFrame {
 	private JLabel lblMetadataInfo = new JLabel("");
 	private JCheckBox chkIngredientsPrimaires;
 	private JLabel lblShapeless;
+	private JButton btnCalcAvant;
+	private JButton btnCalcApres;
 
 	public FenPrincipale() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FenPrincipale.class.getResource("/gui/eitems/blocks/58_0.png")));
@@ -145,6 +146,12 @@ public class FenPrincipale extends JFrame {
 				if (btn == btnPotionApres) {
 					potion(Recette.getNext(indices[2], recettes));
 				}
+				if (btn == btnCalcAvant) {
+					calculateur(indices[3] - 1 >= 0 ? --indices[3] : (indices[3] = calc.size() - 1));
+				}
+				if (btn == btnCalcApres) {
+					calculateur(indices[3] + 1 < calc.size() ? ++indices[3] : (indices[3] = 0));
+				}
 			}
 		};
 
@@ -177,7 +184,6 @@ public class FenPrincipale extends JFrame {
 			@Override
 			public void searchedItemChanged(EItem item) {
 				recettes = Recette.getRecettes(item);
-				directRecettes = Recette.getDirectRecettes(item);
 
 				afficheInfos(item);
 
@@ -445,8 +451,26 @@ public class FenPrincipale extends JFrame {
 		lblQte.setForeground(new Color(86, 86, 86));
 		lblQte.setFont(new Font("Minecraftia", Font.PLAIN, 27));
 		lblQte.setBounds(85, 97, 54, 36);
-
 		ongletCalcul.add(lblQte);
+
+		btnCalcAvant = new JButton();
+		btnCalcAvant.setBounds(75, 38, 32, 32);
+		btnCalcAvant.setVisible(false);
+		btnCalcAvant.setBorder(null);
+		btnCalcAvant.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant.png")));
+		btnCalcAvant.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_avant_push.png")));
+		btnCalcAvant.addMouseListener(switchListener);
+		ongletCalcul.add(btnCalcAvant);
+
+		btnCalcApres = new JButton();
+		btnCalcApres.setBounds(320, 38, 32, 32);
+		btnCalcApres.setVisible(false);
+		btnCalcApres.setBorder(null);
+		btnCalcApres.setIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres.png")));
+		btnCalcApres.setPressedIcon(new ImageIcon(FenPrincipale.class.getResource("/gui/fleche_apres_push.png")));
+		btnCalcApres.addMouseListener(switchListener);
+		ongletCalcul.add(btnCalcApres);
+
 		ongletCalcul.add(txtQuantite);
 		ongletCalcul.setLayout(null);
 		ongletCalcul.add(scrollPane_NbIngredient);
@@ -454,6 +478,8 @@ public class FenPrincipale extends JFrame {
 		chkIngredientsPrimaires = new JCheckBox("Ingr\u00E9dients primaires");
 		chkIngredientsPrimaires.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				indices[3] = -1;
+				calc.clear();
 				afficheOnglet();
 			}
 		});
@@ -642,7 +668,10 @@ public class FenPrincipale extends JFrame {
 
 		resetPotion();
 
+		resetCalc();
+
 		indices = new int[]{-1, -1, -1, -1};
+		calc.clear();
 
 	}
 
@@ -706,11 +735,14 @@ public class FenPrincipale extends JFrame {
 			potion(index);
 			break;
 		case 3:
-			if (directRecettes.size() == 0) {
+			if (calc.isEmpty()) {
 				index = -1;
 			} else {
 				index = indices[2];
 			}
+			autre = calc.size() > 1;
+			btnCalcAvant.setVisible(autre);
+			btnCalcApres.setVisible(autre);
 
 			calculateur(index);
 
@@ -820,15 +852,28 @@ public class FenPrincipale extends JFrame {
 		caseCalcul.setItem(txtObjetRecherch.getItem());
 
 		resetCalc();
-		if (index == -1) return;
-		indices[3] = index;
 
 		if (txtQuantite.getValue() != null) {
-			calc = Recette.calcule(txtObjetRecherch.getItem(), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+			ArrayList<Ingredients> calc2 = Recette.calcule(txtObjetRecherch.getItem(), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
+
+			if (calc.equals(calc2)) {
+				if (index == -1) return;
+				indices[3] = index;
+			}
+			else {
+				calc = calc2;
+				if (calc.isEmpty()) {
+					indices[3] = -1;
+					return;
+				}
+				else {
+					indices[3] = 0;
+				}
+			}
 
 			DefaultListModel<CellListItem> model = new DefaultListModel<>();
 			if (!calc.isEmpty()) {
-				for (Item item : calc.get(0)) {
+				for (Item item : calc.get(indices[3])) {
 					model.addElement(new CellListItem(item));
 				}
 			}
