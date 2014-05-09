@@ -85,12 +85,14 @@ public class Ingredients extends LinkedHashSet<Item> {
 		nettoyage();
 
 	}
-	
+
 	@Override
 	public boolean contains(Object o) {
 		ArrayList<Item> i = new ArrayList<>(this);
 		for (Item item : i) {
-			if
+			if (item.equals(o)) {
+				return true;
+			}
 		}
 		return super.contains(o);
 	}

@@ -497,9 +497,15 @@ public class FenPrincipale extends JFrame {
 				}
 				catch (ParseException e1) {
 				}
-				if (txtQuantite.getValue() != null && !txtQuantite.getValue().equals(oldValue)) {
+
+				if (txtQuantite.getText().equals("")) {
+					txtQuantite.setValue(null);
+				}
+
+				if (txtQuantite.getValue()!=null && !txtQuantite.getValue().equals(oldValue)) {
 					afficheOnglet();
 				}
+
 			}
 		});
 		txtQuantite.setBounds(165, 111, 75, 18);
