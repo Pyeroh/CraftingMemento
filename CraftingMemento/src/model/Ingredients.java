@@ -90,7 +90,7 @@ public class Ingredients extends LinkedHashSet<Item> {
 	public boolean contains(Object o) {
 		ArrayList<Item> i = new ArrayList<>(this);
 		for (Item item : i) {
-			if (item.equals(o)) {
+			if (item.equals_wQuantite(o)) {
 				return true;
 			}
 		}
