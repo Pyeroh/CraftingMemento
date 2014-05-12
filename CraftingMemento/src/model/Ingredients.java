@@ -87,14 +87,39 @@ public class Ingredients extends LinkedHashSet<Item> {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (o == this)
+			return true;
+
+		if (!(o instanceof Ingredients))
+			return false;
+		Ingredients c = (Ingredients) o;
+		if (c.size() != size())
+			return false;
+		try {
+			for (Item item : this) {
+				if (!c.contains(item)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		catch (ClassCastException unused) {
+			return false;
+		}
+		catch (NullPointerException unused) {
+			return false;
+		}
+	}
+
+	@Override
 	public boolean contains(Object o) {
-		ArrayList<Item> i = new ArrayList<>(this);
-		for (Item item : i) {
+		for (Item item : this) {
 			if (item.equals_wQuantite(o)) {
 				return true;
 			}
 		}
-		return super.contains(o);
+		return false;
 	}
 
 	/**

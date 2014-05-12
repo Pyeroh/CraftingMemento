@@ -500,6 +500,7 @@ public class FenPrincipale extends JFrame {
 
 				if (txtQuantite.getText().equals("")) {
 					txtQuantite.setValue(null);
+					listIngredient.setModel(new DefaultListModel<CellListItem>());
 				}
 
 				if (txtQuantite.getValue()!=null && !txtQuantite.getValue().equals(oldValue)) {
@@ -620,7 +621,7 @@ public class FenPrincipale extends JFrame {
 		lblIDMCInfo.setText(item.getRealName());
 		lblMetadataInfo.setText(item.getMeta() + "");
 		lblStackInfo.setText(info.getSize() + "");
-		lblOngletInfo.setText(item.getCategory().getGui_name());
+		lblOngletInfo.setText(item.getCategory() == null ? "" : item.getCategory().getGui_name());
 		lblVersionInfo.setText(info.getVersion());
 		chkTransparentInfo.setSelected(info.isTransparent());
 		chkCarburantInfo.setSelected(info.isCarburant());
@@ -709,9 +710,8 @@ public class FenPrincipale extends JFrame {
 	}
 
 	private void resetCalc() {
-
 		listIngredient.setModel(new DefaultListModel<CellListItem>());
-
+		caseCalcul.setItem(EItem.air);
 	}
 
 	public void afficheOnglet() {
@@ -744,7 +744,14 @@ public class FenPrincipale extends JFrame {
 			if (calc.isEmpty()) {
 				index = -1;
 			} else {
-				index = indices[2];
+				if (indices[3] != -1) {
+					index = indices[3];
+				}
+				else {
+					index = 0;
+					indices[3] = 0;
+				}
+
 			}
 			autre = calc.size() > 1;
 			btnCalcAvant.setVisible(autre);
@@ -855,9 +862,9 @@ public class FenPrincipale extends JFrame {
 
 	public void calculateur(int index) {
 
-		caseCalcul.setItem(txtObjetRecherch.getItem());
-
 		resetCalc();
+
+		caseCalcul.setItem(txtObjetRecherch.getItem());
 
 		if (txtQuantite.getValue() != null) {
 			ArrayList<Ingredients> calc2 = Recette.calcule(txtObjetRecherch.getItem(), ((Number)txtQuantite.getValue()).intValue(), chkIngredientsPrimaires.isSelected());
